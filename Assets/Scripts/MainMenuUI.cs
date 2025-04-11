@@ -7,7 +7,7 @@ public class MainMenuUI : MonoBehaviour
     public GameObject panelInicio;
     public GameObject panelPartida;
     public GameObject panelOpciones;
-    public float fadeDuration = 0.5f;
+    public float fadeDuration = 0.2f;
 
     private CanvasGroup canvasInicio;
     private CanvasGroup canvasPartida;
@@ -33,7 +33,7 @@ public class MainMenuUI : MonoBehaviour
             panelPartida.SetActive(false);
             panelOpciones.SetActive(false);
 
-            canvasPartida.alpha = 0;
+            canvasPartida.alpha = 1;
             canvasInicio.DOFade(1, fadeDuration);
         });
     }
@@ -46,7 +46,7 @@ public class MainMenuUI : MonoBehaviour
             panelPartida.SetActive(true);
             panelOpciones.SetActive(false);
 
-            canvasInicio.alpha = 0;
+            //canvasInicio.alpha = 1;
             canvasPartida.DOFade(1, fadeDuration);
         });
     }
