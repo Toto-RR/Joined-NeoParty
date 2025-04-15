@@ -6,7 +6,8 @@ using System.Linq;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-
+    private PlayerChoices playerChoices;
+    
     public enum GameLength { Short, Medium, Long, Marathon }
     public GameLength currentGameLength;
 
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     public int currentMiniGameIndex = 0;
 
     public Dictionary<int, int> playerScores = new Dictionary<int, int>();
+    private SceneChanger sceneChanger; 
 
     private void Awake()
     {
@@ -21,6 +23,8 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            playerChoices = Resources.Load<PlayerChoices>("PlayerChoices");
+            sceneChanger = GetComponent<SceneChanger>();
         }
         else
         {
@@ -28,12 +32,30 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void StartGame(string gameLengthString)
+    {
+        if (System.Enum.TryParse(gameLengthString, out GameLength gameLength))
+        {
+            Debug.Log(gameLengthString + " started!");
+            StartGame(gameLength);
+        }
+        else
+        {
+            Debug.LogError("Invalid game length string: " + gameLengthString);
+        }
+    }
+
     public void StartGame(GameLength gameLength)
     {
         currentGameLength = gameLength;
-        selectedMiniGames = GenerateGameSequence(gameLength);
-        currentMiniGameIndex = 0;
-        LoadNextMiniGame();
+        playerChoices.SetPartyLength(gameLength);
+
+        // Guarda la elección del jugador y pasa a la escena del lobby
+        sceneChanger.ChangeScene("LobbyScene");
+
+        //selectedMiniGames = GenerateGameSequence(gameLength);
+        //currentMiniGameIndex = 0;
+        //LoadNextMiniGame();
     }
 
     public void LoadNextMiniGame()
@@ -60,7 +82,7 @@ public class GameManager : MonoBehaviour
 
     private List<string> GenerateGameSequence(GameLength length)
     {
-        List<string> allMiniGames = new List<string>() { "MiniGame_1", "MiniGame_2", "MiniGame_3", "MiniGame_4" };
+        List<string> allMiniGames = new List<string>() { "ShortParty", "MediumParty", "LongParty", "MarathonParty" };
         int count = length switch
         {
             GameLength.Short => 3,
