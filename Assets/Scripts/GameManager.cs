@@ -8,7 +8,13 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     private PlayerChoices playerChoices;
     
-    public enum GameLength { Short, Medium, Long, Marathon }
+    public enum GameLength 
+    { 
+        Short, 
+        Medium, 
+        Long, 
+        Marathon 
+    }
     public GameLength currentGameLength;
 
     public List<string> selectedMiniGames;

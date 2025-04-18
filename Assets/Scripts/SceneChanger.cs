@@ -3,6 +3,20 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
+    public static SceneChanger Instance;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject); // evita duplicados si tienes mas de uno en la escena
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject); // opcional, si quieres que persista entre escenas
+    }
+
     // Cambia de escena usando el nombre
     public void ChangeScene(string sceneName)
     {

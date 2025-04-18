@@ -5,18 +5,12 @@ using UnityEngine;
 public class PlayerChoices : ScriptableObject
 {
     private GameManager.GameLength gameLength;
+    private int numberOfPlayers = 0;
 
-    public void SetPartyLength(GameManager.GameLength gameLength_)
-    {
-        // Guarda la eleccion del jugador
-        gameLength = gameLength_;
-    }
-
-    public GameManager.GameLength GetPartyLengthEnum()
-    {
-        // Devuelve el valor del modo escogido como un ENUM
-        return gameLength;
-    }
+    public void SetPartyLength(GameManager.GameLength gameLength_) { gameLength = gameLength_; }
+    public void SetNumberOfPlayers(int numberOfPlayers_) { numberOfPlayers = numberOfPlayers_; }
+    public GameManager.GameLength GetPartyLengthEnum() { return gameLength; }
+    public int GetNumberOfPlayers() { return numberOfPlayers; }
 }
 
 #if UNITY_EDITOR
