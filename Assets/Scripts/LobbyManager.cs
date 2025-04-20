@@ -57,7 +57,7 @@ public class LobbyManager : MonoBehaviour
     public void Continue()
     {
         SaveNumberPlayers();
-        SceneChanger.Instance.ChangeScene("GameScene");
+        SceneChanger.Instance.ChangeScene("Demo");
     }
 
     private void SaveNumberPlayers()
