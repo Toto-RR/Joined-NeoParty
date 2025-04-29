@@ -2,25 +2,30 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f;        // Velocidad de avance
+    [Header("Movement Parameters")]
+    public float moveSpeed = 0f;        // Velocidad de avance
     public float jumpForce = 5f;        // Fuerza del salto
 
     public float lateralSpeed = 3f;     // Velocidad lateral separada
+
+    public float crouchHeight = 1f;
+    public float crouchCenterY = 0.5f;
+
+    [Header("Hit Parameters")]
     public Color hitColor = Color.red;  // Color al chocar
 
     private Rigidbody rb;
     private Animator animator;
     private CapsuleCollider capsule;
 
+    [Header("State Parameters")]
     public bool isGrounded = true;
     public bool finished = false;
     public bool isCrouching = false;
+    public bool startToRun = false;
 
     private float originalHeight;
     private Vector3 originalCenter;
-    public float crouchHeight = 1f;
-    public float crouchCenterY = 0.5f;
-
     private Renderer playerRenderer;
     private Color originalColor;
 
@@ -51,6 +56,11 @@ public class PlayerController : MonoBehaviour
         }
 
         animator.SetFloat("Speed", moveSpeed);
+    }
+
+    public void StartToRun()
+    {
+        moveSpeed = 10f;
     }
 
     private void MoveForward()

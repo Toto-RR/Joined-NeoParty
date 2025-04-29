@@ -67,6 +67,11 @@ public class LobbyManager : MonoBehaviour
 
     public void Continue()
     {
+        if(numberOfPlayers < 2)
+        {
+            Debug.Log("Venga hombre, siempre es mejor jugar con alguien!");
+            return;
+        }
         SaveNumberPlayers();
         SceneChanger.Instance.ChangeScene("GameScene");
     }

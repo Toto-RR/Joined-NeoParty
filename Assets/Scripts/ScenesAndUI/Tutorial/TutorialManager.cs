@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Splines;
+using UnityEngine.Video;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -13,10 +15,36 @@ public class TutorialManager : MonoBehaviour
     private int totalPlayers = 0;
     private List<PlayerRow> playerRows = new();
 
+    [Header("Cinemachine Intro")]
+    public SplineAnimate splineAnimate;
+
+    public VideoPlayer videoTutorial;
+
     private void Start()
     {
         totalPlayers = playerChoices.GetNumberOfPlayers();
         SetupPlayerRows();
+
+        splineAnimate.Completed += OnIntroAnimationFinished;
+    }
+
+    private void OnDestroy()
+    {
+        if (splineAnimate != null)
+            splineAnimate.Completed -= OnIntroAnimationFinished;
+    }
+
+    protected virtual void StartIntroAnimation()
+    {
+        if (splineAnimate != null)
+        {
+            splineAnimate.Play();
+        }
+    }
+
+    protected virtual void OnIntroAnimationFinished()
+    {
+        videoTutorial.Play();
     }
 
     private void SetupPlayerRows()

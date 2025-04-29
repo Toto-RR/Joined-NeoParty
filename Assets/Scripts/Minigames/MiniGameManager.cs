@@ -27,7 +27,6 @@ public class MiniGameManager : MonoBehaviour
         else
         {
             Debug.Log("Todos los minijuegos han terminado.");
-            // Aquí puedes pasar a una pantalla final general del juego
         }
     }
 

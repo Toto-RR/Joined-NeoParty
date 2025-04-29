@@ -1,30 +1,40 @@
 using UnityEngine;
+using Unity.Cinemachine;
+using UnityEngine.Splines;
 
 public class MiniGameBase : MonoBehaviour
 {
+    [Header("Canvases")]
     public GameObject tutorialCanvas;
     public GameObject gameplayCanvas;
     public GameObject endCanvas;
 
+    //HARDCODED, QUITAR
+    public PlayersSpawner playersSpawner;
+    public CameraTransitionManager cameraTransitionManager;
+
     protected virtual void Start()
     {
         tutorialCanvas.SetActive(true);
-        gameplayCanvas.SetActive(false);
+        gameplayCanvas.SetActive(true);
         endCanvas.SetActive(false);
 
-        StartIntroAnimation();
     }
 
-    protected virtual void StartIntroAnimation()
+    protected virtual void Update()
     {
-        // Aquí lanzas animación de cámara propia
-        // y cuando termine muestras el tutorialCanvas
+
     }
 
     public virtual void OnAllPlayersReady()
     {
         tutorialCanvas.SetActive(false);
-        gameplayCanvas.SetActive(true);
+
+        cameraTransitionManager.SwitchToGameplay(() =>
+        {
+            playersSpawner.SpawnPlayers();
+            StartCoroutine(playersSpawner.ExpandCameras(playersSpawner.GetPlayerCameras()));
+        });
     }
 
     public virtual void OnGameFinished()
@@ -35,7 +45,6 @@ public class MiniGameBase : MonoBehaviour
 
     public virtual void OnEndConfirmed()
     {
-        // Avisar al MiniGameManager
         FindObjectOfType<MiniGameManager>().OnMiniGameEnded();
     }
 }
