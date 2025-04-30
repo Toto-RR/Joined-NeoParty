@@ -9,7 +9,7 @@ public class TutorialManager : MonoBehaviour
     public Transform playersPanel;              // Panel donde instanciar los PlayerRow
     public GameObject playerRowPrefab;          // Prefab de la fila de jugador
     public PlayerChoices playerChoices;         // ScriptableObject con jugadores activos
-    public MiniGameBase minigameBase;           // Referencia al minijuego actual
+    public Minigame_1 minigameBase;           // Referencia al minijuego actual
 
     private int readyPlayers = 0;
     private int totalPlayers = 0;

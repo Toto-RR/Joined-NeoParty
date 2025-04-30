@@ -301,6 +301,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.7294118
       objectReference: {fileID: 0}
+    - target: {fileID: 5866301281688471635, guid: ddec53e7a221be14d9bf57376eb9176a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8244218146345122021, guid: ddec53e7a221be14d9bf57376eb9176a, type: 3}
       propertyPath: m_Name
       value: CharacterWindow (2)
@@ -973,7 +977,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1295937004}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1396,19 +1400,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefabs:
   - colorName: Blue
-    astronautPrefab: {fileID: 8877805204582320655, guid: 1ccc9d50d8aee5e40a0a4db616f4f4cb, type: 3}
+    astronautPrefab: {fileID: 222226333087735212, guid: 5f39c09e3de7ab84d8f5d54fc7eb7383, type: 3}
     visor: {fileID: 1661678397}
     questionMark: {fileID: 1028161594}
   - colorName: Orange
-    astronautPrefab: {fileID: 978795469931696436, guid: bf2f3206cdb2b234eac14c4ddcf4272a, type: 3}
+    astronautPrefab: {fileID: 8271808054340092428, guid: a663c704473817744bd998b714f8aa88, type: 3}
     visor: {fileID: 1985495214}
     questionMark: {fileID: 837032365}
   - colorName: Green
-    astronautPrefab: {fileID: 2271555008446649104, guid: b25540d0fcfe1c940a3694c70d74455e, type: 3}
+    astronautPrefab: {fileID: 809230042104830223, guid: 42c06899a3bf3f24ead87a0cc2e2c9bc, type: 3}
     visor: {fileID: 1051674009}
     questionMark: {fileID: 781304136}
   - colorName: Yellow
-    astronautPrefab: {fileID: 8879818073524196640, guid: dc02e71ea0d5d154c865c8e4de5986b9, type: 3}
+    astronautPrefab: {fileID: 6054265942696545782, guid: 698cb2cd9576f3e4ebeff325d3e4b9fb, type: 3}
     visor: {fileID: 1764946585}
     questionMark: {fileID: 1656000352}
 --- !u!1 &1985495214 stripped

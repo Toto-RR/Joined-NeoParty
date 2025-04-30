@@ -132,11 +132,11 @@ public class PlayersSpawner : MonoBehaviour
         return playerCameras;
     }
 
-    public IEnumerator ExpandCameras(List<Camera> playerCameras, float duration = 2f)
+    public IEnumerator ExpandCameras(List<Camera> playerCameras, float duration = 1f, float separation = 0.01f)
     {
-        yield return new WaitForSeconds(0.5f);
         ActivatePlayerCameras();
-        yield return new WaitForSeconds(1f);
+
+        yield return new WaitForSeconds(1f); // pequeño delay antes de empezar animación
 
         int count = playerCameras.Count;
         List<Rect> startRects = new List<Rect>();
@@ -144,18 +144,23 @@ public class PlayersSpawner : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
-            startRects.Add(new Rect(0f, 0f, 1f, 1f)); // todas apiladas al inicio
+            startRects.Add(new Rect(0f, 0f, 1f, 1f)); // todas pantalla completa al inicio
 
-            float width = 1f / count;
-            Rect target = new Rect(i * width, 0f, width, 1f);
+            float totalSeparation = separation * (count - 1);
+            float width = (1f - totalSeparation) / count;
+            float xOffset = i * (width + separation);
+
+            Rect target = new Rect(xOffset, 0f, width, 1f);
             targetRects.Add(target);
         }
 
         float t = 0f;
         while (t < duration)
         {
+            // Interpolación de las cámaras
             t += Time.deltaTime;
             float lerp = Mathf.Clamp01(t / duration);
+
 
             for (int i = 0; i < count; i++)
             {
@@ -179,6 +184,7 @@ public class PlayersSpawner : MonoBehaviour
 
     private Rect LerpRect(Rect a, Rect b, float t)
     {
+        // Interpolación lineal entre dos Rects
         return new Rect(
             Mathf.Lerp(a.x, b.x, t),
             Mathf.Lerp(a.y, b.y, t),

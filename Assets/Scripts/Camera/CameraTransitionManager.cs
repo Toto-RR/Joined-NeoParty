@@ -30,9 +30,30 @@ public class CameraTransitionManager : MonoBehaviour
             // Esperar un frame para que arranque el blending
             yield return null;
             Debug.Log("Esperando el blending...");
-        } while (brain.IsBlending);
+        } 
+        while (brain.IsBlending);
 
         // ¡Blend terminado!
         onComplete?.Invoke();
+    }
+
+    public void DisableCameras()
+    {
+        if (tutorialCam != null)
+        {
+            tutorialCam.Priority = 0;
+            tutorialCam.enabled = false;
+        }
+        if (gameplayCam != null)
+        {
+            gameplayCam.Priority = 0;
+            gameplayCam.enabled = false;
+        }
+        if (brain != null)
+        {
+            brain.enabled = false;
+            brain.gameObject.SetActive(false);
+        }
+        
     }
 }
