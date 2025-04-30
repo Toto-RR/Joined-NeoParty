@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -40,6 +41,8 @@ public class PlayerController : MonoBehaviour
 
         originalHeight = capsule.height;
         originalCenter = capsule.center;
+
+        StartCoroutine(StartToRun());
     }
 
     private void Update()
@@ -58,8 +61,9 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Speed", moveSpeed);
     }
 
-    public void StartToRun()
+    public IEnumerator StartToRun()
     {
+        yield return new WaitForSeconds(3f);
         moveSpeed = 10f;
     }
 
