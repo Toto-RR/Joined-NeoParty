@@ -1,8 +1,12 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using TMPro;
 
 public class Minigame_1 : MonoBehaviour
 {
+    public static Minigame_1 Instance;
+
     // ESTO IRA EN EL SCRIPT BASE DEL QUE TODOS LOS MINIJUEGOS HEREDARÁN
     [Header("Canvases")]
     public GameObject tutorialCanvas;
@@ -13,6 +17,18 @@ public class Minigame_1 : MonoBehaviour
     public PlayersSpawner playersSpawner;
     public CameraTransitionManager cameraTransitionManager;
     public Canvas hudCanvas;
+
+    public TextMeshProUGUI winnerText;
+    
+    private int jugadoresTerminados = 0;
+    private int totalJugadores;
+
+    private Dictionary<PlayerChoices.PlayerColor, int> playerScores = new();
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     protected virtual void Start()
     {
@@ -33,6 +49,7 @@ public class Minigame_1 : MonoBehaviour
         cameraTransitionManager.SwitchToGameplay(() =>
         {
             playersSpawner.SpawnPlayers();
+            totalJugadores = playersSpawner.playerChoices.GetActivePlayers().Count;
             StartCoroutine(HandlePostTransition());
         });
     }
@@ -43,15 +60,47 @@ public class Minigame_1 : MonoBehaviour
         BlackoutMainCamera();
         ActivateGameCanvas();
     }
+
     private void ActivateGameCanvas()
     {
         hudCanvas.enabled = true;
     }
 
-    public virtual void OnGameFinished()
+    public void PlayerFinished(PlayerChoices.PlayerColor color, int puntos)
     {
-        gameplayCanvas.SetActive(false);
+        RegisterPlayerScore(color, puntos);
+        jugadoresTerminados++;
+
+        if (jugadoresTerminados >= totalJugadores)
+        {
+            OnGameFinished();
+        }
+    }
+
+    public void OnGameFinished()
+    {
         endCanvas.SetActive(true);
+
+        var scores = GetScores();
+
+        // Buscar al jugador con más puntos
+        PlayerChoices.PlayerColor ganador = PlayerChoices.PlayerColor.Blue;
+        int maxPuntos = int.MinValue;
+
+        foreach (var kvp in scores)
+        {
+            if (kvp.Value > maxPuntos)
+            {
+                maxPuntos = kvp.Value;
+                ganador = kvp.Key;
+            }
+        }
+
+        // Mostrar texto
+        if (winnerText != null)
+        {
+            winnerText.text = $"¡{ganador}!";
+        }
     }
 
     public virtual void OnEndConfirmed()
@@ -59,6 +108,16 @@ public class Minigame_1 : MonoBehaviour
         //FindObjectOfType<MiniGameManager>().OnMiniGameEnded();
     }
 
+    public void RegisterPlayerScore(PlayerChoices.PlayerColor color, int score)
+    {
+        if (!playerScores.ContainsKey(color))
+            playerScores[color] = score;
+    }
+
+    public Dictionary<PlayerChoices.PlayerColor, int> GetScores()
+    {
+        return playerScores;
+    }
     private void BlackoutMainCamera()
     {
         // Luego limpia MainCamera:

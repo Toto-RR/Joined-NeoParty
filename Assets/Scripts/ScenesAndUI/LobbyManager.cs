@@ -28,39 +28,36 @@ public class LobbyManager : MonoBehaviour
     void Update() { }
 
     public void AddNewPlayer(string color)
-    { 
+    {
+        // Encuentra el prefab correspondiente al color
         PlayerPrefabSet selectedSet = playerPrefabs.Find(p => p.colorName.ToLower() == color.ToLower());
 
         if (selectedSet != null && selectedSet.astronautPrefab != null)
         {
-            if(colorsAdded.Contains(selectedSet.colorName))
+            // Verifica si el color ya ha sido añadido
+            if (colorsAdded.Contains(selectedSet.colorName))
             {
                 Debug.Log("Player already exists: " + color);
                 return;
             }
 
+            // Instancia el prefab y activa el visor
             Instantiate(selectedSet.astronautPrefab, position, Quaternion.identity);
             selectedSet.visor.SetActive(true);
             selectedSet.questionMark.SetActive(false);
             colorsAdded.Add(color);
 
+            // Añade el color a la lista de jugadores activos
             if (System.Enum.TryParse(color, true, out PlayerChoices.PlayerColor selectedColor))
             {
                 activePlayers.Add(selectedColor);
             }
-            else
-            {
-                Debug.LogError("Could not parse color to PlayerColor enum: " + color);
-            }
+            else Debug.LogError("Could not parse color to PlayerColor enum: " + color);
 
         }
-        else
-        {
-            Debug.LogError("Color not found or prefab missing: " + color);
-        }
+        else Debug.LogError("Color not found or prefab missing: " + color);
 
         position += new Vector3(3, 0, 0);
-
         numberOfPlayers++;
         Debug.Log("New player added! Total: " + numberOfPlayers);
     }

@@ -17,6 +17,7 @@ public class PlayersSpawner : MonoBehaviour
     public PlayerChoices playerChoices; // Asignar en el inspector
 
     private List<Camera> playerCameras = new();
+    private List<PlayerController> players = new();
 
     private Rect[] finalRects = new Rect[]
     {
@@ -49,6 +50,13 @@ public class PlayersSpawner : MonoBehaviour
             if (prefabToSpawn != null)
             {
                 GameObject player = Instantiate(prefabToSpawn, spawnPoints[i].position, spawnPoints[i].rotation, gameObject.transform);
+                players.Add(player.GetComponent<PlayerController>()); // Guardar referencia al jugador
+
+                var controller = player.GetComponent<PlayerController>();
+                if (controller != null)
+                {
+                    controller.playerColor = activePlayers[i];
+                }
 
                 Camera playerCam = player.GetComponentInChildren<Camera>();
 

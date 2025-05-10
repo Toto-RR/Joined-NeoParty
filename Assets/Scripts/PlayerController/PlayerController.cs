@@ -1,8 +1,11 @@
 using UnityEngine;
 using System.Collections;
+using static PlayerChoices;
 
 public class PlayerController : MonoBehaviour
 {
+    public PlayerChoices.PlayerColor playerColor;
+
     [Header("Movement Parameters")]
     public float moveSpeed = 0f;        // Velocidad de avance
     public float jumpForce = 5f;        // Fuerza del salto
@@ -14,6 +17,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Hit Parameters")]
     public Color hitColor = Color.red;  // Color al chocar
+    public int points = 10;
 
     private Rigidbody rb;
     private Animator animator;
@@ -49,7 +53,7 @@ public class PlayerController : MonoBehaviour
     {
         if (finished)
         {
-            moveSpeed = Mathf.Lerp(moveSpeed, 0f, Time.deltaTime * 2f);
+            moveSpeed = Mathf.Lerp(moveSpeed, 0f, Time.deltaTime * 4f);
         }
         else
         {
@@ -71,22 +75,23 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 move = Vector3.forward * moveSpeed;
 
-        if (Input.GetKey(KeyCode.A) && isGrounded && !isCrouching)
+        // Movimiento lateral personalizado por color
+        if (IsKeyHeld(GetLeftKey()) && isGrounded && !isCrouching)
         {
             move += Vector3.left * lateralSpeed;
             animator.SetBool("Left", true);
         }
-        else if (Input.GetKeyUp(KeyCode.A))
+        else if (IsKeyReleased(GetLeftKey()))
         {
             animator.SetBool("Left", false);
         }
 
-        if (Input.GetKey(KeyCode.D) && isGrounded && !isCrouching)
+        if (IsKeyHeld(GetRightKey()) && isGrounded && !isCrouching)
         {
             move += Vector3.right * lateralSpeed;
             animator.SetBool("Right", true);
         }
-        else if (Input.GetKeyUp(KeyCode.D))
+        else if (IsKeyReleased(GetRightKey()))
         {
             animator.SetBool("Right", false);
         }
@@ -98,20 +103,75 @@ public class PlayerController : MonoBehaviour
     {
         bool isRunning = IsRunning();
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && !isCrouching && isRunning)
+        // Salto
+        if (IsKeyPressed(GetJumpKey()) && isGrounded && !isCrouching && isRunning)
         {
             Jump();
         }
 
-        if (Input.GetKeyDown(KeyCode.S) && isGrounded && !isCrouching && isRunning)
+        // Agacharse
+        if (IsKeyPressed(GetCrouchKey()) && isGrounded && !isCrouching && isRunning)
         {
             StartCrouch();
         }
-        else if (Input.GetKeyUp(KeyCode.S) && isGrounded && isCrouching)
+        else if (IsKeyReleased(GetCrouchKey()) && isGrounded && isCrouching)
         {
             StopCrouch();
         }
     }
+
+    // Helpers para keys
+    private KeyCode GetLeftKey()
+    {
+        return playerColor switch
+        {
+            PlayerChoices.PlayerColor.Blue => KeyCode.A,
+            PlayerChoices.PlayerColor.Orange => KeyCode.LeftArrow,
+            PlayerChoices.PlayerColor.Yellow => KeyCode.F,
+            PlayerChoices.PlayerColor.Green => KeyCode.J,
+            _ => KeyCode.None
+        };
+    }
+
+    private KeyCode GetRightKey()
+    {
+        return playerColor switch
+        {
+            PlayerChoices.PlayerColor.Blue => KeyCode.D,
+            PlayerChoices.PlayerColor.Orange => KeyCode.RightArrow,
+            PlayerChoices.PlayerColor.Yellow => KeyCode.H,
+            PlayerChoices.PlayerColor.Green => KeyCode.L,
+            _ => KeyCode.None
+        };
+    }
+
+    private KeyCode GetJumpKey()
+    {
+        return playerColor switch
+        {
+            PlayerChoices.PlayerColor.Blue => KeyCode.W,
+            PlayerChoices.PlayerColor.Orange => KeyCode.UpArrow,
+            PlayerChoices.PlayerColor.Yellow => KeyCode.T,
+            PlayerChoices.PlayerColor.Green => KeyCode.I,
+            _ => KeyCode.None
+        };
+    }
+
+    private KeyCode GetCrouchKey()
+    {
+        return playerColor switch
+        {
+            PlayerChoices.PlayerColor.Blue => KeyCode.S,
+            PlayerChoices.PlayerColor.Orange => KeyCode.DownArrow,
+            PlayerChoices.PlayerColor.Yellow => KeyCode.G,
+            PlayerChoices.PlayerColor.Green => KeyCode.K,
+            _ => KeyCode.None
+        };
+    }
+
+    private bool IsKeyPressed(KeyCode key) => Input.GetKeyDown(key);
+    private bool IsKeyReleased(KeyCode key) => Input.GetKeyUp(key);
+    private bool IsKeyHeld(KeyCode key) => Input.GetKey(key);
 
     private void Jump()
     {
@@ -149,6 +209,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("¡Colisión detectada con obstáculo!");
             playerRenderer.material.color = hitColor;
             Invoke(nameof(ResetColor), 0.5f);
+            points--;
         }
     }
 
@@ -166,6 +227,17 @@ public class PlayerController : MonoBehaviour
     public void FinishReached()
     {
         finished = true;
+        Debug.Log("Puntuación final: " + points);
+
+        if (Minigame_1.Instance != null)
+        {
+            Minigame_1.Instance.PlayerFinished(playerColor, points);
+        }
+    }
+
+    public int GetPoints()
+    {
+        return points;
     }
 
     private void UpdateColliderBasedOnAnimation()
