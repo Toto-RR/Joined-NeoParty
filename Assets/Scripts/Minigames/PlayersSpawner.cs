@@ -14,23 +14,16 @@ public class PlayersSpawner : MonoBehaviour
     public Transform[] spawnPoints;
 
     [Header("Player Choices")]
-    public PlayerChoices playerChoices; // Asignar en el inspector
+    public PlayerChoices playerChoices;
+
+    [Header("Carriles por jugador")]
+    public Transform[] carrilesJugador1;
+    public Transform[] carrilesJugador2;
+    public Transform[] carrilesJugador3;
+    public Transform[] carrilesJugador4;
 
     private List<Camera> playerCameras = new();
     private List<PlayerController> players = new();
-
-    private Rect[] finalRects = new Rect[]
-    {
-        new Rect(0f, 0f, 0.25f, 1f),
-        new Rect(0.25f, 0f, 0.25f, 1f),
-        new Rect(0.5f, 0f, 0.25f, 1f),
-        new Rect(0.75f, 0f, 0.25f, 1f)
-    };
-
-    private void Start()
-    {
-        //SpawnPlayers();
-    }
 
     public void SpawnPlayers()
     {
@@ -49,141 +42,107 @@ public class PlayersSpawner : MonoBehaviour
 
             if (prefabToSpawn != null)
             {
-                GameObject player = Instantiate(prefabToSpawn, spawnPoints[i].position, spawnPoints[i].rotation, gameObject.transform);
-                players.Add(player.GetComponent<PlayerController>()); // Guardar referencia al jugador
+                Transform[] carrilesAsignados = ObtenerCarrilesParaJugador(i);
+                Vector3 spawnPos = spawnPoints[i].position;/* +new Vector3(-2.5f, 0.5f, -20);*/
 
-                var controller = player.GetComponent<PlayerController>();
-                if (controller != null)
-                {
-                    controller.playerColor = activePlayers[i];
-                }
+                GameObject player = Instantiate(prefabToSpawn, spawnPos, spawnPoints[i].rotation, gameObject.transform);
+                Debug.Log("Instanciando en: " + spawnPos + " con rotacion: " + spawnPoints[i].rotation);
+
+                PlayerController controller = player.GetComponent<PlayerController>();
+                controller.playerColor = activePlayers[i];
+                controller.AsignarCarriles(carrilesAsignados, i);
+
+                players.Add(controller);
 
                 Camera playerCam = player.GetComponentInChildren<Camera>();
-
                 if (playerCam != null)
                 {
                     playerCameras.Add(playerCam);
-                    playerCam.enabled = false; // NO activarla todavía
-                }
+                    playerCam.enabled = false;
 
-                if (playerCam != null)
-                {
-                    // Calcular viewport dinámicamente
-                    float width = 1f / playerCount; // Dividimos la pantalla en columnas
+                    float width = 1f / playerCount;
                     playerCam.rect = new Rect(i * width, 0f, width, 1f);
                 }
-                else
-                {
-                    Debug.LogWarning("No se encontró la cámara en el prefab del jugador.");
-                }
+
+                Debug.Log("Jugador " + i + " instanciado con color: " + activePlayers[i] + " en la posicion " + player.transform.position);
+
             }
             else
             {
                 Debug.LogWarning("No hay prefab asignado para el color " + activePlayers[i]);
             }
+
         }
 
         foreach (var spawnPoint in spawnPoints)
         {
-            spawnPoint.gameObject.SetActive(false); // Desactivar los puntos de spawn
+            spawnPoint.gameObject.SetActive(false);
         }
+    }
 
+    private Transform[] ObtenerCarrilesParaJugador(int index)
+    {
+        return index switch
+        {
+            0 => carrilesJugador1,
+            1 => carrilesJugador2,
+            2 => carrilesJugador3,
+            3 => carrilesJugador4,
+            _ => null
+        };
     }
 
     private GameObject GetPrefabForColor(PlayerChoices.PlayerColor color)
     {
-        switch (color)
+        return color switch
         {
-            case PlayerChoices.PlayerColor.Blue:
-                return bluePlayerPrefab;
-            case PlayerChoices.PlayerColor.Orange:
-                return orangePlayerPrefab;
-            case PlayerChoices.PlayerColor.Green:
-                return greenPlayerPrefab;
-            case PlayerChoices.PlayerColor.Yellow:
-                return yellowPlayerPrefab;
-            default:
-                return null;
-        }
+            PlayerChoices.PlayerColor.Blue => bluePlayerPrefab,
+            PlayerChoices.PlayerColor.Orange => orangePlayerPrefab,
+            PlayerChoices.PlayerColor.Green => greenPlayerPrefab,
+            PlayerChoices.PlayerColor.Yellow => yellowPlayerPrefab,
+            _ => null
+        };
     }
 
-    public void ActivatePlayerCameras()
-    {
-        int playerCount = playerCameras.Count;
-
-        for (int i = 0; i < playerCount; i++)
-        {
-            Debug.Log("Activando cámaras del jugador: " + playerCameras[i].transform.parent.name);
-
-            Camera cam = playerCameras[i];
-
-            if (cam != null)
-            {
-                cam.enabled = true;
-
-                // Asigna viewport en columna
-                // Calcula el ancho de cada cámara en función del número de jugadores
-                // 1 / 2 = 0.5 - 2 jugadores (mitades)
-                // 1 / 3 = 0.333 - 3 jugadores (tercios)
-                // 1 / 4 = 0.25 - 4 jugadores (cuartos)
-                float width = 1f / playerCount;
-                cam.rect = new Rect(0f, 0f, 1f, 1f); // pantalla completa, centradas
-
-                // Asigna depth según orden (el primero tiene más prioridad)
-                cam.depth = playerCount - 1 - i; // Azul = 0, Naranja = 1, Verde = 2, Amarillo = 3
-            }
-        }
-    }
-
-    public List<Camera> GetPlayerCameras()
-    {
-        return playerCameras;
-    }
+    public List<Camera> GetPlayerCameras() => playerCameras;
 
     public IEnumerator ExpandCameras(List<Camera> playerCameras, float duration = 1f, float separation = 0.01f)
     {
         ActivatePlayerCameras();
 
-        yield return new WaitForSeconds(1f); // pequeño delay antes de empezar animación
+        yield return new WaitForSeconds(1f);
 
         int count = playerCameras.Count;
-        List<Rect> startRects = new List<Rect>();
-        List<Rect> targetRects = new List<Rect>();
+        List<Rect> startRects = new();
+        List<Rect> targetRects = new();
 
         for (int i = 0; i < count; i++)
         {
-            startRects.Add(new Rect(0f, 0f, 1f, 1f)); // todas pantalla completa al inicio
-
+            startRects.Add(new Rect(0f, 0f, 1f, 1f));
             float totalSeparation = separation * (count - 1);
             float width = (1f - totalSeparation) / count;
             float xOffset = i * (width + separation);
-
-            Rect target = new Rect(xOffset, 0f, width, 1f);
-            targetRects.Add(target);
+            targetRects.Add(new Rect(xOffset, 0f, width, 1f));
         }
 
         float t = 0f;
         while (t < duration)
         {
-            // Interpolación de las cámaras
             t += Time.deltaTime;
             float lerp = Mathf.Clamp01(t / duration);
-
 
             for (int i = 0; i < count; i++)
             {
                 Camera cam = playerCameras[i];
                 if (cam != null)
                 {
-                    Rect interpolated = LerpRect(startRects[i], targetRects[i], lerp);
-                    cam.rect = interpolated;
+                    cam.rect = LerpRect(startRects[i], targetRects[i], lerp);
                 }
             }
 
             yield return null;
         }
 
-        // Forzar valores finales
         for (int i = 0; i < count; i++)
         {
             playerCameras[i].rect = targetRects[i];
@@ -192,7 +151,6 @@ public class PlayersSpawner : MonoBehaviour
 
     private Rect LerpRect(Rect a, Rect b, float t)
     {
-        // Interpolación lineal entre dos Rects
         return new Rect(
             Mathf.Lerp(a.x, b.x, t),
             Mathf.Lerp(a.y, b.y, t),
@@ -201,4 +159,11 @@ public class PlayersSpawner : MonoBehaviour
         );
     }
 
+    private void ActivatePlayerCameras()
+    {
+        foreach (Camera cam in playerCameras)
+        {
+            cam.enabled = true;
+        }
+    }
 }

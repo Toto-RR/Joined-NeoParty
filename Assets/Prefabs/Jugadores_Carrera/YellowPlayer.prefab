@@ -158,15 +158,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4655052210597358, guid: 4493b9786df76d64fad99c1e9ac91ace, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 24.83
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4655052210597358, guid: 4493b9786df76d64fad99c1e9ac91ace, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0000009536743
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4655052210597358, guid: 4493b9786df76d64fad99c1e9ac91ace, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -26.074446
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4655052210597358, guid: 4493b9786df76d64fad99c1e9ac91ace, type: 3}
       propertyPath: m_LocalRotation.w
@@ -269,16 +269,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7366bf4f01b8b9d4d81354530a8919fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
+  playerColor: 0
   jumpForce: 5
-  lateralSpeed: 5
   crouchHeight: 1
   crouchCenterY: 0.5
   hitColor: {r: 1, g: 0, b: 0, a: 1}
+  points: 10
   isGrounded: 1
   finished: 0
   isCrouching: 0
-  startToRun: 0
+  carriles: []
+  currentCarrilIndex: 0
+  laneChangeDuration: 0.2
 --- !u!54 &5259534057568161234
 Rigidbody:
   m_ObjectHideFlags: 0
