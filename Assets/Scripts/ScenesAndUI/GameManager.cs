@@ -6,7 +6,6 @@ using System.Linq;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    private PlayerChoices playerChoices;
     
     public enum GameLength 
     { 
@@ -29,7 +28,6 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            playerChoices = Resources.Load<PlayerChoices>("PlayerChoices");
             sceneChanger = GetComponent<SceneChanger>();
         }
         else
@@ -54,7 +52,7 @@ public class GameManager : MonoBehaviour
     public void StartGame(GameLength gameLength)
     {
         currentGameLength = gameLength;
-        playerChoices.SetPartyLength(gameLength);
+        PlayerChoices.SetPartyLength(gameLength);
 
         // Guarda la elección del jugador y pasa a la escena del lobby
         sceneChanger.ChangeScene("LobbyScene");

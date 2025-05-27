@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class Minigame_1 : MonoBehaviour
 {
@@ -27,6 +28,10 @@ public class Minigame_1 : MonoBehaviour
 
     private void Awake()
     {
+#if UNITY_EDITOR
+        PlayerChoices.AddPlayer(PlayerChoices.PlayerColor.Blue, Keyboard.current);
+        PlayerChoices.AddPlayer(PlayerChoices.PlayerColor.Orange, Gamepad.all.Count > 0 ? Gamepad.all[0] : Keyboard.current);
+#endif
         Instance = this;
     }
 
@@ -49,10 +54,11 @@ public class Minigame_1 : MonoBehaviour
         cameraTransitionManager.SwitchToGameplay(() =>
         {
             playersSpawner.SpawnPlayers();
-            totalJugadores = playersSpawner.playerChoices.GetActivePlayers().Count;
+            totalJugadores = PlayerChoices.GetNumberOfPlayers();
             StartCoroutine(HandlePostTransition());
         });
     }
+
     private IEnumerator HandlePostTransition()
     {
         yield return StartCoroutine(playersSpawner.ExpandCameras(playersSpawner.GetPlayerCameras()));

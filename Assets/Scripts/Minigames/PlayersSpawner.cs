@@ -1,6 +1,7 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 public class PlayersSpawner : MonoBehaviour
 {
@@ -13,9 +14,6 @@ public class PlayersSpawner : MonoBehaviour
     [Header("Spawn Points")]
     public Transform[] spawnPoints;
 
-    [Header("Player Choices")]
-    public PlayerChoices playerChoices;
-
     [Header("Carriles por jugador")]
     public Transform[] carrilesJugador1;
     public Transform[] carrilesJugador2;
@@ -27,8 +25,8 @@ public class PlayersSpawner : MonoBehaviour
 
     public void SpawnPlayers()
     {
-        List<PlayerChoices.PlayerColor> activePlayers = playerChoices.GetActivePlayers();
-        int playerCount = activePlayers.Count;
+        List<PlayerChoices.PlayerData> activePlayers = PlayerChoices.GetActivePlayers();
+        int playerCount = PlayerChoices.GetNumberOfPlayers();
 
         for (int i = 0; i < playerCount; i++)
         {
@@ -38,58 +36,130 @@ public class PlayersSpawner : MonoBehaviour
                 break;
             }
 
-            GameObject prefabToSpawn = GetPrefabForColor(activePlayers[i]);
-
+            var player = activePlayers[i];
+            GameObject prefabToSpawn = GetPrefabForColor(activePlayers[i].Color);
             if (prefabToSpawn != null)
             {
                 Transform[] carrilesAsignados = ObtenerCarrilesParaJugador(i);
-                Vector3 spawnPos = spawnPoints[i].position;/* +new Vector3(-2.5f, 0.5f, -20);*/
+                Transform laneTransform = carrilesAsignados[LaneByColor(player.Color)];
 
-                GameObject player = Instantiate(prefabToSpawn, spawnPos, spawnPoints[i].rotation, gameObject.transform);
-                Debug.Log("Instanciando en: " + spawnPos + " con rotacion: " + spawnPoints[i].rotation);
+                string controlScheme = PlayerChoices.GetSchemaFromDevice(player.Device);
+                PlayerInput playerInput = PlayerInput.Instantiate(
+                    prefabToSpawn,
+                    controlScheme: controlScheme,
+                    pairWithDevice: player.Device
+                );
 
-                PlayerController controller = player.GetComponent<PlayerController>();
-                controller.playerColor = activePlayers[i];
-                controller.AsignarCarriles(carrilesAsignados, i);
+                Vector3 spawnPos = laneTransform.position + new Vector3(-0.5f, 0.5f, -20);
+                playerInput.transform.SetPositionAndRotation(spawnPos, laneTransform.rotation);
+                playerInput.transform.SetParent(gameObject.transform);
 
-                players.Add(controller);
-
-                Camera playerCam = player.GetComponentInChildren<Camera>();
-                if (playerCam != null)
+                if (playerInput.TryGetComponent<PlayerController>(out var controller))
                 {
+                    controller.playerColor = activePlayers[i].Color;
+                    controller.AsignarCarriles(carrilesAsignados, LaneByColor(activePlayers[i].Color));
+
+                    Camera playerCam = playerInput.GetComponentInChildren<Camera>();
+                    if (playerCam != null)
+                    {
+                        playerCam.enabled = false; // NO activarla todavía
+                        float width = 1f / playerCount;
+                        playerCam.rect = new Rect(i * width, 0f, width, 1f);
+                    }
+                    else Debug.LogWarning("No se encontró la cámara en el prefab del jugador.");
+
                     playerCameras.Add(playerCam);
-                    playerCam.enabled = false;
-
-                    float width = 1f / playerCount;
-                    playerCam.rect = new Rect(i * width, 0f, width, 1f);
+                    players.Add(controller);
                 }
-
-                Debug.Log("Jugador " + i + " instanciado con color: " + activePlayers[i] + " en la posicion " + player.transform.position);
-
             }
-            else
-            {
-                Debug.LogWarning("No hay prefab asignado para el color " + activePlayers[i]);
-            }
-
+            else Debug.LogWarning("No hay prefab asignado para el color " + activePlayers[i]);
         }
 
         foreach (var spawnPoint in spawnPoints)
+            Destroy(spawnPoint.gameObject); // Destruye los puntos de spawn
+    }
+
+    public void ActivatePlayerCameras()
+    {
+        int playerCount = playerCameras.Count;
+
+        for (int i = 0; i < playerCount; i++)
         {
-            spawnPoint.gameObject.SetActive(false);
+            Debug.Log("Activando cámaras del jugador: " + playerCameras[i].transform.parent.name);
+
+            Camera cam = playerCameras[i];
+
+            if (cam != null)
+            {
+                cam.enabled = true;
+
+                float width = 1f / playerCount;
+                cam.rect = new Rect(0f, 0f, 1f, 1f);
+                cam.depth = playerCount - 1 - i;
+            }
         }
     }
 
-    private Transform[] ObtenerCarrilesParaJugador(int index)
+    public IEnumerator ExpandCameras(List<Camera> playerCameras, float duration = 1f, float separation = 0.01f)
     {
-        return index switch
+        ActivatePlayerCameras();
+
+        yield return new WaitForSeconds(1f);
+
+        int count = playerCameras.Count;
+        List<Rect> startRects = new List<Rect>();
+        List<Rect> targetRects = new List<Rect>();
+
+        for (int i = 0; i < count; i++)
         {
-            0 => carrilesJugador1,
-            1 => carrilesJugador2,
-            2 => carrilesJugador3,
-            3 => carrilesJugador4,
-            _ => null
-        };
+            startRects.Add(new Rect(0f, 0f, 1f, 1f));
+
+            float totalSeparation = separation * (count - 1);
+            float width = (1f - totalSeparation) / count;
+            float xOffset = i * (width + separation);
+
+            Rect target = new Rect(xOffset, 0f, width, 1f);
+            targetRects.Add(target);
+        }
+
+        float t = 0f;
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            float lerp = Mathf.Clamp01(t / duration);
+
+            for (int i = 0; i < count; i++)
+            {
+                Camera cam = playerCameras[i];
+                if (cam != null)
+                {
+                    Rect interpolated = LerpRect(startRects[i], targetRects[i], lerp);
+                    cam.rect = interpolated;
+                }
+            }
+
+            yield return null;
+        }
+
+        for (int i = 0; i < count; i++)
+        {
+            playerCameras[i].rect = targetRects[i];
+        }
+    }
+
+    public List<Camera> GetPlayerCameras()
+    {
+        Debug.Log("Cameras: " + playerCameras.Count);
+        return playerCameras;
+    }
+    private Rect LerpRect(Rect a, Rect b, float t)
+    {
+        return new Rect(
+            Mathf.Lerp(a.x, b.x, t),
+            Mathf.Lerp(a.y, b.y, t),
+            Mathf.Lerp(a.width, b.width, t),
+            Mathf.Lerp(a.height, b.height, t)
+        );
     }
 
     private GameObject GetPrefabForColor(PlayerChoices.PlayerColor color)
@@ -104,66 +174,27 @@ public class PlayersSpawner : MonoBehaviour
         };
     }
 
-    public List<Camera> GetPlayerCameras() => playerCameras;
-
-    public IEnumerator ExpandCameras(List<Camera> playerCameras, float duration = 1f, float separation = 0.01f)
+    private Transform[] ObtenerCarrilesParaJugador(int index)
     {
-        ActivatePlayerCameras();
-
-        yield return new WaitForSeconds(1f);
-
-        int count = playerCameras.Count;
-        List<Rect> startRects = new();
-        List<Rect> targetRects = new();
-
-        for (int i = 0; i < count; i++)
+        return index switch
         {
-            startRects.Add(new Rect(0f, 0f, 1f, 1f));
-            float totalSeparation = separation * (count - 1);
-            float width = (1f - totalSeparation) / count;
-            float xOffset = i * (width + separation);
-            targetRects.Add(new Rect(xOffset, 0f, width, 1f));
-        }
-
-        float t = 0f;
-        while (t < duration)
-        {
-            t += Time.deltaTime;
-            float lerp = Mathf.Clamp01(t / duration);
-
-            for (int i = 0; i < count; i++)
-            {
-                Camera cam = playerCameras[i];
-                if (cam != null)
-                {
-                    cam.rect = LerpRect(startRects[i], targetRects[i], lerp);
-                }
-            }
-
-            yield return null;
-        }
-
-        for (int i = 0; i < count; i++)
-        {
-            playerCameras[i].rect = targetRects[i];
-        }
+            0 => carrilesJugador1,
+            1 => carrilesJugador2,
+            2 => carrilesJugador3,
+            3 => carrilesJugador4,
+            _ => null
+        };
     }
 
-    private Rect LerpRect(Rect a, Rect b, float t)
+    private int LaneByColor(PlayerChoices.PlayerColor color)
     {
-        return new Rect(
-            Mathf.Lerp(a.x, b.x, t),
-            Mathf.Lerp(a.y, b.y, t),
-            Mathf.Lerp(a.width, b.width, t),
-            Mathf.Lerp(a.height, b.height, t)
-        );
-    }
-
-    private void ActivatePlayerCameras()
-    {
-        foreach (Camera cam in playerCameras)
+        return color switch
         {
-            cam.enabled = true;
-        }
+            PlayerChoices.PlayerColor.Blue => 0,
+            PlayerChoices.PlayerColor.Orange => 1,
+            PlayerChoices.PlayerColor.Green => 2,
+            PlayerChoices.PlayerColor.Yellow => 3,
+            _ => 0
+        };
     }
 }

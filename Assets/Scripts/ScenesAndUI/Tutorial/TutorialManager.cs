@@ -2,13 +2,13 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Splines;
 using UnityEngine.Video;
+using UnityEngine.InputSystem;
 
 public class TutorialManager : MonoBehaviour
 {
     [Header("Setup")]
     public Transform playersPanel;              // Panel donde instanciar los PlayerRow
     public GameObject playerRowPrefab;          // Prefab de la fila de jugador
-    public PlayerChoices playerChoices;         // ScriptableObject con jugadores activos
     public Minigame_1 minigameBase;           // Referencia al minijuego actual
 
     private int readyPlayers = 0;
@@ -22,7 +22,7 @@ public class TutorialManager : MonoBehaviour
 
     private void Start()
     {
-        totalPlayers = playerChoices.GetNumberOfPlayers();
+        totalPlayers = PlayerChoices.GetNumberOfPlayers();
         SetupPlayerRows();
 
         splineAnimate.Completed += OnIntroAnimationFinished;
@@ -49,12 +49,13 @@ public class TutorialManager : MonoBehaviour
 
     private void SetupPlayerRows()
     {
-        foreach (var playerColor in playerChoices.GetActivePlayers())
+        foreach (var player in PlayerChoices.GetActivePlayers())
         {
             GameObject rowObj = Instantiate(playerRowPrefab, playersPanel);
-            PlayerRow playerRow = rowObj.GetComponent<PlayerRow>();
-            playerRow.Setup(playerColor, this);
-            playerRows.Add(playerRow);
+            PlayerRow row = rowObj.GetComponent<PlayerRow>();
+
+            row.Setup(player, this);
+            playerRows.Add(row);
         }
     }
 

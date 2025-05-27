@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class PlayerRow : MonoBehaviour
 {
@@ -9,20 +11,44 @@ public class PlayerRow : MonoBehaviour
 
     private TutorialManager tutorialManager;
     public bool isReady = false;
-    private KeyCode assignedKey;
 
-    public void Setup(PlayerChoices.PlayerColor color, TutorialManager manager)
+    private InputDevice assignedDevice;
+    private InputAction readyAction;
+
+    public void Setup(PlayerChoices.PlayerData player, TutorialManager manager)
     {
-        playerNameText.text = color.ToString();
+        playerNameText.text = player.Color.ToString();
         tutorialManager = manager;
         checkMark.SetActive(false);
 
-        assignedKey = GetKeyForPlayer(color);
+        assignedDevice = player.Device;
+
+        string binding = "";
+
+        if (assignedDevice is Keyboard)
+        {
+            binding = "<Keyboard>/space";
+        }
+        else if (assignedDevice is Gamepad)
+        {
+            binding = "<Gamepad>/buttonSouth";
+        }
+
+        readyAction = new InputAction(type: InputActionType.Button, binding: binding);
+        readyAction.AddBinding(binding).WithGroup(player.Device.layout);
+        readyAction.performed += ctx => OnJoinKeyPressed();
+        readyAction.Enable();
     }
 
-    private void Update()
+    private void OnDisable()
     {
-        if (!isReady && Input.GetKeyDown(assignedKey))
+        readyAction?.Disable();
+        readyAction?.Dispose();
+    }
+
+    private void OnJoinKeyPressed()
+    {
+        if (!isReady)
         {
             tutorialManager.PlayerReady(this);
         }
@@ -32,22 +58,5 @@ public class PlayerRow : MonoBehaviour
     {
         isReady = true;
         checkMark.SetActive(true);
-    }
-
-    private KeyCode GetKeyForPlayer(PlayerChoices.PlayerColor color)
-    {
-        switch (color)
-        {
-            case PlayerChoices.PlayerColor.Blue:
-                return KeyCode.Space;  // Azul pulsa Espacio
-            case PlayerChoices.PlayerColor.Orange:
-                return KeyCode.Return; // Naranja pulsa Enter
-            case PlayerChoices.PlayerColor.Green:
-                return KeyCode.LeftShift; // Verde pulsa Shift Izquierdo
-            case PlayerChoices.PlayerColor.Yellow:
-                return KeyCode.RightShift; // Amarillo pulsa Shift Derecho
-            default:
-                return KeyCode.None;
-        }
     }
 }

@@ -1,6 +1,8 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections;
 using static PlayerChoices;
+using UnityEditor.ShaderGraph;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -25,9 +27,45 @@ public class PlayerController : MonoBehaviour
 
     private Renderer playerRenderer;
     private Color originalColor;
+    private PlayerInput playerInput;
+
+    private void Awake()
+    {
+        playerInput = GetComponent<PlayerInput>();
+        if (playerInput != null)
+        {
+            var actions = playerInput.actions;
+
+            actions["MoveToLane1"].performed += ctx => MoverACarril(0);
+            actions["MoveToLane2"].performed += ctx => MoverACarril(1);
+            actions["MoveToLane3"].performed += ctx => MoverACarril(2);
+            actions["MoveToLane4"].performed += ctx => MoverACarril(3);
+        }
+    }
 
     private void Start()
     {
+        Debug.Log($"Jugador {playerColor} usando dispositivo(s):");
+        foreach (var d in playerInput.devices)
+        {
+            Debug.Log($"- {d.displayName} ({d.device})");
+        }
+
+        Debug.Log("Dispositivos emparejados: ");
+        foreach (var device in InputSystem.devices)
+        {
+            Debug.Log(device);
+        }
+
+        Debug.Log("PlayerInput devices:");
+        if (playerInput != null)
+        {
+            foreach (var d in playerInput.devices)
+            {
+                Debug.Log(d);
+            }
+        }
+
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         capsule = GetComponent<CapsuleCollider>();
@@ -42,44 +80,7 @@ public class PlayerController : MonoBehaviour
     {
         if (finished) return;
 
-        if (!isChangingLane)
-        {
-            HandleInput();
-        }
-
-        animator.SetFloat("Speed", 1f); // simula cinta de correr
-    }
-
-    private void HandleInput()
-    {
-        if (playerColor == PlayerColor.Blue)
-        {
-            if (Input.GetKeyDown(KeyCode.A)) MoverACarril(0);
-            else if (Input.GetKeyDown(KeyCode.W)) MoverACarril(1);
-            else if (Input.GetKeyDown(KeyCode.S)) MoverACarril(2);
-            else if (Input.GetKeyDown(KeyCode.D)) MoverACarril(3);
-        }
-        else if (playerColor == PlayerColor.Orange)
-        {
-            if (Input.GetKeyDown(KeyCode.LeftArrow)) MoverACarril(0);
-            else if (Input.GetKeyDown(KeyCode.UpArrow)) MoverACarril(1);
-            else if (Input.GetKeyDown(KeyCode.DownArrow)) MoverACarril(2);
-            else if (Input.GetKeyDown(KeyCode.RightArrow)) MoverACarril(3);
-        }
-        else if (playerColor == PlayerColor.Green)
-        {
-            if (Input.GetKeyDown(KeyCode.J)) MoverACarril(0);
-            else if (Input.GetKeyDown(KeyCode.I)) MoverACarril(1);
-            else if (Input.GetKeyDown(KeyCode.K)) MoverACarril(2);
-            else if (Input.GetKeyDown(KeyCode.L)) MoverACarril(3);
-        }
-        else if (playerColor == PlayerColor.Yellow)
-        {
-            if (Input.GetKeyDown(KeyCode.F)) MoverACarril(0);
-            else if (Input.GetKeyDown(KeyCode.T)) MoverACarril(1);
-            else if (Input.GetKeyDown(KeyCode.G)) MoverACarril(2);
-            else if (Input.GetKeyDown(KeyCode.H)) MoverACarril(3);
-        }
+        animator.SetFloat("Speed", 1f);
     }
 
     public void AsignarCarriles(Transform[] nuevosCarriles, int carrilActual)
@@ -91,7 +92,7 @@ public class PlayerController : MonoBehaviour
 
     public void MoverACarril(int index)
     {
-        if (index >= 0 && index < carriles.Length && index != currentCarrilIndex)
+        if (index >= 0 && index < carriles.Length && index != currentCarrilIndex && !isChangingLane)
         {
             StopAllCoroutines();
             StartCoroutine(MoverSuavemente(index));
@@ -121,7 +122,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Obstacle"))
         {
-            Debug.Log("¡Colisión detectada con obstáculo!");
+            Debug.Log("Â¡ColisiÃ³n detectada con obstÃ¡culo!");
             playerRenderer.material.color = hitColor;
             Invoke(nameof(ResetColor), 0.5f);
             points--;
@@ -136,7 +137,7 @@ public class PlayerController : MonoBehaviour
     public void FinishReached()
     {
         finished = true;
-        Debug.Log("Puntuación final: " + points);
+        Debug.Log("PuntuaciÃ³n final: " + points);
         if (Minigame_1.Instance != null)
         {
             Minigame_1.Instance.PlayerFinished(playerColor, points);

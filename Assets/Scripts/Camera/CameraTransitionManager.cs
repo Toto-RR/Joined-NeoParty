@@ -29,7 +29,7 @@ public class CameraTransitionManager : MonoBehaviour
         {
             // Esperar un frame para que arranque el blending
             yield return null;
-            Debug.Log("Esperando el blending...");
+            //Debug.Log("Esperando el blending...");
         } 
         while (brain.IsBlending);
 

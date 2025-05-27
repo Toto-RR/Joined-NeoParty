@@ -247,6 +247,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1447477219941586, guid: 4493b9786df76d64fad99c1e9ac91ace, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7085041088963974702}
+    - targetCorrespondingSourceObject: {fileID: 1447477219941586, guid: 4493b9786df76d64fad99c1e9ac91ace, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7131611431571710059}
   m_SourcePrefab: {fileID: 100100000, guid: 4493b9786df76d64fad99c1e9ac91ace, type: 3}
 --- !u!4 &216221624138017936 stripped
 Transform:
@@ -271,14 +274,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerColor: 0
-  jumpForce: 5
-  crouchHeight: 1
-  crouchCenterY: 0.5
   hitColor: {r: 1, g: 0, b: 0, a: 1}
   points: 10
-  isGrounded: 1
   finished: 0
-  isCrouching: 0
   carriles: []
   currentCarrilIndex: 0
   laneChangeDuration: 0.2
@@ -332,3 +330,49 @@ CapsuleCollider:
   m_Height: 1.865806
   m_Direction: 1
   m_Center: {x: 0, y: 0.9037846, z: 0}
+--- !u!114 &7131611431571710059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222226333087735212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 449946c93b7ba86469c8cbbf769ba9ea, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0306cb78-912e-40a2-9956-2faf26fa3bfe
+    m_ActionName: 'PlayerRunner/MoveToLane1[/Keyboard/a,/Keyboard1/a,/DualSenseGamepadHID/buttonWest]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c7bb22a8-843f-449e-8cb3-b183ad32b392
+    m_ActionName: 'PlayerRunner/MoveToLane2[/Keyboard/w,/Keyboard1/w,/DualSenseGamepadHID/buttonNorth]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 18ce9314-d195-4c31-836a-7566a2da3e48
+    m_ActionName: 'PlayerRunner/MoveToLane3[/Keyboard/s,/Keyboard1/s,/DualSenseGamepadHID/buttonSouth]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e4cad7b5-c3d2-451d-86af-626585f4abd6
+    m_ActionName: 'PlayerRunner/MoveToLane4[/Keyboard/d,/Keyboard1/d,/DualSenseGamepadHID/buttonEast]'
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: PlayerRunner
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 8726544808588475472}

@@ -5,19 +5,12 @@ using UnityEngine.UI;
 
 public class ChangeText : MonoBehaviour
 {
-    private PlayerChoices playerChoices;
-
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private Button backButton;
 
-    void Awake()
-    {
-        playerChoices = Resources.Load<PlayerChoices>("PlayerChoices");
-    }
-
     void Start()
     {
-        GameManager.GameLength lenght = playerChoices.GetPartyLengthEnum(); 
+        GameManager.GameLength lenght = PlayerChoices.GetPartyLengthEnum(); 
         text.text = GetLengthDescription(lenght);
 
         backButton.onClick.AddListener(() =>
