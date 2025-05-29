@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using static PlayerChoices;
-using UnityEditor.ShaderGraph;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
