@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         if (playerInput != null)
         {
+            Debug.Log($"Jugador {playerColor} tiene {playerInput.actions.actionMaps.Count} action maps activos.");
+
             var actions = playerInput.actions;
 
             actions["MoveToLane1"].performed += ctx => MoverACarril(0);
@@ -45,25 +47,9 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log($"Jugador {playerColor} usando dispositivo(s):");
-        foreach (var d in playerInput.devices)
+        foreach (var p in PlayerChoices.GetActivePlayers())
         {
-            Debug.Log($"- {d.displayName} ({d.device})");
-        }
-
-        Debug.Log("Dispositivos emparejados: ");
-        foreach (var device in InputSystem.devices)
-        {
-            Debug.Log(device);
-        }
-
-        Debug.Log("PlayerInput devices:");
-        if (playerInput != null)
-        {
-            foreach (var d in playerInput.devices)
-            {
-                Debug.Log(d);
-            }
+            Debug.Log($"{p.Color} tiene asignado el dispositivo: {p.Device.displayName}");
         }
 
         rb = GetComponent<Rigidbody>();

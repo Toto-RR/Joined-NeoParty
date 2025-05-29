@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Minigame_1 : MonoBehaviour
 {
@@ -13,6 +14,11 @@ public class Minigame_1 : MonoBehaviour
     public GameObject tutorialCanvas;
     public GameObject gameplayCanvas;
     public GameObject endCanvas;
+
+    [Header("Gameplay Control")]
+    public List<ObstacleSpawner> obstacleSpawners = new();
+    public GameObject countdownCanvas;
+    public TextMeshProUGUI countdownText;
 
     // --- Parameters ---
     public PlayersSpawner playersSpawner;
@@ -29,8 +35,11 @@ public class Minigame_1 : MonoBehaviour
     private void Awake()
     {
 #if UNITY_EDITOR
-        PlayerChoices.AddPlayer(PlayerChoices.PlayerColor.Blue, Keyboard.current);
-        PlayerChoices.AddPlayer(PlayerChoices.PlayerColor.Orange, Gamepad.all.Count > 0 ? Gamepad.all[0] : Keyboard.current);
+        if(PlayerChoices.GetNumberOfPlayers() <= 0)
+        {
+            PlayerChoices.AddPlayer(PlayerChoices.PlayerColor.Blue, Keyboard.current);
+            PlayerChoices.AddPlayer(PlayerChoices.PlayerColor.Orange, Gamepad.all.Count > 0 ? Gamepad.all[0] : Keyboard.current);
+        }
 #endif
         Instance = this;
     }
@@ -65,6 +74,8 @@ public class Minigame_1 : MonoBehaviour
 
         BlackoutMainCamera();
         ActivateGameCanvas();
+
+        yield return StartCoroutine(StartCountdownThenBegin());
     }
 
     private void ActivateGameCanvas()
@@ -111,7 +122,8 @@ public class Minigame_1 : MonoBehaviour
 
     public virtual void OnEndConfirmed()
     {
-        //FindObjectOfType<MiniGameManager>().OnMiniGameEnded();
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
     }
 
     public void RegisterPlayerScore(PlayerChoices.PlayerColor color, int score)
@@ -124,6 +136,7 @@ public class Minigame_1 : MonoBehaviour
     {
         return playerScores;
     }
+
     private void BlackoutMainCamera()
     {
         // Luego limpia MainCamera:
@@ -135,6 +148,38 @@ public class Minigame_1 : MonoBehaviour
             mainCam.backgroundColor = Color.black;
             mainCam.cullingMask = 0;
         }
-
     }
+
+    private IEnumerator StartCountdownThenBegin()
+    {
+        if (countdownCanvas != null)
+            countdownCanvas.SetActive(true);
+
+        float countdown = 3f;
+        while (countdown > 0)
+        {
+            countdownText.text = Mathf.Ceil(countdown).ToString();
+            yield return new WaitForSeconds(1f);
+            countdown -= 1f;
+        }
+
+        countdownText.text = "¡YA!";
+        yield return new WaitForSeconds(1f);
+
+        if (countdownCanvas != null)
+            countdownCanvas.SetActive(false);
+
+        // Activar spawner y desbloquear animaciones
+        foreach (var spawner in obstacleSpawners)
+        {
+            if (spawner != null)
+                spawner.enabled = true;
+        }
+
+        foreach (var player in playersSpawner.GetPlayers())
+        {
+            player.GetComponent<PlayerController>().enabled = true;
+        }
+    }
+
 }

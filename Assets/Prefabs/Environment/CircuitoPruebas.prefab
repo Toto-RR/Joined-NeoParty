@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 337459747868978163}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (11)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 8155715907977235119}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (8)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 6058687502638229493}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (10)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -338,7 +338,7 @@ GameObject:
   - component: {fileID: 5645159608883187615}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (11)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -577,7 +577,7 @@ GameObject:
   - component: {fileID: 4679161701313293440}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (16)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -685,7 +685,7 @@ GameObject:
   - component: {fileID: 5836464582296566922}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (9)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -793,7 +793,7 @@ GameObject:
   - component: {fileID: 3109379028997831658}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (16)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -901,7 +901,7 @@ GameObject:
   - component: {fileID: 1672287593972678765}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (8)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1009,7 +1009,7 @@ GameObject:
   - component: {fileID: 349502190906893072}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (12)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1248,7 +1248,7 @@ GameObject:
   - component: {fileID: 5608494294417138101}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (7)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1487,7 +1487,7 @@ GameObject:
   - component: {fileID: 5089698620939111460}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (11)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1595,7 +1595,7 @@ GameObject:
   - component: {fileID: 2203811674666880820}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (12)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1965,7 +1965,7 @@ GameObject:
   - component: {fileID: 6930860357476552802}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (13)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2073,7 +2073,7 @@ GameObject:
   - component: {fileID: 7767665171583386765}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (13)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2167,6 +2167,59 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5, y: 0.03913545, z: 5}
   m_Center: {x: -2.5, y: -0.019567724, z: -2.5}
+--- !u!1 &2999263884493879126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6911396039913726895}
+  - component: {fileID: 5829838207320208251}
+  m_Layer: 0
+  m_Name: ObstacleDestroyer
+  m_TagString: Destroyer
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6911396039913726895
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2999263884493879126}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.7, z: -24.61}
+  m_LocalScale: {x: 5.79198, y: 1.5249, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6129759692712894010}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5829838207320208251
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2999263884493879126}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3118917662577212585
 GameObject:
   m_ObjectHideFlags: 0
@@ -2176,9 +2229,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6365951637034011383}
+  - component: {fileID: 6717798239543191165}
   m_Layer: 0
   m_Name: CarrilAzul
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2208,6 +2262,27 @@ Transform:
   - {fileID: 5727577002998327124}
   m_Father: {fileID: 6129759692712894010}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6717798239543191165
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3118917662577212585}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 5.36615, y: 0.11, z: 49.73831}
+  m_Center: {x: -2.183075, y: 0, z: 1.0614052}
 --- !u!1 &3170108606047603297
 GameObject:
   m_ObjectHideFlags: 0
@@ -2217,9 +2292,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4646521484915129843}
+  - component: {fileID: 8626758818475434257}
   m_Layer: 0
   m_Name: CarrilAmarillo
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2249,6 +2325,27 @@ Transform:
   - {fileID: 5711786024808160443}
   m_Father: {fileID: 6129759692712894010}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8626758818475434257
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3170108606047603297}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 5.36615, y: 0.11, z: 49.73831}
+  m_Center: {x: -2.183075, y: 0, z: 1.0614052}
 --- !u!1 &3308126750730876670
 GameObject:
   m_ObjectHideFlags: 0
@@ -2263,7 +2360,7 @@ GameObject:
   - component: {fileID: 3243487111137484630}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (14)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2371,7 +2468,7 @@ GameObject:
   - component: {fileID: 3356844142386417539}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (9)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2610,7 +2707,7 @@ GameObject:
   - component: {fileID: 3888767713328794920}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (7)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2718,7 +2815,7 @@ GameObject:
   - component: {fileID: 4201598435398361872}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (12)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2826,7 +2923,7 @@ GameObject:
   - component: {fileID: 5632060003800520553}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (13)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2934,7 +3031,7 @@ GameObject:
   - component: {fileID: 4318632942826406276}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (15)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3042,7 +3139,7 @@ GameObject:
   - component: {fileID: 99727018788605767}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (14)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3281,7 +3378,7 @@ GameObject:
   - component: {fileID: 2653448780629498580}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (14)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3390,7 +3487,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6986122802774421210
 Transform:
   m_ObjectHideFlags: 0
@@ -3429,7 +3526,7 @@ GameObject:
   - component: {fileID: 4482990803507096491}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (7)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3668,7 +3765,7 @@ GameObject:
   - component: {fileID: 4806142820679562503}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (10)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3771,9 +3868,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6088158163719874179}
+  - component: {fileID: 8059178280198144388}
   m_Layer: 0
   m_Name: CarrilVerde
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3803,6 +3901,27 @@ Transform:
   - {fileID: 2412477711014786677}
   m_Father: {fileID: 6129759692712894010}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8059178280198144388
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4959148261238811714}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 5.36615, y: 0.11, z: 49.73831}
+  m_Center: {x: -2.183075, y: 0, z: 1.0614052}
 --- !u!1 &5233055075666151264
 GameObject:
   m_ObjectHideFlags: 0
@@ -3832,6 +3951,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6734352447052527223}
+  - {fileID: 6911396039913726895}
   - {fileID: 6365951637034011383}
   - {fileID: 7056445652672293462}
   - {fileID: 6088158163719874179}
@@ -3853,7 +3974,7 @@ GameObject:
   - component: {fileID: 5433480377145174761}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (15)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3961,7 +4082,7 @@ GameObject:
   - component: {fileID: 9087463792349516253}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (9)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4069,7 +4190,7 @@ GameObject:
   - component: {fileID: 5736302352468860704}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (16)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4177,7 +4298,7 @@ GameObject:
   - component: {fileID: 7171975703847476876}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (15)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4285,7 +4406,7 @@ GameObject:
   - component: {fileID: 4331600854636112466}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (12)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4393,7 +4514,7 @@ GameObject:
   - component: {fileID: 7419832899409360429}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (7)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4501,7 +4622,7 @@ GameObject:
   - component: {fileID: 8282948229777675783}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (11)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4609,7 +4730,7 @@ GameObject:
   - component: {fileID: 6767938049743143667}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (10)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4717,7 +4838,7 @@ GameObject:
   - component: {fileID: 6385452441444603006}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (15)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4811,6 +4932,114 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5, y: 0.03913545, z: 5}
   m_Center: {x: -2.5, y: -0.019567724, z: -2.5}
+--- !u!1 &7314289348778806810
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1337661119511517850}
+  - component: {fileID: 1992312232625865371}
+  - component: {fileID: 7730793290212363632}
+  - component: {fileID: 2085962385112025827}
+  m_Layer: 0
+  m_Name: SpawnerObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1337661119511517850
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7314289348778806810}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.6, z: -3.2}
+  m_LocalScale: {x: 5.79, y: 8.21, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6734352447052527223}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &1992312232625865371
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7314289348778806810}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &7730793290212363632
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7314289348778806810}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2085962385112025827
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7314289348778806810}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8055324288903246622
 GameObject:
   m_ObjectHideFlags: 0
@@ -4825,7 +5054,7 @@ GameObject:
   - component: {fileID: 5565798465268437034}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (16)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4928,9 +5157,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7056445652672293462}
+  - component: {fileID: 1437062651935782254}
   m_Layer: 0
   m_Name: CarrilNaranja
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4960,6 +5190,27 @@ Transform:
   - {fileID: 2509859334030504365}
   m_Father: {fileID: 6129759692712894010}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1437062651935782254
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8077830398952478043}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 5.36615, y: 0.11, z: 49.73831}
+  m_Center: {x: -2.183075, y: 0, z: 1.0614052}
 --- !u!1 &8215524093660776489
 GameObject:
   m_ObjectHideFlags: 0
@@ -5105,7 +5356,7 @@ GameObject:
   - component: {fileID: 8379426579805844206}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (13)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5213,7 +5464,7 @@ GameObject:
   - component: {fileID: 3456410869123586687}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (8)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5321,7 +5572,7 @@ GameObject:
   - component: {fileID: 2677529448348210108}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (10)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5429,7 +5680,7 @@ GameObject:
   - component: {fileID: 4817625545754189036}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (14)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5537,7 +5788,7 @@ GameObject:
   - component: {fileID: 6165313390456767148}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (9)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5645,7 +5896,7 @@ GameObject:
   - component: {fileID: 8872786295463989215}
   m_Layer: 0
   m_Name: SM_Env_Road_Lines_01_SF (8)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5739,3 +5990,57 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5, y: 0.03913545, z: 5}
   m_Center: {x: -2.5, y: -0.019567724, z: -2.5}
+--- !u!1 &9110924351184618798
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6734352447052527223}
+  - component: {fileID: 3195504190043520817}
+  m_Layer: 0
+  m_Name: ObstacleSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6734352447052527223
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9110924351184618798}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.47000027, y: 4.85, z: 3.2739937}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1337661119511517850}
+  m_Father: {fileID: 6129759692712894010}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3195504190043520817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9110924351184618798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 663875ac59ac8f94b9df7a9987d4370d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclePrefab: {fileID: 3271213332546791372, guid: 158df35b00c6e284f86a08eacd5cc863, type: 3}
+  carriles:
+  - {fileID: 6365951637034011383}
+  - {fileID: 7056445652672293462}
+  - {fileID: 6088158163719874179}
+  - {fileID: 4646521484915129843}
+  spawnInterval: 0.2
+  metaPrefab: {fileID: 6744385620531453314, guid: 93739d1c22f702043a0a14b1df876cc2, type: 3}
+  obstaclesToSpawnForGoal: 50

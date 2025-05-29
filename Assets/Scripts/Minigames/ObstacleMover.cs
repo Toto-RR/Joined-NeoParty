@@ -1,12 +1,9 @@
 using UnityEngine;
 
-/// <summary>
-/// Clase que maneja la meta de la carrera y envía el trigger para detener movimiento y animación
-/// </summary>
-public class EndRun : MonoBehaviour
+public class ObstacleMover : MonoBehaviour
 {
     private bool moving = false;
-    public float speed = 30f;
+    public float speed = 5f;
 
     public void SetSpeed(float newSpeed)
     {
@@ -25,25 +22,22 @@ public class EndRun : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
+            //Debug.Log("Obstacle has hit the ground, starting movement.");
             moving = true;
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("Jugador ha alcanzado la meta!");
-            PlayerController player = other.GetComponent<PlayerController>();
-            if (player != null)
-            {
-                player.FinishReached();
-            }
-        }
-
         if (other.CompareTag("Destroyer"))
         {
+            //Debug.Log("Obstacle has hit the Destroyer, destroying.");
             Destroy(gameObject);
+        }
+
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Tocó al jugador");
         }
     }
 }

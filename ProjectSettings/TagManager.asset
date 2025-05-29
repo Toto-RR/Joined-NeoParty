@@ -7,15 +7,16 @@ TagManager:
   - Ground
   - Obstacle
   - PlayerInputTemp
+  - Destroyer
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - IgnorePlayerCollision
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - Obstacle
   - 
   - 
   - 

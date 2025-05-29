@@ -1400,19 +1400,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefabs:
   - colorName: Blue
-    astronautPrefab: {fileID: 222226333087735212, guid: 5f39c09e3de7ab84d8f5d54fc7eb7383, type: 3}
+    playerPrefab: {fileID: 222226333087735212, guid: 5f39c09e3de7ab84d8f5d54fc7eb7383, type: 3}
     visor: {fileID: 1661678397}
     questionMark: {fileID: 1028161594}
   - colorName: Orange
-    astronautPrefab: {fileID: 8271808054340092428, guid: a663c704473817744bd998b714f8aa88, type: 3}
+    playerPrefab: {fileID: 8271808054340092428, guid: a663c704473817744bd998b714f8aa88, type: 3}
     visor: {fileID: 1985495214}
     questionMark: {fileID: 837032365}
   - colorName: Green
-    astronautPrefab: {fileID: 809230042104830223, guid: 42c06899a3bf3f24ead87a0cc2e2c9bc, type: 3}
+    playerPrefab: {fileID: 809230042104830223, guid: 42c06899a3bf3f24ead87a0cc2e2c9bc, type: 3}
     visor: {fileID: 1051674009}
     questionMark: {fileID: 781304136}
   - colorName: Yellow
-    astronautPrefab: {fileID: 6054265942696545782, guid: 698cb2cd9576f3e4ebeff325d3e4b9fb, type: 3}
+    playerPrefab: {fileID: 6054265942696545782, guid: 698cb2cd9576f3e4ebeff325d3e4b9fb, type: 3}
     visor: {fileID: 1764946585}
     questionMark: {fileID: 1656000352}
 --- !u!114 &1978783294

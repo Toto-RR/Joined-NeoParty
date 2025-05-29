@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
+using System.Collections;
 
 public class PlayerRow : MonoBehaviour
 {
@@ -23,35 +23,36 @@ public class PlayerRow : MonoBehaviour
 
         assignedDevice = player.Device;
 
-        string binding = "";
+        readyAction = new InputAction(type: InputActionType.Button);
 
         if (assignedDevice is Keyboard)
         {
-            binding = "<Keyboard>/space";
+            readyAction.AddBinding("<Keyboard>/space");
         }
         else if (assignedDevice is Gamepad)
         {
-            binding = "<Gamepad>/buttonSouth";
+            readyAction.AddBinding("<Gamepad>/buttonSouth");
         }
 
-        readyAction = new InputAction(type: InputActionType.Button, binding: binding);
-        readyAction.AddBinding(binding).WithGroup(player.Device.layout);
-        readyAction.performed += ctx => OnJoinKeyPressed();
+        readyAction.performed += ctx =>
+        {
+            if (ctx.control.device == assignedDevice && !isReady)
+            {
+                tutorialManager.PlayerReady(this);
+            }
+        };
+
         readyAction.Enable();
     }
 
     private void OnDisable()
     {
         readyAction?.Disable();
-        readyAction?.Dispose();
     }
 
-    private void OnJoinKeyPressed()
+    private void OnDestroy()
     {
-        if (!isReady)
-        {
-            tutorialManager.PlayerReady(this);
-        }
+        readyAction?.Dispose();
     }
 
     public void SetReady()

@@ -68,6 +68,16 @@ public class PlayersSpawner : MonoBehaviour
                     }
                     else Debug.LogWarning("No se encontró la cámara en el prefab del jugador.");
 
+                    var hud = playerInput.GetComponentInChildren<PlayerScreenHUD>();
+                    if (hud != null)
+                    {
+                        hud.SetPlayer(controller);
+
+                        var canvas = hud.GetComponent<Canvas>();
+                        if (canvas != null)
+                            canvas.worldCamera = playerCam;
+                    }
+
                     playerCameras.Add(playerCam);
                     players.Add(controller);
                 }
@@ -196,5 +206,10 @@ public class PlayersSpawner : MonoBehaviour
             PlayerChoices.PlayerColor.Yellow => 3,
             _ => 0
         };
+    }
+
+    public List<PlayerController> GetPlayers()
+    {
+        return players;
     }
 }

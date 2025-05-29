@@ -218,6 +218,402 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""PlayerRunner1"",
+            ""id"": ""ea66de4c-01f9-4f63-b74c-5694a067cee9"",
+            ""actions"": [
+                {
+                    ""name"": ""MoveToLane1"",
+                    ""type"": ""Button"",
+                    ""id"": ""dd4bbb9f-0678-4dfd-8531-71260fca9e23"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveToLane2"",
+                    ""type"": ""Button"",
+                    ""id"": ""c54adf22-0656-4d83-a1be-156381901cd0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveToLane3"",
+                    ""type"": ""Button"",
+                    ""id"": ""60fd671e-bff0-4811-95de-669eb303ba80"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveToLane4"",
+                    ""type"": ""Button"",
+                    ""id"": ""5a010802-44e7-49d0-ae7b-33c2504b18b0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""ae155db8-ee66-44ca-bab2-294148e789ee"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""MoveToLane1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""629a1c37-a079-4012-af48-b0991170cb95"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""MoveToLane1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a8e24f03-dbd8-4662-9755-4fb2ca77a16b"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""MoveToLane2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""86a98c44-cd06-4bda-b65f-1d94851a0733"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""MoveToLane2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7fb10f1e-d266-4195-b242-ac995e52cc0a"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""MoveToLane3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9dc71727-e189-451d-8221-559f17e9ecb1"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""MoveToLane3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""06dc10db-cc9d-4b82-a9cf-98e25d3afa3f"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""MoveToLane4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a2057639-3b53-49ac-b126-a415ba74d57d"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""MoveToLane4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""PlayerRunner2"",
+            ""id"": ""6a212252-adfe-4c3e-ac98-8ecb045723d1"",
+            ""actions"": [
+                {
+                    ""name"": ""MoveToLane1"",
+                    ""type"": ""Button"",
+                    ""id"": ""a71564e7-37fc-47f5-ae19-8daa1f9f7e07"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveToLane2"",
+                    ""type"": ""Button"",
+                    ""id"": ""36c97884-afa9-416b-97c9-b2b779de3967"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveToLane3"",
+                    ""type"": ""Button"",
+                    ""id"": ""736f4488-ec14-4d49-863e-d3d6060a417c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveToLane4"",
+                    ""type"": ""Button"",
+                    ""id"": ""9ab61010-8dcf-47df-9e65-6b3b4dfd51b7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""588c5b62-4bc1-4cfe-b3c5-c08c4b09434b"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""MoveToLane1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9666a656-a010-4ed7-9835-666d2c279585"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""MoveToLane1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2863c6c2-a926-4af4-aa93-ad6c40647554"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""MoveToLane2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""99b5696c-78a5-4de5-a253-68ff8d3d4f73"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""MoveToLane2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6cca23cd-2578-42b7-876d-6555221bb5ee"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""MoveToLane3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2bfc4963-19b2-438c-94bc-d7d4e5f72d55"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""MoveToLane3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b6b4b125-fad1-42ad-a359-dbc25a4b9dbd"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""MoveToLane4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""87d4a8a0-2274-45b3-89af-c39531bb1234"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""MoveToLane4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""PlayerRunner3"",
+            ""id"": ""3008fcf6-640f-435e-901c-a911ef1e7046"",
+            ""actions"": [
+                {
+                    ""name"": ""MoveToLane1"",
+                    ""type"": ""Button"",
+                    ""id"": ""50399ce5-c3fa-4d5f-82db-693549c4a2ea"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveToLane2"",
+                    ""type"": ""Button"",
+                    ""id"": ""016fa9b1-b839-462f-a4f4-a88544fbfdce"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveToLane3"",
+                    ""type"": ""Button"",
+                    ""id"": ""a2b2730e-7ecd-466e-b62f-8db8727e53d9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveToLane4"",
+                    ""type"": ""Button"",
+                    ""id"": ""8f5d1bd8-d697-4c67-9f10-008d64ab40e6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""d477a551-d5e9-47cb-9141-ded2ce0a90ad"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""MoveToLane1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d0b0d452-7ff1-44e2-8ca7-6515f68af97a"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""MoveToLane1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5d872e9b-0a8a-4fc5-8997-5a7feea0ff7f"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""MoveToLane2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""438fc1c2-6e77-42e9-9470-b080d089dcb3"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""MoveToLane2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c555bda5-378d-4678-a593-050ee2a9f188"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""MoveToLane3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2164a243-7d1a-47ef-b761-bad02bd0a29f"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""MoveToLane3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e53610df-0341-42a0-9c98-7ad553db065e"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""MoveToLane4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""31309d6c-843e-4491-a1ca-05184840bf7c"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""MoveToLane4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -251,11 +647,32 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
         m_PlayerRunner_MoveToLane2 = m_PlayerRunner.FindAction("MoveToLane2", throwIfNotFound: true);
         m_PlayerRunner_MoveToLane3 = m_PlayerRunner.FindAction("MoveToLane3", throwIfNotFound: true);
         m_PlayerRunner_MoveToLane4 = m_PlayerRunner.FindAction("MoveToLane4", throwIfNotFound: true);
+        // PlayerRunner1
+        m_PlayerRunner1 = asset.FindActionMap("PlayerRunner1", throwIfNotFound: true);
+        m_PlayerRunner1_MoveToLane1 = m_PlayerRunner1.FindAction("MoveToLane1", throwIfNotFound: true);
+        m_PlayerRunner1_MoveToLane2 = m_PlayerRunner1.FindAction("MoveToLane2", throwIfNotFound: true);
+        m_PlayerRunner1_MoveToLane3 = m_PlayerRunner1.FindAction("MoveToLane3", throwIfNotFound: true);
+        m_PlayerRunner1_MoveToLane4 = m_PlayerRunner1.FindAction("MoveToLane4", throwIfNotFound: true);
+        // PlayerRunner2
+        m_PlayerRunner2 = asset.FindActionMap("PlayerRunner2", throwIfNotFound: true);
+        m_PlayerRunner2_MoveToLane1 = m_PlayerRunner2.FindAction("MoveToLane1", throwIfNotFound: true);
+        m_PlayerRunner2_MoveToLane2 = m_PlayerRunner2.FindAction("MoveToLane2", throwIfNotFound: true);
+        m_PlayerRunner2_MoveToLane3 = m_PlayerRunner2.FindAction("MoveToLane3", throwIfNotFound: true);
+        m_PlayerRunner2_MoveToLane4 = m_PlayerRunner2.FindAction("MoveToLane4", throwIfNotFound: true);
+        // PlayerRunner3
+        m_PlayerRunner3 = asset.FindActionMap("PlayerRunner3", throwIfNotFound: true);
+        m_PlayerRunner3_MoveToLane1 = m_PlayerRunner3.FindAction("MoveToLane1", throwIfNotFound: true);
+        m_PlayerRunner3_MoveToLane2 = m_PlayerRunner3.FindAction("MoveToLane2", throwIfNotFound: true);
+        m_PlayerRunner3_MoveToLane3 = m_PlayerRunner3.FindAction("MoveToLane3", throwIfNotFound: true);
+        m_PlayerRunner3_MoveToLane4 = m_PlayerRunner3.FindAction("MoveToLane4", throwIfNotFound: true);
     }
 
     ~@MiniGame1_InputActions()
     {
         UnityEngine.Debug.Assert(!m_PlayerRunner.enabled, "This will cause a leak and performance issues, MiniGame1_InputActions.PlayerRunner.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_PlayerRunner1.enabled, "This will cause a leak and performance issues, MiniGame1_InputActions.PlayerRunner1.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_PlayerRunner2.enabled, "This will cause a leak and performance issues, MiniGame1_InputActions.PlayerRunner2.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_PlayerRunner3.enabled, "This will cause a leak and performance issues, MiniGame1_InputActions.PlayerRunner3.Disable() has not been called.");
     }
 
     /// <summary>
@@ -456,6 +873,393 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
     /// Provides a new <see cref="PlayerRunnerActions" /> instance referencing this action map.
     /// </summary>
     public PlayerRunnerActions @PlayerRunner => new PlayerRunnerActions(this);
+
+    // PlayerRunner1
+    private readonly InputActionMap m_PlayerRunner1;
+    private List<IPlayerRunner1Actions> m_PlayerRunner1ActionsCallbackInterfaces = new List<IPlayerRunner1Actions>();
+    private readonly InputAction m_PlayerRunner1_MoveToLane1;
+    private readonly InputAction m_PlayerRunner1_MoveToLane2;
+    private readonly InputAction m_PlayerRunner1_MoveToLane3;
+    private readonly InputAction m_PlayerRunner1_MoveToLane4;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "PlayerRunner1".
+    /// </summary>
+    public struct PlayerRunner1Actions
+    {
+        private @MiniGame1_InputActions m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public PlayerRunner1Actions(@MiniGame1_InputActions wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerRunner1/MoveToLane1".
+        /// </summary>
+        public InputAction @MoveToLane1 => m_Wrapper.m_PlayerRunner1_MoveToLane1;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerRunner1/MoveToLane2".
+        /// </summary>
+        public InputAction @MoveToLane2 => m_Wrapper.m_PlayerRunner1_MoveToLane2;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerRunner1/MoveToLane3".
+        /// </summary>
+        public InputAction @MoveToLane3 => m_Wrapper.m_PlayerRunner1_MoveToLane3;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerRunner1/MoveToLane4".
+        /// </summary>
+        public InputAction @MoveToLane4 => m_Wrapper.m_PlayerRunner1_MoveToLane4;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_PlayerRunner1; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="PlayerRunner1Actions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(PlayerRunner1Actions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="PlayerRunner1Actions" />
+        public void AddCallbacks(IPlayerRunner1Actions instance)
+        {
+            if (instance == null || m_Wrapper.m_PlayerRunner1ActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerRunner1ActionsCallbackInterfaces.Add(instance);
+            @MoveToLane1.started += instance.OnMoveToLane1;
+            @MoveToLane1.performed += instance.OnMoveToLane1;
+            @MoveToLane1.canceled += instance.OnMoveToLane1;
+            @MoveToLane2.started += instance.OnMoveToLane2;
+            @MoveToLane2.performed += instance.OnMoveToLane2;
+            @MoveToLane2.canceled += instance.OnMoveToLane2;
+            @MoveToLane3.started += instance.OnMoveToLane3;
+            @MoveToLane3.performed += instance.OnMoveToLane3;
+            @MoveToLane3.canceled += instance.OnMoveToLane3;
+            @MoveToLane4.started += instance.OnMoveToLane4;
+            @MoveToLane4.performed += instance.OnMoveToLane4;
+            @MoveToLane4.canceled += instance.OnMoveToLane4;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="PlayerRunner1Actions" />
+        private void UnregisterCallbacks(IPlayerRunner1Actions instance)
+        {
+            @MoveToLane1.started -= instance.OnMoveToLane1;
+            @MoveToLane1.performed -= instance.OnMoveToLane1;
+            @MoveToLane1.canceled -= instance.OnMoveToLane1;
+            @MoveToLane2.started -= instance.OnMoveToLane2;
+            @MoveToLane2.performed -= instance.OnMoveToLane2;
+            @MoveToLane2.canceled -= instance.OnMoveToLane2;
+            @MoveToLane3.started -= instance.OnMoveToLane3;
+            @MoveToLane3.performed -= instance.OnMoveToLane3;
+            @MoveToLane3.canceled -= instance.OnMoveToLane3;
+            @MoveToLane4.started -= instance.OnMoveToLane4;
+            @MoveToLane4.performed -= instance.OnMoveToLane4;
+            @MoveToLane4.canceled -= instance.OnMoveToLane4;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="PlayerRunner1Actions.UnregisterCallbacks(IPlayerRunner1Actions)" />.
+        /// </summary>
+        /// <seealso cref="PlayerRunner1Actions.UnregisterCallbacks(IPlayerRunner1Actions)" />
+        public void RemoveCallbacks(IPlayerRunner1Actions instance)
+        {
+            if (m_Wrapper.m_PlayerRunner1ActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="PlayerRunner1Actions.AddCallbacks(IPlayerRunner1Actions)" />
+        /// <seealso cref="PlayerRunner1Actions.RemoveCallbacks(IPlayerRunner1Actions)" />
+        /// <seealso cref="PlayerRunner1Actions.UnregisterCallbacks(IPlayerRunner1Actions)" />
+        public void SetCallbacks(IPlayerRunner1Actions instance)
+        {
+            foreach (var item in m_Wrapper.m_PlayerRunner1ActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PlayerRunner1ActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="PlayerRunner1Actions" /> instance referencing this action map.
+    /// </summary>
+    public PlayerRunner1Actions @PlayerRunner1 => new PlayerRunner1Actions(this);
+
+    // PlayerRunner2
+    private readonly InputActionMap m_PlayerRunner2;
+    private List<IPlayerRunner2Actions> m_PlayerRunner2ActionsCallbackInterfaces = new List<IPlayerRunner2Actions>();
+    private readonly InputAction m_PlayerRunner2_MoveToLane1;
+    private readonly InputAction m_PlayerRunner2_MoveToLane2;
+    private readonly InputAction m_PlayerRunner2_MoveToLane3;
+    private readonly InputAction m_PlayerRunner2_MoveToLane4;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "PlayerRunner2".
+    /// </summary>
+    public struct PlayerRunner2Actions
+    {
+        private @MiniGame1_InputActions m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public PlayerRunner2Actions(@MiniGame1_InputActions wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerRunner2/MoveToLane1".
+        /// </summary>
+        public InputAction @MoveToLane1 => m_Wrapper.m_PlayerRunner2_MoveToLane1;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerRunner2/MoveToLane2".
+        /// </summary>
+        public InputAction @MoveToLane2 => m_Wrapper.m_PlayerRunner2_MoveToLane2;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerRunner2/MoveToLane3".
+        /// </summary>
+        public InputAction @MoveToLane3 => m_Wrapper.m_PlayerRunner2_MoveToLane3;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerRunner2/MoveToLane4".
+        /// </summary>
+        public InputAction @MoveToLane4 => m_Wrapper.m_PlayerRunner2_MoveToLane4;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_PlayerRunner2; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="PlayerRunner2Actions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(PlayerRunner2Actions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="PlayerRunner2Actions" />
+        public void AddCallbacks(IPlayerRunner2Actions instance)
+        {
+            if (instance == null || m_Wrapper.m_PlayerRunner2ActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerRunner2ActionsCallbackInterfaces.Add(instance);
+            @MoveToLane1.started += instance.OnMoveToLane1;
+            @MoveToLane1.performed += instance.OnMoveToLane1;
+            @MoveToLane1.canceled += instance.OnMoveToLane1;
+            @MoveToLane2.started += instance.OnMoveToLane2;
+            @MoveToLane2.performed += instance.OnMoveToLane2;
+            @MoveToLane2.canceled += instance.OnMoveToLane2;
+            @MoveToLane3.started += instance.OnMoveToLane3;
+            @MoveToLane3.performed += instance.OnMoveToLane3;
+            @MoveToLane3.canceled += instance.OnMoveToLane3;
+            @MoveToLane4.started += instance.OnMoveToLane4;
+            @MoveToLane4.performed += instance.OnMoveToLane4;
+            @MoveToLane4.canceled += instance.OnMoveToLane4;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="PlayerRunner2Actions" />
+        private void UnregisterCallbacks(IPlayerRunner2Actions instance)
+        {
+            @MoveToLane1.started -= instance.OnMoveToLane1;
+            @MoveToLane1.performed -= instance.OnMoveToLane1;
+            @MoveToLane1.canceled -= instance.OnMoveToLane1;
+            @MoveToLane2.started -= instance.OnMoveToLane2;
+            @MoveToLane2.performed -= instance.OnMoveToLane2;
+            @MoveToLane2.canceled -= instance.OnMoveToLane2;
+            @MoveToLane3.started -= instance.OnMoveToLane3;
+            @MoveToLane3.performed -= instance.OnMoveToLane3;
+            @MoveToLane3.canceled -= instance.OnMoveToLane3;
+            @MoveToLane4.started -= instance.OnMoveToLane4;
+            @MoveToLane4.performed -= instance.OnMoveToLane4;
+            @MoveToLane4.canceled -= instance.OnMoveToLane4;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="PlayerRunner2Actions.UnregisterCallbacks(IPlayerRunner2Actions)" />.
+        /// </summary>
+        /// <seealso cref="PlayerRunner2Actions.UnregisterCallbacks(IPlayerRunner2Actions)" />
+        public void RemoveCallbacks(IPlayerRunner2Actions instance)
+        {
+            if (m_Wrapper.m_PlayerRunner2ActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="PlayerRunner2Actions.AddCallbacks(IPlayerRunner2Actions)" />
+        /// <seealso cref="PlayerRunner2Actions.RemoveCallbacks(IPlayerRunner2Actions)" />
+        /// <seealso cref="PlayerRunner2Actions.UnregisterCallbacks(IPlayerRunner2Actions)" />
+        public void SetCallbacks(IPlayerRunner2Actions instance)
+        {
+            foreach (var item in m_Wrapper.m_PlayerRunner2ActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PlayerRunner2ActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="PlayerRunner2Actions" /> instance referencing this action map.
+    /// </summary>
+    public PlayerRunner2Actions @PlayerRunner2 => new PlayerRunner2Actions(this);
+
+    // PlayerRunner3
+    private readonly InputActionMap m_PlayerRunner3;
+    private List<IPlayerRunner3Actions> m_PlayerRunner3ActionsCallbackInterfaces = new List<IPlayerRunner3Actions>();
+    private readonly InputAction m_PlayerRunner3_MoveToLane1;
+    private readonly InputAction m_PlayerRunner3_MoveToLane2;
+    private readonly InputAction m_PlayerRunner3_MoveToLane3;
+    private readonly InputAction m_PlayerRunner3_MoveToLane4;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "PlayerRunner3".
+    /// </summary>
+    public struct PlayerRunner3Actions
+    {
+        private @MiniGame1_InputActions m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public PlayerRunner3Actions(@MiniGame1_InputActions wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerRunner3/MoveToLane1".
+        /// </summary>
+        public InputAction @MoveToLane1 => m_Wrapper.m_PlayerRunner3_MoveToLane1;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerRunner3/MoveToLane2".
+        /// </summary>
+        public InputAction @MoveToLane2 => m_Wrapper.m_PlayerRunner3_MoveToLane2;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerRunner3/MoveToLane3".
+        /// </summary>
+        public InputAction @MoveToLane3 => m_Wrapper.m_PlayerRunner3_MoveToLane3;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerRunner3/MoveToLane4".
+        /// </summary>
+        public InputAction @MoveToLane4 => m_Wrapper.m_PlayerRunner3_MoveToLane4;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_PlayerRunner3; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="PlayerRunner3Actions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(PlayerRunner3Actions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="PlayerRunner3Actions" />
+        public void AddCallbacks(IPlayerRunner3Actions instance)
+        {
+            if (instance == null || m_Wrapper.m_PlayerRunner3ActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerRunner3ActionsCallbackInterfaces.Add(instance);
+            @MoveToLane1.started += instance.OnMoveToLane1;
+            @MoveToLane1.performed += instance.OnMoveToLane1;
+            @MoveToLane1.canceled += instance.OnMoveToLane1;
+            @MoveToLane2.started += instance.OnMoveToLane2;
+            @MoveToLane2.performed += instance.OnMoveToLane2;
+            @MoveToLane2.canceled += instance.OnMoveToLane2;
+            @MoveToLane3.started += instance.OnMoveToLane3;
+            @MoveToLane3.performed += instance.OnMoveToLane3;
+            @MoveToLane3.canceled += instance.OnMoveToLane3;
+            @MoveToLane4.started += instance.OnMoveToLane4;
+            @MoveToLane4.performed += instance.OnMoveToLane4;
+            @MoveToLane4.canceled += instance.OnMoveToLane4;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="PlayerRunner3Actions" />
+        private void UnregisterCallbacks(IPlayerRunner3Actions instance)
+        {
+            @MoveToLane1.started -= instance.OnMoveToLane1;
+            @MoveToLane1.performed -= instance.OnMoveToLane1;
+            @MoveToLane1.canceled -= instance.OnMoveToLane1;
+            @MoveToLane2.started -= instance.OnMoveToLane2;
+            @MoveToLane2.performed -= instance.OnMoveToLane2;
+            @MoveToLane2.canceled -= instance.OnMoveToLane2;
+            @MoveToLane3.started -= instance.OnMoveToLane3;
+            @MoveToLane3.performed -= instance.OnMoveToLane3;
+            @MoveToLane3.canceled -= instance.OnMoveToLane3;
+            @MoveToLane4.started -= instance.OnMoveToLane4;
+            @MoveToLane4.performed -= instance.OnMoveToLane4;
+            @MoveToLane4.canceled -= instance.OnMoveToLane4;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="PlayerRunner3Actions.UnregisterCallbacks(IPlayerRunner3Actions)" />.
+        /// </summary>
+        /// <seealso cref="PlayerRunner3Actions.UnregisterCallbacks(IPlayerRunner3Actions)" />
+        public void RemoveCallbacks(IPlayerRunner3Actions instance)
+        {
+            if (m_Wrapper.m_PlayerRunner3ActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="PlayerRunner3Actions.AddCallbacks(IPlayerRunner3Actions)" />
+        /// <seealso cref="PlayerRunner3Actions.RemoveCallbacks(IPlayerRunner3Actions)" />
+        /// <seealso cref="PlayerRunner3Actions.UnregisterCallbacks(IPlayerRunner3Actions)" />
+        public void SetCallbacks(IPlayerRunner3Actions instance)
+        {
+            foreach (var item in m_Wrapper.m_PlayerRunner3ActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PlayerRunner3ActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="PlayerRunner3Actions" /> instance referencing this action map.
+    /// </summary>
+    public PlayerRunner3Actions @PlayerRunner3 => new PlayerRunner3Actions(this);
     private int m_KeyboardSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -488,6 +1292,114 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
     /// <seealso cref="PlayerRunnerActions.AddCallbacks(IPlayerRunnerActions)" />
     /// <seealso cref="PlayerRunnerActions.RemoveCallbacks(IPlayerRunnerActions)" />
     public interface IPlayerRunnerActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "MoveToLane1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMoveToLane1(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MoveToLane2" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMoveToLane2(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MoveToLane3" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMoveToLane3(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MoveToLane4" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMoveToLane4(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "PlayerRunner1" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="PlayerRunner1Actions.AddCallbacks(IPlayerRunner1Actions)" />
+    /// <seealso cref="PlayerRunner1Actions.RemoveCallbacks(IPlayerRunner1Actions)" />
+    public interface IPlayerRunner1Actions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "MoveToLane1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMoveToLane1(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MoveToLane2" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMoveToLane2(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MoveToLane3" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMoveToLane3(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MoveToLane4" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMoveToLane4(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "PlayerRunner2" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="PlayerRunner2Actions.AddCallbacks(IPlayerRunner2Actions)" />
+    /// <seealso cref="PlayerRunner2Actions.RemoveCallbacks(IPlayerRunner2Actions)" />
+    public interface IPlayerRunner2Actions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "MoveToLane1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMoveToLane1(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MoveToLane2" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMoveToLane2(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MoveToLane3" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMoveToLane3(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MoveToLane4" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMoveToLane4(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "PlayerRunner3" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="PlayerRunner3Actions.AddCallbacks(IPlayerRunner3Actions)" />
+    /// <seealso cref="PlayerRunner3Actions.RemoveCallbacks(IPlayerRunner3Actions)" />
+    public interface IPlayerRunner3Actions
     {
         /// <summary>
         /// Method invoked when associated input action "MoveToLane1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.

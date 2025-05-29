@@ -46,6 +46,19 @@ public static class PlayerChoices
         Debug.Log($"Jugador registrado: {color} con {device.displayName}");
     }
 
+    public static void RemovePlayer(InputDevice device)
+    {
+        var player = jugadoresActivos.Find(x => x.Device == device);
+        if (player != null)
+        {
+            jugadoresActivos.Remove(player);
+            Debug.Log($"Jugador con color {player.Color} y dispositivo {device.displayName} eliminado.");
+        }
+        else
+        {
+            Debug.LogWarning("No se encontró ningún jugador con este dispositivo.");
+        }
+    }
 
     // --- GETTERS ---
     public static GameManager.GameLength GetPartyLengthEnum() { return gameLength; }
@@ -134,4 +147,9 @@ public static class PlayerChoices
         }
     }
 
+    public static string GetColorFromDevice(InputDevice device)
+    {
+        var playerData = jugadoresActivos.Find(x => x.Device == device);
+        return playerData != null ? playerData.Color.ToString() : null;
+    }
 }

@@ -7,7 +7,6 @@ public class LobbyInputManager : MonoBehaviour
     public LobbyManager lobbyManager;
 
     private List<string> colorOrder = new List<string> { "Blue", "Orange", "Green", "Yellow" };
-    private int currentIndex = 0;
 
     void Start()
     {
@@ -51,19 +50,49 @@ public class LobbyInputManager : MonoBehaviour
             if (Keyboard.current.digit3Key.wasPressedThisFrame) JoinSpecificColor("Green", Keyboard.current);
             if (Keyboard.current.digit4Key.wasPressedThisFrame) JoinSpecificColor("Yellow", Keyboard.current);
         }
+
+        // TECLADO: Salir del lobby
+        if (Keyboard.current != null && Keyboard.current.backspaceKey.wasPressedThisFrame)
+        {
+            Debug.Log("Backspace presionado");
+            string color = PlayerChoices.GetColorFromDevice(Keyboard.current);
+            PlayerChoices.RemovePlayer(Keyboard.current);
+            if (color != null) lobbyManager.RemovePlayer(color);
+        }
+
+        // GAMEPADS: Salir del lobby
+        foreach (var gamepad in Gamepad.all)
+        {
+            if (gamepad != null && gamepad.buttonEast.wasPressedThisFrame)
+            {
+                Debug.Log($"Botón East presionado por {gamepad.displayName}");
+                string color = PlayerChoices.GetColorFromDevice(gamepad);
+                PlayerChoices.RemovePlayer(gamepad);
+                if (color != null) lobbyManager.RemovePlayer(color);
+            }
+        }
     }
 
     void JoinNextColor(InputDevice device)
     {
         if (PlayerChoices.IsPlayerActive(device)) return;
 
-        string color = colorOrder[currentIndex];
-        RegisterPlayer(color, device);
-        currentIndex++;
+        foreach (var color in colorOrder)
+        {
+            if (!PlayerChoices.IsPlayerActive(color))
+            {
+                RegisterPlayer(color, device);
+                return;
+            }
+        }
+
+        Debug.LogWarning("No hay colores disponibles.");
     }
 
     void JoinSpecificColor(string color, InputDevice device)
     {
+        if (PlayerChoices.IsPlayerActive(device) || PlayerChoices.IsPlayerActive(color)) return;
+
         RegisterPlayer(color, device);
     }
 
