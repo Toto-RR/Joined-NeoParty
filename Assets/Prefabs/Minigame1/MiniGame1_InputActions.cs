@@ -132,7 +132,7 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 {
                     ""name"": """",
                     ""id"": ""5d3ddf54-5117-4897-83d9-f3a5b74abd1b"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard"",
@@ -176,7 +176,7 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 {
                     ""name"": """",
                     ""id"": ""08182bf0-0e14-4683-ad7e-62c72e26e442"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard"",
@@ -198,7 +198,7 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 {
                     ""name"": """",
                     ""id"": ""769f842c-ce61-4f18-b52d-08488ecc8c4f"",
-                    ""path"": ""<Keyboard>/d"",
+                    ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard"",
@@ -221,12 +221,12 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
         },
         {
             ""name"": ""PlayerRunner1"",
-            ""id"": ""ea66de4c-01f9-4f63-b74c-5694a067cee9"",
+            ""id"": ""2d72768d-cb6e-4fb0-a9bb-5bb3272d487d"",
             ""actions"": [
                 {
                     ""name"": ""MoveToLane1"",
                     ""type"": ""Button"",
-                    ""id"": ""dd4bbb9f-0678-4dfd-8531-71260fca9e23"",
+                    ""id"": ""e13c56fa-a48a-4f51-8e21-f43de0c5a2e3"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -235,7 +235,7 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 {
                     ""name"": ""MoveToLane2"",
                     ""type"": ""Button"",
-                    ""id"": ""c54adf22-0656-4d83-a1be-156381901cd0"",
+                    ""id"": ""fe1aacb9-5d80-43f0-ab8a-a1a58a42b99b"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -244,7 +244,7 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 {
                     ""name"": ""MoveToLane3"",
                     ""type"": ""Button"",
-                    ""id"": ""60fd671e-bff0-4811-95de-669eb303ba80"",
+                    ""id"": ""6e291f37-89e1-4a3c-821a-149934d07f3d"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -253,7 +253,7 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 {
                     ""name"": ""MoveToLane4"",
                     ""type"": ""Button"",
-                    ""id"": ""5a010802-44e7-49d0-ae7b-33c2504b18b0"",
+                    ""id"": ""ef32bd2b-2976-409b-8317-0332bc2aca5f"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -263,8 +263,8 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""ae155db8-ee66-44ca-bab2-294148e789ee"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""id"": ""6c03dae4-4a41-4778-9efe-73156a34341c"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard"",
@@ -274,7 +274,7 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 },
                 {
                     ""name"": """",
-                    ""id"": ""629a1c37-a079-4012-af48-b0991170cb95"",
+                    ""id"": ""1a4cdb23-4411-4b45-85b9-7cdda033a4eb"",
                     ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -285,7 +285,7 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 },
                 {
                     ""name"": """",
-                    ""id"": ""a8e24f03-dbd8-4662-9755-4fb2ca77a16b"",
+                    ""id"": ""34e7e74e-f474-4d89-b4e0-65dfab4f7a39"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -296,7 +296,7 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 },
                 {
                     ""name"": """",
-                    ""id"": ""86a98c44-cd06-4bda-b65f-1d94851a0733"",
+                    ""id"": ""41acab2b-7c2f-4e64-9fac-d43a8e14b40f"",
                     ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -307,8 +307,8 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 },
                 {
                     ""name"": """",
-                    ""id"": ""7fb10f1e-d266-4195-b242-ac995e52cc0a"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""id"": ""055c6521-c3f2-4e68-b8c0-a2d6a6f37970"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard"",
@@ -318,7 +318,7 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9dc71727-e189-451d-8221-559f17e9ecb1"",
+                    ""id"": ""0ec9d785-af02-4c09-9051-7146c79fb46f"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -329,8 +329,8 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 },
                 {
                     ""name"": """",
-                    ""id"": ""06dc10db-cc9d-4b82-a9cf-98e25d3afa3f"",
-                    ""path"": ""<Keyboard>/d"",
+                    ""id"": ""0cb7b228-6bf5-46c2-a44d-7a04eee83e60"",
+                    ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard"",
@@ -340,7 +340,7 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 },
                 {
                     ""name"": """",
-                    ""id"": ""a2057639-3b53-49ac-b126-a415ba74d57d"",
+                    ""id"": ""abb5f1ea-9c83-4d8f-b3e9-c2c9f584ce66"",
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -353,12 +353,12 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
         },
         {
             ""name"": ""PlayerRunner2"",
-            ""id"": ""6a212252-adfe-4c3e-ac98-8ecb045723d1"",
+            ""id"": ""51e71e13-cf8e-4124-bc59-9a36e8dd010c"",
             ""actions"": [
                 {
                     ""name"": ""MoveToLane1"",
                     ""type"": ""Button"",
-                    ""id"": ""a71564e7-37fc-47f5-ae19-8daa1f9f7e07"",
+                    ""id"": ""04e47ad5-c70e-4756-b047-40f8eddadaf9"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -367,7 +367,7 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 {
                     ""name"": ""MoveToLane2"",
                     ""type"": ""Button"",
-                    ""id"": ""36c97884-afa9-416b-97c9-b2b779de3967"",
+                    ""id"": ""f4f74a80-2c94-498e-aff6-9e90e85b1ac7"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -376,7 +376,7 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 {
                     ""name"": ""MoveToLane3"",
                     ""type"": ""Button"",
-                    ""id"": ""736f4488-ec14-4d49-863e-d3d6060a417c"",
+                    ""id"": ""88618e20-6748-4e86-9156-a634bdccbe47"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -385,7 +385,7 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 {
                     ""name"": ""MoveToLane4"",
                     ""type"": ""Button"",
-                    ""id"": ""9ab61010-8dcf-47df-9e65-6b3b4dfd51b7"",
+                    ""id"": ""352134df-22b6-4f87-9d9c-7188f3da0028"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -395,8 +395,8 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""588c5b62-4bc1-4cfe-b3c5-c08c4b09434b"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""id"": ""66400540-c0d1-4313-9a26-2e80bd1e44e8"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard"",
@@ -406,7 +406,7 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9666a656-a010-4ed7-9835-666d2c279585"",
+                    ""id"": ""191a98e6-5dcf-43ca-a91e-e3f0d7fba774"",
                     ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -417,7 +417,7 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2863c6c2-a926-4af4-aa93-ad6c40647554"",
+                    ""id"": ""713eadca-1027-47e8-b1bf-f9419b000a5c"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -428,7 +428,7 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 },
                 {
                     ""name"": """",
-                    ""id"": ""99b5696c-78a5-4de5-a253-68ff8d3d4f73"",
+                    ""id"": ""5ab10393-2fd9-4590-a334-6152485f0153"",
                     ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -439,8 +439,8 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 },
                 {
                     ""name"": """",
-                    ""id"": ""6cca23cd-2578-42b7-876d-6555221bb5ee"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""id"": ""86508164-efde-4db4-9b04-1d59745b5b36"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard"",
@@ -450,7 +450,7 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2bfc4963-19b2-438c-94bc-d7d4e5f72d55"",
+                    ""id"": ""e2bade01-552b-4a03-867f-a26a8c0f26cd"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -461,8 +461,8 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b6b4b125-fad1-42ad-a359-dbc25a4b9dbd"",
-                    ""path"": ""<Keyboard>/d"",
+                    ""id"": ""6a08c5f4-e7a9-4b67-981b-daf777fdba88"",
+                    ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard"",
@@ -472,7 +472,7 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 },
                 {
                     ""name"": """",
-                    ""id"": ""87d4a8a0-2274-45b3-89af-c39531bb1234"",
+                    ""id"": ""230bfb16-9306-47db-a080-7b31cf820a75"",
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -485,12 +485,12 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
         },
         {
             ""name"": ""PlayerRunner3"",
-            ""id"": ""3008fcf6-640f-435e-901c-a911ef1e7046"",
+            ""id"": ""20311349-52be-4da1-86d4-a568aebf925d"",
             ""actions"": [
                 {
                     ""name"": ""MoveToLane1"",
                     ""type"": ""Button"",
-                    ""id"": ""50399ce5-c3fa-4d5f-82db-693549c4a2ea"",
+                    ""id"": ""15e1189b-bb8b-4d95-b55d-5274962026dc"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -499,7 +499,7 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 {
                     ""name"": ""MoveToLane2"",
                     ""type"": ""Button"",
-                    ""id"": ""016fa9b1-b839-462f-a4f4-a88544fbfdce"",
+                    ""id"": ""805c7148-11f7-418a-bde9-cde455e3451b"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -508,7 +508,7 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 {
                     ""name"": ""MoveToLane3"",
                     ""type"": ""Button"",
-                    ""id"": ""a2b2730e-7ecd-466e-b62f-8db8727e53d9"",
+                    ""id"": ""83bf3e14-7a49-42d7-ad31-cd36dddf387e"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -517,7 +517,7 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 {
                     ""name"": ""MoveToLane4"",
                     ""type"": ""Button"",
-                    ""id"": ""8f5d1bd8-d697-4c67-9f10-008d64ab40e6"",
+                    ""id"": ""bce27c0d-b2c3-4ef5-8646-3d0ad266594e"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -527,8 +527,8 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""d477a551-d5e9-47cb-9141-ded2ce0a90ad"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""id"": ""7404f852-5cd4-4208-806e-6feed89a37d2"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard"",
@@ -538,7 +538,7 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d0b0d452-7ff1-44e2-8ca7-6515f68af97a"",
+                    ""id"": ""83015ed4-3a3a-4e8b-bfda-acac8c38ef98"",
                     ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -549,7 +549,7 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 },
                 {
                     ""name"": """",
-                    ""id"": ""5d872e9b-0a8a-4fc5-8997-5a7feea0ff7f"",
+                    ""id"": ""fe1348a8-6b24-4720-8725-b835dfd24cbf"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -560,7 +560,7 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 },
                 {
                     ""name"": """",
-                    ""id"": ""438fc1c2-6e77-42e9-9470-b080d089dcb3"",
+                    ""id"": ""65bab4a0-7305-4c12-9508-0fea610d4125"",
                     ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -571,8 +571,8 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c555bda5-378d-4678-a593-050ee2a9f188"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""id"": ""7e91d977-0d7d-464d-9f10-27032fb964fc"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard"",
@@ -582,7 +582,7 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2164a243-7d1a-47ef-b761-bad02bd0a29f"",
+                    ""id"": ""91eb5cf7-07fa-4715-8355-b6e3b0c0ad6c"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -593,8 +593,8 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e53610df-0341-42a0-9c98-7ad553db065e"",
-                    ""path"": ""<Keyboard>/d"",
+                    ""id"": ""e7d4d3d0-96b6-4a28-8fe2-152fb299eaf8"",
+                    ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard"",
@@ -604,7 +604,7 @@ public partial class @MiniGame1_InputActions: IInputActionCollection2, IDisposab
                 },
                 {
                     ""name"": """",
-                    ""id"": ""31309d6c-843e-4491-a1ca-05184840bf7c"",
+                    ""id"": ""96f80383-b676-4089-8184-c34cd7d4a556"",
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
