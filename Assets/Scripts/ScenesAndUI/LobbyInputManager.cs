@@ -36,7 +36,7 @@ public class LobbyInputManager : MonoBehaviour
         // GAMEPADS: Join automático
         foreach (var gamepad in Gamepad.all)
         {
-            if (gamepad != null && gamepad.buttonSouth.wasPressedThisFrame)
+            if (gamepad != null && gamepad.rightTrigger.wasPressedThisFrame)
             {
                 JoinNextColor(gamepad);
             }
@@ -108,7 +108,7 @@ public class LobbyInputManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"❌ Color inválido: {colorName}");
+            Debug.LogError($"Color inválido: {colorName}");
         }
     }
 }

@@ -1,6 +1,8 @@
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class MainMenuUI : MonoBehaviour
 {
@@ -12,6 +14,12 @@ public class MainMenuUI : MonoBehaviour
     private CanvasGroup canvasInicio;
     private CanvasGroup canvasPartida;
     private CanvasGroup canvasOpciones;
+
+    public GameObject defaultButtonInicio;
+    public GameObject defaultButtonPartida;
+    public GameObject defaultButtonOpciones;
+
+    public InputActionReference cancelAction;
 
     private void Awake()
     {
@@ -25,6 +33,18 @@ public class MainMenuUI : MonoBehaviour
         ShowPanelTitulo();
     }
 
+    private void OnEnable()
+    {
+        if (cancelAction != null)
+            cancelAction.action.performed += OnCancel;
+    }
+
+    private void OnDisable()
+    {
+        if (cancelAction != null)
+            cancelAction.action.performed -= OnCancel;
+    }
+
     public void ShowPanelTitulo()
     {
         canvasInicio.DOFade(0, fadeDuration).OnComplete(() =>
@@ -35,6 +55,8 @@ public class MainMenuUI : MonoBehaviour
 
             canvasPartida.alpha = 1;
             canvasInicio.DOFade(1, fadeDuration);
+
+            SelectDefaultButton(defaultButtonInicio);
         });
     }
 
@@ -48,6 +70,8 @@ public class MainMenuUI : MonoBehaviour
 
             //canvasInicio.alpha = 1;
             canvasPartida.DOFade(1, fadeDuration);
+
+            SelectDefaultButton(defaultButtonPartida);
         });
     }
 
@@ -61,7 +85,29 @@ public class MainMenuUI : MonoBehaviour
 
             canvasPartida.alpha = 0;
             canvasOpciones.DOFade(1, fadeDuration);
+
+            SelectDefaultButton(defaultButtonOpciones);
         });
+    }
+
+    private void SelectDefaultButton(GameObject button)
+    {
+        EventSystem.current.SetSelectedGameObject(null); 
+        EventSystem.current.SetSelectedGameObject(button);
+    }
+
+    private void OnCancel(InputAction.CallbackContext ctx)
+    {
+        // Si estás en el panel de opciones, vuelve al título
+        if (panelOpciones.activeSelf)
+        {
+            ShowPanelTitulo();
+        }
+        // Si estás en el panel de selección de partida, vuelve al título
+        else if (panelPartida.activeSelf)
+        {
+            ShowPanelTitulo();
+        }
     }
 
     public void StartPartidaCorta()
