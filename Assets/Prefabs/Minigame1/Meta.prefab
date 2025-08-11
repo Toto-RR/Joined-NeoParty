@@ -40,6 +40,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 435306302316654381}
     m_Modifications:
+    - target: {fileID: 3256405428381621884, guid: 158df35b00c6e284f86a08eacd5cc863, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: fa00b434fbc7e9d468970428a54f4add, type: 2}
     - target: {fileID: 3271213332546791372, guid: 158df35b00c6e284f86a08eacd5cc863, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Barrier_02 (1)
