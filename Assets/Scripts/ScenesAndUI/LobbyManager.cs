@@ -68,7 +68,8 @@ public class LobbyManager : MonoBehaviour
             return;
         }
 
-        SceneChanger.Instance.ChangeScene("GameScene");
+        //SceneChanger.Instance.ChangeScene("GameScene");
+        SceneChanger.Instance.ApplyTransitionAsync(SceneNames.GameScene, Transitions.Doors);
     }
 
 }

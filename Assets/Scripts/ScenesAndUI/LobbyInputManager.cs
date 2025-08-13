@@ -33,15 +33,6 @@ public class LobbyInputManager : MonoBehaviour
             }
         }
 
-        // GAMEPADS: Join automático
-        foreach (var gamepad in Gamepad.all)
-        {
-            if (gamepad != null && gamepad.rightTrigger.wasPressedThisFrame)
-            {
-                JoinNextColor(gamepad);
-            }
-        }
-
         // TECLADO: Join específico
         if (Keyboard.current != null)
         {
@@ -60,17 +51,26 @@ public class LobbyInputManager : MonoBehaviour
             if (color != null) lobbyManager.RemovePlayer(color);
         }
 
-        // GAMEPADS: Salir del lobby
+        // GAMEPADS: Join específico
         foreach (var gamepad in Gamepad.all)
         {
-            if (gamepad != null && gamepad.buttonEast.wasPressedThisFrame)
+            if (gamepad != null)
             {
-                Debug.Log($"Botón East presionado por {gamepad.displayName}");
-                string color = PlayerChoices.GetColorFromDevice(gamepad);
-                PlayerChoices.RemovePlayer(gamepad);
-                if (color != null) lobbyManager.RemovePlayer(color);
+                if (gamepad.buttonNorth.wasPressedThisFrame) JoinSpecificColor("Blue", gamepad);
+                if (gamepad.buttonWest.wasPressedThisFrame) JoinSpecificColor("Orange", gamepad);
+                if (gamepad.buttonSouth.wasPressedThisFrame) JoinSpecificColor("Green", gamepad);
+                if (gamepad.buttonEast.wasPressedThisFrame) JoinSpecificColor("Yellow", gamepad);
             }
         }
+
+        //// GAMEPADS: Join automático
+        //foreach (var gamepad in Gamepad.all)
+        //{
+        //    if (gamepad != null && gamepad.rightTrigger.wasPressedThisFrame)
+        //    {
+        //        JoinNextColor(gamepad);
+        //    }
+        //}
     }
 
     void JoinNextColor(InputDevice device)
@@ -91,10 +91,29 @@ public class LobbyInputManager : MonoBehaviour
 
     void JoinSpecificColor(string color, InputDevice device)
     {
-        if (PlayerChoices.IsPlayerActive(device) || PlayerChoices.IsPlayerActive(color)) return;
+        // Si el mismo device ya está unido a este color -> TOGGLE OFF
+        string current = PlayerChoices.GetColorFromDevice(device); // devuelve null si no está
+        if (!string.IsNullOrEmpty(current) &&
+            current.Equals(color, System.StringComparison.OrdinalIgnoreCase))
+        {
+            PlayerChoices.RemovePlayer(device);
+            if (color != null) lobbyManager.RemovePlayer(color);
 
+            return;
+        }
+
+        if (PlayerChoices.IsPlayerActive(device))
+        {
+            return;
+        }
+
+        // Si el color destino está ocupado, no unimos
+        if (PlayerChoices.IsPlayerActive(color)) return;
+
+        // Join normal
         RegisterPlayer(color, device);
     }
+
 
     void RegisterPlayer(string colorName, InputDevice device)
     {

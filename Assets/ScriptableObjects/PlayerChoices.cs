@@ -89,10 +89,10 @@ public static class PlayerChoices
         return jugadoresActivos.Find(x => x.Device == device);
     }
 
-    public static PlayerColor GetPlayerColorByDevice(InputDevice device)
+    public static PlayerColor? GetPlayerColorByDevice(InputDevice device)
     {
         var playerData = jugadoresActivos.Find(x => x.Device == device);
-        return playerData.Color;
+        return playerData != null ? playerData.Color : (PlayerColor?)null;
     }
 
     public static List<PlayerColor> GetActivePlayersColors()
@@ -152,4 +152,25 @@ public static class PlayerChoices
         var playerData = jugadoresActivos.Find(x => x.Device == device);
         return playerData != null ? playerData.Color.ToString() : null;
     }
+
+    public static bool RemovePlayer(PlayerColor color)
+    {
+        var player = jugadoresActivos.Find(x => x.Color == color);
+        if (player != null)
+        {
+            jugadoresActivos.Remove(player);
+            Debug.Log($"Jugador con color {color} eliminado.");
+            return true;
+        }
+        return false;
+    }
+
+    public static bool RemovePlayer(string color)
+    {
+        if (System.Enum.TryParse(color, true, out PlayerColor pc))
+            return RemovePlayer(pc);
+        Debug.LogWarning($"Color '{color}' no es válido.");
+        return false;
+    }
+
 }

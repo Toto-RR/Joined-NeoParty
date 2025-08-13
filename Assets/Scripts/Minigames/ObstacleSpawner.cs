@@ -1,108 +1,103 @@
 using UnityEngine;
+using System.Collections;
 
 public class ObstacleSpawner : MonoBehaviour
 {
     public GameObject obstaclePrefab;
+    public Transform obsSpawner;
     public Transform[] carriles;
+
     public float spawnInterval = 2f;
-    private float timer = 0f;
+    public float moveSpeed = 2f;
+    public float arriveTolerance = 0.01f;
 
     private int obstaclesSpawned = 0;
     public GameObject metaPrefab;
     public int obstaclesToSpawnForGoal = 10;
     private bool goalSpawned = false;
     private int lastLaneIndex = -1;
+    private float laneOffset = 1.25f;
 
     void Start()
     {
         enabled = false;
     }
 
-    void Update()
+    private void OnEnable()
     {
-        if (goalSpawned) return;
+        StartCoroutine(SpawnLoop());
+    }
 
-        timer += Time.deltaTime;
-
-        if (timer >= spawnInterval)
+    public IEnumerator SpawnLoop()
+    {
+        while (!goalSpawned)
         {
-            timer = 0f;
-            SpawnObstacle();
+            // Espera antes de empezar el siguiente spawn
+            yield return new WaitForSeconds(spawnInterval);
+
+            // Escoger carril distinto al anterior
+            int carril;
+            do
+            {
+                carril = Random.Range(0, carriles.Length);
+            } while (carril == lastLaneIndex && carriles.Length > 1);
+
+            lastLaneIndex = carril;
+            Transform targetLane = carriles[carril];
+
+            // Mover hasta el carril
+            yield return StartCoroutine(MoveToLane(targetLane));
+
+            // Spawnear obstáculo
+            SpawnObstacle(targetLane);
+
+            // Comprobar meta
             obstaclesSpawned++;
-            CheckSpawnGoalByObstacleCount();
+            if (obstaclesSpawned >= obstaclesToSpawnForGoal)
+            {
+                StartCoroutine(SpawnGoalWithDelay());
+                goalSpawned = true;
+            }
         }
     }
 
-    void SpawnObstacle()
+    IEnumerator MoveToLane(Transform targetLane, bool goal = false)
     {
-        int carril;
-        do
+        while (Mathf.Abs(obsSpawner.position.x - (targetLane.position.x - laneOffset)) > arriveTolerance)
         {
-            carril = Random.Range(0, carriles.Length);
-        } while (carril == lastLaneIndex && carriles.Length > 1);
+            float newX;
 
-        lastLaneIndex = carril;
+            if (!goal) //Utiliza el offset para poner cada obstaculo en el centro del carril
+                newX = Mathf.MoveTowards(obsSpawner.position.x, targetLane.position.x - laneOffset, moveSpeed * Time.deltaTime);
+            else // En este caso se quiere evitar ponerlo en el centro del carril
+                newX = Mathf.MoveTowards(obsSpawner.position.x, targetLane.position.x, moveSpeed * Time.deltaTime);
+            
+            obsSpawner.position = new Vector3(newX, obsSpawner.position.y, obsSpawner.position.z);
+            yield return null; // esperar siguiente frame
+        }
+    }
 
-        Transform targetLane = carriles[carril];
+    void SpawnObstacle(Transform lane)
+    {
+        Debug.Log("Obstacle spawned");
 
-        Vector3 spawnPos = transform.position + new Vector3(0, 5, 0); // posición del spawner
-        spawnPos.x = targetLane.position.x - 0.5f;
+        Vector3 spawnPos = obsSpawner.position + new Vector3(0, -2f, 0);
+        spawnPos.x = lane.position.x - laneOffset;
         Quaternion spawnRot = obstaclePrefab.transform.rotation;
 
-        GameObject newObstacle = Instantiate(obstaclePrefab, spawnPos, spawnRot, gameObject.transform);
-        var controller = newObstacle.GetComponent<ObstacleMover>();
-        if (controller != null)
-        {
-            //controller.SetSpeed(obstaclesSpawned);
-        }
+        Instantiate(obstaclePrefab, spawnPos, spawnRot, transform);
     }
 
-    void CheckSpawnGoalByObstacleCount()
+    IEnumerator SpawnGoalWithDelay()
     {
-        if (!goalSpawned && obstaclesSpawned >= obstaclesToSpawnForGoal)
-        {
-            StartGoalSpawnCountdown();
-        }
-    }
+         StartCoroutine(MoveToLane(carriles[1], true));
 
-    void CheckSpawnGoalByTime()
-    {
-        if (!goalSpawned && Time.timeSinceLevelLoad >= 60f)
-        {
-            StartGoalSpawnCountdown();
-        }
-    }
-
-    System.Collections.IEnumerator SpawnGoalWithDelay()
-    {
         yield return new WaitForSeconds(1f);
-        SpawnGoal();
-    }
 
-    void StartGoalSpawnCountdown()
-    {
-        goalSpawned = true; // Marcarlo ya para que no se sigan generando obstáculos
-        StartCoroutine(SpawnGoalWithDelay());
-    }
+        Debug.Log("GOAL spawned");
 
-    void SpawnGoal()
-    {
-        goalSpawned = true;
-
-        // Calcular la posición central de los carriles
-        float minX = carriles[0].position.x;
-        float maxX = carriles[carriles.Length - 1].position.x;
-        float centerX = (minX + maxX) / 2f;
-
-        Vector3 goalPosition = transform.position + new Vector3(0, 5, 0);
-        goalPosition.x = centerX;
-        Quaternion spawnRot = metaPrefab.transform.rotation;
-
-        Instantiate(metaPrefab, goalPosition, spawnRot, gameObject.transform);
-    }
-
-    float CalculateSpeed(int numObstaculos)
-    {
-        return 3f + (numObstaculos * 0.1f); // Ajustable
+        Vector3 goalPosition = transform.position;
+        goalPosition.x = carriles[1].transform.position.x;
+        Instantiate(metaPrefab, goalPosition, metaPrefab.transform.rotation, transform);
     }
 }

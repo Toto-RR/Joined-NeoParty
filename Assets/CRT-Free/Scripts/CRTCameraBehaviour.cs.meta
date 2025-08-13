@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 86832f84a0cf34eb9b89129d49b7a15e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 248066
+  packageName: CRT-Free
+  packageVersion: 1.1
+  assetPath: Assets/CRT-Free/Scripts/CRTCameraBehaviour.cs
+  uploadId: 581284

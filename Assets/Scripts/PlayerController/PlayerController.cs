@@ -1,5 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -22,7 +23,9 @@ public class PlayerController : MonoBehaviour
     public int currentCarrilIndex = 0;
     private bool isChangingLane = false;
     public float laneChangeDuration = 0.5f;
+    public float laneOffset = 1.25f;
 
+    private float playerSpeed = 0f;
     private Renderer playerRenderer;
     private Color originalColor;
     private PlayerInput playerInput;
@@ -64,18 +67,19 @@ public class PlayerController : MonoBehaviour
     {
         if (finished) return;
 
-        animator.SetFloat("Speed", 1f);
+        //animator.SetFloat("Speed", 0f);
     }
 
     public void AsignarCarriles(Transform[] nuevosCarriles, int carrilActual)
     {
         carriles = nuevosCarriles;
         currentCarrilIndex = carrilActual;
-        transform.position = carriles[currentCarrilIndex].position + new Vector3(-0.5f, 0.5f, -20);
+        transform.position = carriles[currentCarrilIndex].position + new Vector3(-laneOffset, 0.5f, -20);
     }
 
     public void MoverACarril(int index)
     {
+        animator.SetFloat("Speed", 1f);
         if (index >= 0 && index < carriles.Length && index != currentCarrilIndex && !isChangingLane)
         {
             StopAllCoroutines();
@@ -87,8 +91,17 @@ public class PlayerController : MonoBehaviour
     {
         isChangingLane = true;
         Vector3 inicio = transform.position;
-        Vector3 destino = new Vector3((carriles[nuevoIndex].position.x - 0.5f), inicio.y, inicio.z);
+        Vector3 destino = new Vector3((carriles[nuevoIndex].position.x - laneOffset), inicio.y, inicio.z);
         float t = 0;
+
+        if (nuevoIndex > currentCarrilIndex)
+        {
+            animator.SetBool("Right", true);
+        }
+        else
+        {
+            animator.SetBool("Left", true);
+        }
 
         while (t < 1)
         {
@@ -97,8 +110,10 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
 
+        animator.SetBool("Right", false);
+        animator.SetBool("Left", false);
         transform.position = destino;
-        currentCarrilIndex = nuevoIndex;
+        currentCarrilIndex = nuevoIndex;        
         isChangingLane = false;
     }
 
@@ -126,6 +141,8 @@ public class PlayerController : MonoBehaviour
         {
             Minigame_1.Instance.PlayerFinished(playerColor, points);
         }
+        animator.SetFloat("Speed", Mathf.Lerp(playerSpeed, 0, 2f));
+        //playerInput.actions.Disable();
     }
 
     public int GetPoints() => points;
