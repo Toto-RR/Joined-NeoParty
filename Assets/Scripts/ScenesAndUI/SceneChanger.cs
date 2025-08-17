@@ -96,10 +96,11 @@ public class SceneChanger : MonoBehaviour
         if (transitionTime <= 0f) transitionTime = this.transitionTime;
 
         if (System.Enum.IsDefined(typeof(SceneNames), sceneIndex))
-            StartCoroutine(TransitionAndLoadAsync((SceneNames)sceneIndex, transition));
+            StartCoroutine(TransitionAndLoad((SceneNames)sceneIndex, transition)); // <-- NO ASÍNCRONA
         else
             Debug.LogError($"Índice de escena inválido: {sceneIndex}");
     }
+
 
     public void ApplyTransitionAsync(int scene, Transitions transition, float minTransitionTime = 0.8f)
     {
@@ -165,6 +166,45 @@ public class SceneChanger : MonoBehaviour
         // (Opcional) si quieres desactivar el overlay tras abrir, espera a que termine
         yield return new WaitUntil(() => HasFinished(animator, 0));
     }
+
+    private IEnumerator TransitionAndLoad(SceneNames scene, Transitions transition)
+    {
+        // --- CERRAR ---
+        var controller = GetControllerByName(transition.ToString());
+        if (transition == Transitions.None || animator == null || controller == null)
+        {
+            SceneManager.LoadScene((int)scene); // carga síncrona directa
+            yield break;
+        }
+
+        animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
+
+        animator.runtimeAnimatorController = controller;
+        animator.Rebind();
+        animator.Update(0f);
+
+        animator.ResetTrigger(resetTrigger);
+        animator.SetTrigger(playTrigger);      // cerrar
+
+        // Espera a que termine el cierre
+        yield return new WaitUntil(() => HasFinished(animator, 0));
+
+        // --- CARGA SÍNCRONA ---
+        SceneManager.LoadScene((int)scene);    // bloqueo: carga inmediata
+
+        // --- SETTLE FRAMES ---
+        yield return null;                      // frame 1
+        yield return new WaitForEndOfFrame();   // final frame 1
+        yield return null;                      // frame 2
+
+        // --- ABRIR ---
+        if (!string.IsNullOrEmpty(resetTrigger))
+            animator.SetTrigger(resetTrigger);  // abrir
+
+        yield return new WaitUntil(() => HasFinished(animator, 0));
+    }
+
 
     private static bool HasFinished(Animator anim, int layer)
     {
