@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.Splines;
 using UnityEngine.Video;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class TutorialManager : MonoBehaviour
         SetupPlayerRows();
 
         splineAnimate.Completed += OnIntroAnimationFinished;
+        videoTutorial.playOnAwake = false;
     }
 
     private void OnDestroy()
@@ -52,6 +54,9 @@ public class TutorialManager : MonoBehaviour
         foreach (var player in PlayerChoices.GetActivePlayers())
         {
             GameObject rowObj = Instantiate(playerRowPrefab, playersPanel);
+
+            rowObj.GetComponent<Image>().color = PlayerChoices.GetColorRGBA(player.Color);
+
             PlayerRow row = rowObj.GetComponent<PlayerRow>();
 
             row.Setup(player, this);
@@ -61,9 +66,9 @@ public class TutorialManager : MonoBehaviour
 
     public void PlayerReady(PlayerRow row)
     {
-        if (!row.isReady)
+        if (row.isReady)
         {
-            row.SetReady();
+            row.SetReady(true);
             readyPlayers++;
 
             if (readyPlayers >= totalPlayers)

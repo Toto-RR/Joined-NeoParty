@@ -405,6 +405,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 137101553924936420, guid: 4493b9786df76d64fad99c1e9ac91ace, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300002, guid: 4cf8e35218228c74e87ae151b5dc4516, type: 3}
+    - target: {fileID: 137101553924936420, guid: 4493b9786df76d64fad99c1e9ac91ace, type: 3}
+      propertyPath: m_Quality
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 137101553924936420, guid: 4493b9786df76d64fad99c1e9ac91ace, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -487,6 +495,7 @@ MonoBehaviour:
   carriles: []
   currentCarrilIndex: 0
   laneChangeDuration: 0.2
+  laneOffset: 1.25
 --- !u!54 &266062605857848815
 Rigidbody:
   m_ObjectHideFlags: 0

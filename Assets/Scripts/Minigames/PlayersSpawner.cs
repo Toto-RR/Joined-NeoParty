@@ -5,11 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayersSpawner : MonoBehaviour
 {
-    [Header("Player Prefabs")]
-    public GameObject bluePlayerPrefab;
-    public GameObject orangePlayerPrefab;
-    public GameObject greenPlayerPrefab;
-    public GameObject yellowPlayerPrefab;
+    [Header("Base Player")]
+    public GameObject player;
 
     [Header("Spawn Points")]
     public Transform[] spawnPoints;
@@ -22,6 +19,7 @@ public class PlayersSpawner : MonoBehaviour
 
     private List<Camera> playerCameras = new();
     private List<PlayerController> players = new();
+
 
     public void SpawnPlayers()
     {
@@ -174,14 +172,9 @@ public class PlayersSpawner : MonoBehaviour
 
     private GameObject GetPrefabForColor(PlayerChoices.PlayerColor color)
     {
-        return color switch
-        {
-            PlayerChoices.PlayerColor.Blue => bluePlayerPrefab,
-            PlayerChoices.PlayerColor.Orange => orangePlayerPrefab,
-            PlayerChoices.PlayerColor.Green => greenPlayerPrefab,
-            PlayerChoices.PlayerColor.Yellow => yellowPlayerPrefab,
-            _ => null
-        };
+        Debug.Log("Obteniendo prefab para el color: " + color);
+        GameObject copyBase = player;
+        return ConfigurePlayer(copyBase, color);
     }
 
     private Transform[] ObtenerCarrilesParaJugador(int index)
@@ -200,10 +193,10 @@ public class PlayersSpawner : MonoBehaviour
     {
         return color switch
         {
-            PlayerChoices.PlayerColor.Blue => 0,
-            PlayerChoices.PlayerColor.Orange => 1,
-            PlayerChoices.PlayerColor.Green => 2,
-            PlayerChoices.PlayerColor.Yellow => 3,
+            PlayerChoices.PlayerColor.Azul => 0,
+            PlayerChoices.PlayerColor.Naranja => 1,
+            PlayerChoices.PlayerColor.Verde => 2,
+            PlayerChoices.PlayerColor.Amarillo => 3,
             _ => 0
         };
     }
@@ -211,5 +204,13 @@ public class PlayersSpawner : MonoBehaviour
     public List<PlayerController> GetPlayers()
     {
         return players;
+    }
+
+    private GameObject ConfigurePlayer(GameObject basePlayer, PlayerChoices.PlayerColor color)
+    {
+        GameObject newPlayer = CharacterCatalog.Instance.Get(PlayerChoices.GetPlayerSkin(color));
+        basePlayer.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh = newPlayer.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh;
+        basePlayer.GetComponentInChildren<SkinnedMeshRenderer>().SetSharedMaterials(new List<Material>() { PlayerChoices.GetMaterialByColor(color) });
+        return basePlayer;
     }
 }

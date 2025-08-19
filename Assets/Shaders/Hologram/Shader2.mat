@@ -94,7 +94,7 @@ Material:
     m_Floats:
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
-    - _AlphaScanLines: 0.43
+    - _AlphaScanLines: 0.25
     - _AlphaToMask: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
@@ -109,7 +109,7 @@ Material:
     - _DstBlend: 10
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _FresnelPower: 4.1
+    - _FresnelPower: 0.7
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -135,10 +135,10 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FresnelColor: {r: 51.99249, g: 85.445015, b: 67.07677, a: 1}
+    - _FresnelColor: {r: 0.24832965, g: 0.09121574, b: 0.84077096, a: 1}
     - _PrimalColor: {r: 0, g: 0.95960444, b: 1, a: 0}
     - _ScanLinesSpeed: {r: 0, g: 1, b: 0, a: 0}
-    - _ScanLinesTiling: {r: 0, g: 25.23, b: 0, a: 0}
+    - _ScanLinesTiling: {r: 0, g: 25, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         if (playerInput != null)
         {
-            Debug.Log($"Jugador {playerColor} tiene {playerInput.actions.actionMaps.Count} action maps activos.");
+            //Debug.Log($"Jugador {playerColor} tiene {playerInput.actions.actionMaps.Count} action maps activos.");
 
             var actions = playerInput.actions;
 

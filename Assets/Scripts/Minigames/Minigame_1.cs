@@ -20,6 +20,9 @@ public class Minigame_1 : MonoBehaviour
     public GameObject countdownCanvas;
     public TextMeshProUGUI countdownText;
 
+    [Header("Prefab Base")]
+    public GameObject playerPrefab; // Prefab base para los jugadores, se asignará en el inspector
+
     // --- Parameters ---
     public PlayersSpawner playersSpawner;
     public CameraTransitionManager cameraTransitionManager;
@@ -32,13 +35,16 @@ public class Minigame_1 : MonoBehaviour
 
     private Dictionary<PlayerChoices.PlayerColor, int> playerScores = new();
 
+    public bool reset = false;
+
     private void Awake()
     {
 #if UNITY_EDITOR
-        if(PlayerChoices.GetNumberOfPlayers() <= 0)
+        if (reset) PlayerChoices.ResetPlayers();
+        if (PlayerChoices.GetNumberOfPlayers() <= 0)
         {
-            PlayerChoices.AddPlayer(PlayerChoices.PlayerColor.Blue, Keyboard.current);
-            PlayerChoices.AddPlayer(PlayerChoices.PlayerColor.Orange, Gamepad.all.Count > 0 ? Gamepad.all[0] : Keyboard.current);
+            PlayerChoices.AddPlayer(PlayerChoices.PlayerColor.Azul, Keyboard.current);
+            PlayerChoices.AddPlayer(PlayerChoices.PlayerColor.Naranja, Gamepad.all.Count > 0 ? Gamepad.all[0] : Keyboard.current);
         }
 #endif
         Instance = this;
@@ -96,12 +102,10 @@ public class Minigame_1 : MonoBehaviour
 
     public void OnGameFinished()
     {
-        endCanvas.SetActive(true);
-
         var scores = GetScores();
 
         // Buscar al jugador con más puntos
-        PlayerChoices.PlayerColor ganador = PlayerChoices.PlayerColor.Blue;
+        PlayerChoices.PlayerColor ganador = PlayerChoices.PlayerColor.Azul;
         int maxPuntos = int.MinValue;
 
         foreach (var kvp in scores)
@@ -113,11 +117,9 @@ public class Minigame_1 : MonoBehaviour
             }
         }
 
-        // Mostrar texto
-        if (winnerText != null)
-        {
-            winnerText.text = $"¡{ganador}!";
-        }
+        PlayerChoices.Instance.SetWinner(ganador);
+
+        SceneChanger.Instance.ApplyTransitionAsync(3, Transitions.FadeText);
     }
 
     public virtual void OnEndConfirmed()

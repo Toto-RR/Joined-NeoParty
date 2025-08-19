@@ -18,7 +18,7 @@ public enum Transitions
 {
     Doors,
     Fade,
-    Circle,
+    FadeText,
     None
 }
 

@@ -15,20 +15,20 @@ public class TestTransitions : MonoBehaviour
 
         if (kb.leftArrowKey.wasReleasedThisFrame)
         {
-            SceneChanger.Instance.ApplyTransitionAsync(3, Transitions.Doors);
+            SceneChanger.Instance.ApplyTransitionAsync(4, Transitions.Doors);
         }
         if (kb.rightArrowKey.wasReleasedThisFrame)
         {
-            SceneChanger.Instance.ApplyTransitionAsync(4, Transitions.Doors);
+            SceneChanger.Instance.ApplyTransitionAsync(5, Transitions.Doors);
         }
 
         if (kb.upArrowKey.wasReleasedThisFrame)
         {
-            SceneChanger.Instance.ApplyTransitionAsync(3, Transitions.Fade);
+            SceneChanger.Instance.ApplyTransitionAsync(4, Transitions.FadeText);
         }
         if (kb.downArrowKey.wasReleasedThisFrame)
         {
-            SceneChanger.Instance.ApplyTransitionAsync(4, Transitions.Fade);
+            SceneChanger.Instance.ApplyTransitionAsync(5, Transitions.FadeText);
         }
     }
 }

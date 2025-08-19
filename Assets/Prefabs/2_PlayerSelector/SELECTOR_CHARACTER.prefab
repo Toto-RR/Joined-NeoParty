@@ -148,7 +148,6 @@ GameObject:
   - component: {fileID: 4339417891946867731}
   - component: {fileID: 3546644065791099136}
   - component: {fileID: 3199548456459605579}
-  - component: {fileID: 8361993735261792959}
   - component: {fileID: 613360978460776730}
   m_Layer: 0
   m_Name: SELECTOR_CHARACTER
@@ -253,20 +252,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actions: {fileID: -944628639613478452, guid: 0f53aec2fe3b4e74385658062c5f4226, type: 3}
   holdThreshold: 0.5
---- !u!114 &8361993735261792959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7173518177811741726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67893a6605951d94495e6d679c90f6c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: {fileID: 0}
-  backButton: {fileID: 0}
 --- !u!95 &613360978460776730
 Animator:
   serializedVersion: 7

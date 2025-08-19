@@ -56,11 +56,6 @@ public class GameManager : MonoBehaviour
 
         // Guarda la elección del jugador y pasa a la escena del lobby
         sceneChanger.ApplyTransition(1, Transitions.Fade, 0.2f);
-        //sceneChanger.ChangeScene("LobbyScene");
-
-        //selectedMiniGames = GenerateGameSequence(gameLength);
-        //currentMiniGameIndex = 0;
-        //LoadNextMiniGame();
     }
 
     public void LoadNextMiniGame()

@@ -194,11 +194,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129823618}
   m_CullTransparentMesh: 1
---- !u!95 &392973961 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5009968537703313454, guid: 508840bda4a703b4bbc359d56f3ecc6e, type: 3}
-  m_PrefabInstance: {fileID: 1255183402}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &749821831
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,29 +318,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 357132774962531439, guid: 508840bda4a703b4bbc359d56f3ecc6e, type: 3}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 392973961}
-    - target: {fileID: 357132774962531439, guid: 508840bda4a703b4bbc359d56f3ecc6e, type: 3}
-      propertyPath: controllers.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 357132774962531439, guid: 508840bda4a703b4bbc359d56f3ecc6e, type: 3}
-      propertyPath: 'controllers.Array.data[0]'
-      value: 
-      objectReference: {fileID: 9100000, guid: 185a1be424ef3274c91d4c027839aafd, type: 2}
-    - target: {fileID: 357132774962531439, guid: 508840bda4a703b4bbc359d56f3ecc6e, type: 3}
-      propertyPath: 'controllers.Array.data[1]'
-      value: 
-      objectReference: {fileID: 22100000, guid: da1bcaa3b7b9165459a3b5f38427789c, type: 2}
-    - target: {fileID: 357132774962531439, guid: 508840bda4a703b4bbc359d56f3ecc6e, type: 3}
       propertyPath: 'controllers.Array.data[2]'
       value: 
-      objectReference: {fileID: 22100000, guid: 460a9ec3589a0634687104167c3b070a, type: 2}
-    - target: {fileID: 369164413820673856, guid: 508840bda4a703b4bbc359d56f3ecc6e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 22100000, guid: 2ce51a58bf50f9a44adeba2c744f9307, type: 2}
     - target: {fileID: 1159758418822519069, guid: 508840bda4a703b4bbc359d56f3ecc6e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 275.14478
@@ -386,18 +361,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2209007948140228719, guid: 508840bda4a703b4bbc359d56f3ecc6e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3099916618138867009, guid: 508840bda4a703b4bbc359d56f3ecc6e, type: 3}
-      propertyPath: m_VertexColorAlwaysGammaSpace
-      value: 1
+    - target: {fileID: 4447945909460233338, guid: 508840bda4a703b4bbc359d56f3ecc6e, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 3892314111
       objectReference: {fileID: 0}
     - target: {fileID: 5009968537703313454, guid: 508840bda4a703b4bbc359d56f3ecc6e, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 185a1be424ef3274c91d4c027839aafd, type: 2}
+      objectReference: {fileID: 22100000, guid: 2ce51a58bf50f9a44adeba2c744f9307, type: 2}
     - target: {fileID: 6144296439485375488, guid: 508840bda4a703b4bbc359d56f3ecc6e, type: 3}
       propertyPath: m_Name
       value: SceneManager

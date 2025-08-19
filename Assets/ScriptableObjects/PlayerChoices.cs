@@ -2,22 +2,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public static class PlayerChoices
+[CreateAssetMenu(menuName = "PlayerChoices/Player Choices", fileName = "PlayerChoices")]
+public class PlayerChoices : ScriptableObject
 {
-    private static GameManager.GameLength gameLength;
-    public enum PlayerColor { Blue, Orange, Green, Yellow }
-    private static List<PlayerData> jugadoresActivos = new List<PlayerData>();
+    public static GameManager.GameLength gameLength;
+    public static PlayerChoices Instance { get; private set; }
 
+    public enum PlayerColor { Azul, Naranja, Verde, Amarillo };
+    public List<PlayerData> jugadoresActivos = new();
+    public List<Material> colorMaterials = new();
+    public PlayerColor winner;
+
+    [System.Serializable]
     public class PlayerData
     {
         public PlayerColor Color;
         public InputDevice Device;
+        public string Schema; // "Keyboard", "Gamepad", etc.
+        public int SkinIndex; // Index of the skin selected by the player
+        public string VehicleId;  // null o "" si no hay vehículo en ese minijuego
+        public string WeaponId;   // idem
+        public int wins; // Number of wins for the player
 
-        public PlayerData(PlayerColor color, InputDevice device)
+        public PlayerData(PlayerColor color, InputDevice device, string schema = null, int skinIndex = 0, string vehicleId = null, string weaponId = null)
         {
             Color = color;
             Device = device;
+            SkinIndex = skinIndex;
+            Schema = schema;
+            VehicleId = vehicleId;
+            WeaponId = weaponId;
         }
+    }
+    private void OnEnable()
+    {
+        Instance = this;
     }
 
     // --- SETTERS ---
@@ -25,13 +44,13 @@ public static class PlayerChoices
 
     private static bool TryToAddPlayer(PlayerColor color, InputDevice device)
     {
-        if (jugadoresActivos.Exists(x => x.Device == device) || jugadoresActivos.Exists(x => x.Color == color))
+        if (Instance.jugadoresActivos.Exists(x => x.Device == device) || Instance.jugadoresActivos.Exists(x => x.Color == color))
         {
             Debug.LogWarning($"Este dispositivo o color ya está asignado a otro jugador.");
             return false;
         }
 
-        jugadoresActivos.Add(new PlayerData(color, device));
+        Instance.jugadoresActivos.Add(new PlayerData(color, device, device.displayName, 0));
         Debug.Log($"Dispositivo {device.displayName} asignado al color {color}.");
         return true;
     }
@@ -48,10 +67,10 @@ public static class PlayerChoices
 
     public static void RemovePlayer(InputDevice device)
     {
-        var player = jugadoresActivos.Find(x => x.Device == device);
+        var player = Instance.jugadoresActivos.Find(x => x.Device == device);
         if (player != null)
         {
-            jugadoresActivos.Remove(player);
+            Instance.jugadoresActivos.Remove(player);
             Debug.Log($"Jugador con color {player.Color} y dispositivo {device.displayName} eliminado.");
         }
         else
@@ -60,59 +79,77 @@ public static class PlayerChoices
         }
     }
 
+    public void SetWinner(PlayerColor color)
+    {
+        winner = color;
+        AddWin(color);
+        Debug.Log($"Ganador establecido: {color}");
+    }
+
+    public void AddWin(PlayerColor color)
+    {
+        GetPlayerByColor(color).wins++;
+    }
+
     // --- GETTERS ---
     public static GameManager.GameLength GetPartyLengthEnum() { return gameLength; }
 
     public static List<PlayerData> GetActivePlayers()
     {
-        return jugadoresActivos;
+        return Instance.jugadoresActivos;
     }
 
     public static int GetNumberOfPlayers()
     {
-        return jugadoresActivos.Count;
+        return Instance.jugadoresActivos.Count;
     }
 
     public static InputDevice GetDeviceForPlayer(PlayerColor color)
     {
-        var playerData = jugadoresActivos.Find(x => x.Color == color);
+        var playerData = Instance.jugadoresActivos.Find(x => x.Color == color);
         return playerData?.Device;
     }
 
     public static PlayerData GetPlayerByColor(PlayerColor color)
     {
-        return jugadoresActivos.Find(x => x.Color == color);
+        return Instance.jugadoresActivos.Find(x => x.Color == color);
     }
 
     public static PlayerData GetPlayerByDevice(InputDevice device)
     {
-        return jugadoresActivos.Find(x => x.Device == device);
+        return Instance.jugadoresActivos.Find(x => x.Device == device);
     }
 
     public static PlayerColor? GetPlayerColorByDevice(InputDevice device)
     {
-        var playerData = jugadoresActivos.Find(x => x.Device == device);
+        var playerData = Instance.jugadoresActivos.Find(x => x.Device == device);
         return playerData != null ? playerData.Color : (PlayerColor?)null;
     }
 
     public static List<PlayerColor> GetActivePlayersColors()
     {
         List<PlayerColor> colors = new List<PlayerColor>();
-        foreach (var player in jugadoresActivos)
+        foreach (var player in Instance.jugadoresActivos)
         {
             colors.Add(player.Color);
         }
         return colors;
     }
 
+    public static Material GetMaterialByColor(PlayerColor color)
+    {
+        Material material = Instance.colorMaterials[(int)color];
+        return material;
+    }
+
     public static bool IsPlayerActive(InputDevice device)
     {
-        return jugadoresActivos.Exists(x => x.Device == device);
+        return Instance.jugadoresActivos.Exists(x => x.Device == device);
     }
 
     public static bool IsPlayerActive(PlayerColor color)
     {
-        return jugadoresActivos.Exists(x => x.Color == color);
+        return Instance.jugadoresActivos.Exists(x => x.Color == color);
     }
 
     public static bool IsPlayerActive(string color)
@@ -127,7 +164,7 @@ public static class PlayerChoices
 
     public static void ResetPlayers()
     {
-        jugadoresActivos.Clear();
+        Instance.jugadoresActivos.Clear();
     }
 
     public static string GetSchemaFromDevice(InputDevice device)
@@ -140,6 +177,14 @@ public static class PlayerChoices
         {
             return "Gamepad";
         }
+        else if (device is Joystick)
+        {
+            return "Joystick";
+        }
+        else if (device is Mouse)
+        {
+            return "Mouse";
+        }
         else
         {
             Debug.LogWarning("Dispositivo no reconocido: " + device.displayName);
@@ -149,16 +194,16 @@ public static class PlayerChoices
 
     public static string GetColorFromDevice(InputDevice device)
     {
-        var playerData = jugadoresActivos.Find(x => x.Device == device);
+        var playerData = Instance.jugadoresActivos.Find(x => x.Device == device);
         return playerData != null ? playerData.Color.ToString() : null;
     }
 
     public static bool RemovePlayer(PlayerColor color)
     {
-        var player = jugadoresActivos.Find(x => x.Color == color);
+        var player = Instance.jugadoresActivos.Find(x => x.Color == color);
         if (player != null)
         {
-            jugadoresActivos.Remove(player);
+            Instance.jugadoresActivos.Remove(player);
             Debug.Log($"Jugador con color {color} eliminado.");
             return true;
         }
@@ -173,4 +218,82 @@ public static class PlayerChoices
         return false;
     }
 
+    public static PlayerColor GetWinner()
+    {
+        return Instance.winner;
+    }
+
+    public static Color GetColorRGBA(PlayerColor color)
+    {
+        return color switch
+        {
+            PlayerColor.Azul => new Color32(0, 109, 255, 255),    // Azul
+            PlayerColor.Naranja => new Color32(255, 161, 49, 255), // Naranja
+            PlayerColor.Verde => new Color32(0, 255, 0, 255),     // Verde
+            PlayerColor.Amarillo => new Color32(255, 252, 0, 255),  // Amarillo
+            _ => Color.white
+        };
+    }
+
+    public static Color GetColorRGBA(string color)
+    {
+        return color.ToLower() switch
+        {
+            "azul" => new Color32(0, 109, 255, 255),    // Azul
+            "naranja" => new Color32(255, 161, 49, 255), // Naranja
+            "verde" => new Color32(0, 255, 0, 255),     // Verde
+            "amarillo" => new Color32(255, 252, 0, 255),  // Amarillo
+            _ => Color.white
+        };
+    }
+
+    // --- GESTIÓN DE SKIN ---
+    public static void SetPlayerSkin(PlayerColor color, int skinIndex)
+    {
+        var p = Instance.jugadoresActivos.Find(x => x.Color == color);
+        if (p != null) p.SkinIndex = skinIndex;
+    }
+
+    public static void SetPlayerSkin(InputDevice device, int skinIndex)
+    {
+        var p = Instance.jugadoresActivos.Find(x => x.Device == device);
+        if (p != null) p.SkinIndex = skinIndex;
+    }
+
+    public static int GetPlayerSkin(PlayerColor color)
+    {
+        var p = Instance.jugadoresActivos.Find(x => x.Color == color);
+        return p != null ? p.SkinIndex : 0;
+    }
+
+    public static int GetPlayerSkin(InputDevice device)
+    {
+        var p = Instance.jugadoresActivos.Find(x => x.Device == device);
+        return p != null ? p.SkinIndex : 0;
+    }
+
+    // --- VEHICLE AND WEAPON MANAGEMENT ---
+    public static void SetPlayerVehicle(PlayerColor color, string vehicleId)
+    {
+        var p = Instance.jugadoresActivos.Find(x => x.Color == color);
+        if (p != null) p.VehicleId = vehicleId;
+    }
+
+    public static string GetPlayerVehicle(PlayerColor color)
+    {
+        var p = Instance.jugadoresActivos.Find(x => x.Color == color);
+        return p?.VehicleId;
+    }
+
+    public static void SetPlayerWeapon(PlayerColor color, string weaponId)
+    {
+        var p = Instance.jugadoresActivos.Find(x => x.Color == color);
+        if (p != null) p.WeaponId = weaponId;
+    }
+
+    public static string GetPlayerWeapon(PlayerColor color)
+    {
+        var p = Instance.jugadoresActivos.Find(x => x.Color == color);
+        return p?.WeaponId;
+    }
 }

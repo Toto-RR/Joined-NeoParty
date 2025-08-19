@@ -19,15 +19,14 @@ public class LobbyManager : MonoBehaviour
     // Punto de spawn de cada color
     [SerializeField] private List<LobbySlot> slots = new();
 
-    // Materiales para cada jugador
-    [SerializeField] private Material blueMaterial;
-    [SerializeField] private Material orangeMaterial;
-    [SerializeField] private Material greenMaterial;
-    [SerializeField] private Material yellowMaterial;
-
     // Instancias actuales
     private readonly Dictionary<string, GameObject> spawnedPlayers = new();
     private readonly Dictionary<string, int> currentModelIndex = new();
+
+    private void Awake()
+    {
+        PlayerChoices.ResetPlayers();
+    }
 
     public void AddNewPlayer(string color, InputDevice device)
     {
@@ -55,8 +54,11 @@ public class LobbyManager : MonoBehaviour
         int modelIndex = 0;
         currentModelIndex[color] = modelIndex;
 
+        // Registrar skin en PlayerChoices
+        PlayerChoices.SetPlayerSkin(pc, modelIndex);
+
         // Aplica material
-        var prefab = characterPrefabs[modelIndex];
+        var prefab = CharacterCatalog.Instance.Get(modelIndex);
         prefab.GetComponentInChildren<SkinnedMeshRenderer>().SetSharedMaterials(new List<Material>() { ApplyMaterial(color) });
 
         // Instancia y añade a la lista
@@ -103,6 +105,12 @@ public class LobbyManager : MonoBehaviour
         index = (index + 1) % characterPrefabs.Count;
         currentModelIndex[color] = index;
 
+        // Cambiamos la skin elegida al ciclar
+        if (Enum.TryParse(color, true, out PlayerChoices.PlayerColor pc))
+        {
+            PlayerChoices.SetPlayerSkin(pc, index);
+        }
+
         var slot = GetSlot(color);
         if (slot == null) return;
 
@@ -110,7 +118,7 @@ public class LobbyManager : MonoBehaviour
         Destroy(spawnedPlayers[color]);
 
         // Instanciar el nuevo modelo y aplicar el material
-        var prefab = characterPrefabs[index];
+        var prefab = CharacterCatalog.Instance.Get(index);
         prefab.GetComponentInChildren<SkinnedMeshRenderer>().SetSharedMaterials(new List<Material>() { ApplyMaterial(color) });
 
         var go = Instantiate(prefab, slot.spawnPoint.position, slot.spawnPoint.rotation);
@@ -131,13 +139,13 @@ public class LobbyManager : MonoBehaviour
         switch (color.ToLower())
         {
             case "blue":
-                return blueMaterial;
+                return PlayerChoices.Instance.colorMaterials[0];
             case "orange":
-                return orangeMaterial;
+                return PlayerChoices.Instance.colorMaterials[1];
             case "green":
-                return greenMaterial;
+                return PlayerChoices.Instance.colorMaterials[2];
             case "yellow":
-                return yellowMaterial;
+                return PlayerChoices.Instance.colorMaterials[3];
             default:
                 Debug.LogError($"Color {color} no reconocido para aplicar material.");
                 return null;
