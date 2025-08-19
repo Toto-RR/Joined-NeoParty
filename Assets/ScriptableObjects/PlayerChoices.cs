@@ -5,8 +5,57 @@ using UnityEngine.InputSystem;
 [CreateAssetMenu(menuName = "PlayerChoices/Player Choices", fileName = "PlayerChoices")]
 public class PlayerChoices : ScriptableObject
 {
+    // --- Estado estático robusto ---
+    private static PlayerChoices _instance;
+    public static PlayerChoices Instance
+    {
+        get
+        {
+            if (_instance == null) InitIfNeeded();
+            return _instance;
+        }
+        private set { _instance = value; }
+    }
+
+    private static bool _initialized;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    private static void Bootstrap()
+    {
+        InitIfNeeded();
+    }
+
+    private static void InitIfNeeded()
+    {
+        if (_initialized) return;
+
+        // 1) Intenta cargar desde Resources
+        if (_instance == null)
+        {
+            _instance = Resources.Load<PlayerChoices>("PlayerChoices"); // Assets/Resources/PlayerChoices.asset
+        }
+
+        // 2) Si no existe el asset, crea una instancia en memoria (fallback)
+        if (_instance == null)
+        {
+            _instance = ScriptableObject.CreateInstance<PlayerChoices>();
+#if UNITY_EDITOR
+            Debug.LogWarning("PlayerChoices: no se encontró 'Resources/PlayerChoices'. Se ha creado una instancia temporal en memoria.");
+#endif
+        }
+
+        // 3) Asegura listas y tamaños mínimos
+        _instance.jugadoresActivos ??= new List<PlayerData>();
+        _instance.colorMaterials ??= new List<Material>();
+        // opcional: asegura mínimo 4 entradas en colorMaterials para indexar por enum
+        while (_instance.colorMaterials.Count < 4)
+            _instance.colorMaterials.Add(null);
+
+        _initialized = true;
+    }
+
+    // --- Estado de juego ---
     public static GameManager.GameLength gameLength;
-    public static PlayerChoices Instance { get; private set; }
 
     public enum PlayerColor { Azul, Naranja, Verde, Amarillo };
     public List<PlayerData> jugadoresActivos = new();
@@ -34,19 +83,27 @@ public class PlayerChoices : ScriptableObject
             WeaponId = weaponId;
         }
     }
-    private void OnEnable()
-    {
-        Instance = this;
-    }
 
-    // --- SETTERS ---
-    public static void SetPartyLength(GameManager.GameLength gameLength_) { gameLength = gameLength_; }
+    // --- Setters ---
+    public static void SetPartyLength(GameManager.GameLength gameLength_)
+    {
+        InitIfNeeded();
+        gameLength = gameLength_;
+    }
 
     private static bool TryToAddPlayer(PlayerColor color, InputDevice device)
     {
+        InitIfNeeded();
+
+        if (device == null)
+        {
+            Debug.LogWarning("TryToAddPlayer: device es null.");
+            return false;
+        }
+
         if (Instance.jugadoresActivos.Exists(x => x.Device == device) || Instance.jugadoresActivos.Exists(x => x.Color == color))
         {
-            Debug.LogWarning($"Este dispositivo o color ya está asignado a otro jugador.");
+            Debug.LogWarning("Este dispositivo o color ya está asignado a otro jugador.");
             return false;
         }
 
@@ -57,21 +114,23 @@ public class PlayerChoices : ScriptableObject
 
     public static void AddPlayer(PlayerColor color, InputDevice device)
     {
+        InitIfNeeded();
         if (!TryToAddPlayer(color, device))
         {
             Debug.LogError("No se puede añadir este jugador.");
+            return;
         }
-        
-        Debug.Log($"Jugador registrado: {color} con {device.displayName}");
+        Debug.Log($"Jugador registrado: {color} con {device?.displayName}");
     }
 
     public static void RemovePlayer(InputDevice device)
     {
+        InitIfNeeded();
         var player = Instance.jugadoresActivos.Find(x => x.Device == device);
         if (player != null)
         {
             Instance.jugadoresActivos.Remove(player);
-            Debug.Log($"Jugador con color {player.Color} y dispositivo {device.displayName} eliminado.");
+            Debug.Log($"Jugador con color {player.Color} y dispositivo {device?.displayName} eliminado.");
         }
         else
         {
@@ -81,6 +140,7 @@ public class PlayerChoices : ScriptableObject
 
     public void SetWinner(PlayerColor color)
     {
+        // Método de instancia usado por tu código actual
         winner = color;
         AddWin(color);
         Debug.Log($"Ganador establecido: {color}");
@@ -88,118 +148,134 @@ public class PlayerChoices : ScriptableObject
 
     public void AddWin(PlayerColor color)
     {
-        GetPlayerByColor(color).wins++;
+        var p = GetPlayerByColor(color);
+        if (p != null) p.wins++;
     }
 
-    // --- GETTERS ---
-    public static GameManager.GameLength GetPartyLengthEnum() { return gameLength; }
+    // --- Getters ---
+    public static GameManager.GameLength GetPartyLengthEnum()
+    {
+        InitIfNeeded();
+        return gameLength;
+    }
 
     public static List<PlayerData> GetActivePlayers()
     {
+        InitIfNeeded();
         return Instance.jugadoresActivos;
     }
 
     public static int GetNumberOfPlayers()
     {
+        InitIfNeeded();
         return Instance.jugadoresActivos.Count;
     }
 
     public static InputDevice GetDeviceForPlayer(PlayerColor color)
     {
+        InitIfNeeded();
         var playerData = Instance.jugadoresActivos.Find(x => x.Color == color);
         return playerData?.Device;
     }
 
     public static PlayerData GetPlayerByColor(PlayerColor color)
     {
+        InitIfNeeded();
         return Instance.jugadoresActivos.Find(x => x.Color == color);
     }
 
     public static PlayerData GetPlayerByDevice(InputDevice device)
     {
+        InitIfNeeded();
         return Instance.jugadoresActivos.Find(x => x.Device == device);
     }
 
     public static PlayerColor? GetPlayerColorByDevice(InputDevice device)
     {
+        InitIfNeeded();
         var playerData = Instance.jugadoresActivos.Find(x => x.Device == device);
         return playerData != null ? playerData.Color : (PlayerColor?)null;
     }
 
     public static List<PlayerColor> GetActivePlayersColors()
     {
+        InitIfNeeded();
         List<PlayerColor> colors = new List<PlayerColor>();
         foreach (var player in Instance.jugadoresActivos)
-        {
             colors.Add(player.Color);
-        }
         return colors;
     }
 
     public static Material GetMaterialByColor(PlayerColor color)
     {
-        Material material = Instance.colorMaterials[(int)color];
-        return material;
+        InitIfNeeded();
+        int idx = (int)color;
+        if (idx < 0 || idx >= Instance.colorMaterials.Count)
+        {
+            Debug.LogWarning($"GetMaterialByColor: índice {idx} fuera de rango en colorMaterials.");
+            return null;
+        }
+        return Instance.colorMaterials[idx];
     }
 
     public static bool IsPlayerActive(InputDevice device)
     {
+        InitIfNeeded();
         return Instance.jugadoresActivos.Exists(x => x.Device == device);
     }
 
     public static bool IsPlayerActive(PlayerColor color)
     {
+        InitIfNeeded();
         return Instance.jugadoresActivos.Exists(x => x.Color == color);
     }
 
     public static bool IsPlayerActive(string color)
     {
+        InitIfNeeded();
         if (System.Enum.TryParse(color, true, out PlayerColor playerColor))
-        {
             return IsPlayerActive(playerColor);
-        }
+
         Debug.LogWarning($"Color '{color}' no es válido.");
         return false;
     }
 
-    public static void ResetPlayers()
+    // --- Reset (instancia + wrapper estático) ---
+    public void ResetPlayers()
     {
-        Instance.jugadoresActivos.Clear();
+        // instancia (por compatibilidad con tu código)
+        jugadoresActivos ??= new List<PlayerData>();
+        jugadoresActivos.Clear();
+    }
+
+    public static void ResetPlayersStatic()
+    {
+        InitIfNeeded();
+        Instance.ResetPlayers();
     }
 
     public static string GetSchemaFromDevice(InputDevice device)
     {
-        if (device is Keyboard)
-        {
-            return "Keyboard";
-        }
-        else if (device is Gamepad)
-        {
-            return "Gamepad";
-        }
-        else if (device is Joystick)
-        {
-            return "Joystick";
-        }
-        else if (device is Mouse)
-        {
-            return "Mouse";
-        }
-        else
-        {
-            Debug.LogWarning("Dispositivo no reconocido: " + device.displayName);
-            return "Unknown";
-        }
+        InitIfNeeded();
+        if (device is Keyboard) return "Keyboard";
+        if (device is Gamepad) return "Gamepad";
+        if (device is Joystick) return "Joystick";
+        if (device is Mouse) return "Mouse";
+
+        Debug.LogWarning("Dispositivo no reconocido: " + device?.displayName);
+        return "Unknown";
     }
 
     public static string GetColorFromDevice(InputDevice device)
     {
+        InitIfNeeded();
         var playerData = Instance.jugadoresActivos.Find(x => x.Device == device);
         return playerData != null ? playerData.Color.ToString() : null;
     }
 
     public static bool RemovePlayer(PlayerColor color)
     {
+        InitIfNeeded();
         var player = Instance.jugadoresActivos.Find(x => x.Color == color);
         if (player != null)
         {
@@ -212,87 +288,101 @@ public class PlayerChoices : ScriptableObject
 
     public static bool RemovePlayer(string color)
     {
+        InitIfNeeded();
         if (System.Enum.TryParse(color, true, out PlayerColor pc))
             return RemovePlayer(pc);
+
         Debug.LogWarning($"Color '{color}' no es válido.");
         return false;
     }
 
     public static PlayerColor GetWinner()
     {
+        InitIfNeeded();
         return Instance.winner;
     }
 
     public static Color GetColorRGBA(PlayerColor color)
     {
+        // No depende de instancia, pero llamamos Init por coherencia (si usas esto en Awake de UI)
+        InitIfNeeded();
         return color switch
         {
-            PlayerColor.Azul => new Color32(0, 109, 255, 255),    // Azul
-            PlayerColor.Naranja => new Color32(255, 161, 49, 255), // Naranja
-            PlayerColor.Verde => new Color32(0, 255, 0, 255),     // Verde
-            PlayerColor.Amarillo => new Color32(255, 252, 0, 255),  // Amarillo
+            PlayerColor.Azul => new Color32(0, 109, 255, 255),
+            PlayerColor.Naranja => new Color32(255, 161, 49, 255),
+            PlayerColor.Verde => new Color32(0, 255, 0, 255),
+            PlayerColor.Amarillo => new Color32(255, 252, 0, 255),
             _ => Color.white
         };
     }
 
     public static Color GetColorRGBA(string color)
     {
+        InitIfNeeded();
         return color.ToLower() switch
         {
-            "azul" => new Color32(0, 109, 255, 255),    // Azul
-            "naranja" => new Color32(255, 161, 49, 255), // Naranja
-            "verde" => new Color32(0, 255, 0, 255),     // Verde
-            "amarillo" => new Color32(255, 252, 0, 255),  // Amarillo
+            "azul" => new Color32(0, 109, 255, 255),
+            "naranja" => new Color32(255, 161, 49, 255),
+            "verde" => new Color32(0, 255, 0, 255),
+            "amarillo" => new Color32(255, 252, 0, 255),
             _ => Color.white
         };
     }
 
-    // --- GESTIÓN DE SKIN ---
+    // --- SKIN ---
     public static void SetPlayerSkin(PlayerColor color, int skinIndex)
     {
+        InitIfNeeded();
         var p = Instance.jugadoresActivos.Find(x => x.Color == color);
         if (p != null) p.SkinIndex = skinIndex;
     }
 
     public static void SetPlayerSkin(InputDevice device, int skinIndex)
     {
+        InitIfNeeded();
         var p = Instance.jugadoresActivos.Find(x => x.Device == device);
         if (p != null) p.SkinIndex = skinIndex;
     }
 
     public static int GetPlayerSkin(PlayerColor color)
     {
+        InitIfNeeded();
         var p = Instance.jugadoresActivos.Find(x => x.Color == color);
         return p != null ? p.SkinIndex : 0;
     }
 
     public static int GetPlayerSkin(InputDevice device)
     {
+        InitIfNeeded();
         var p = Instance.jugadoresActivos.Find(x => x.Device == device);
         return p != null ? p.SkinIndex : 0;
     }
 
-    // --- VEHICLE AND WEAPON MANAGEMENT ---
+    // --- Vehículo / Arma ---
     public static void SetPlayerVehicle(PlayerColor color, string vehicleId)
     {
+        InitIfNeeded();
         var p = Instance.jugadoresActivos.Find(x => x.Color == color);
         if (p != null) p.VehicleId = vehicleId;
     }
 
     public static string GetPlayerVehicle(PlayerColor color)
     {
+        InitIfNeeded();
         var p = Instance.jugadoresActivos.Find(x => x.Color == color);
         return p?.VehicleId;
     }
 
     public static void SetPlayerWeapon(PlayerColor color, string weaponId)
     {
+        InitIfNeeded();
         var p = Instance.jugadoresActivos.Find(x => x.Color == color);
         if (p != null) p.WeaponId = weaponId;
     }
 
     public static string GetPlayerWeapon(PlayerColor color)
     {
+        InitIfNeeded();
         var p = Instance.jugadoresActivos.Find(x => x.Color == color);
         return p?.WeaponId;
     }

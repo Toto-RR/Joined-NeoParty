@@ -40,7 +40,7 @@ public class Minigame_1 : MonoBehaviour
     private void Awake()
     {
 #if UNITY_EDITOR
-        if (reset) PlayerChoices.ResetPlayers();
+        if (reset) PlayerChoices.Instance.ResetPlayers();
         if (PlayerChoices.GetNumberOfPlayers() <= 0)
         {
             PlayerChoices.AddPlayer(PlayerChoices.PlayerColor.Azul, Keyboard.current);

@@ -16,7 +16,7 @@ public class LobbyInputManager : MonoBehaviour
 
     // --- READY por color ---
     private readonly Dictionary<string, bool> readyByColor = new();
-    private static readonly string[] COLORS = new[] { "Blue", "Orange", "Green", "Yellow" };
+    private static readonly string[] COLORS = new[] { "Azul", "Naranja", "Verde", "Amarillo" };
 
     // --- Luces opcionales ---
     [Header("Luces Ready (opcionales)")]
@@ -82,10 +82,10 @@ public class LobbyInputManager : MonoBehaviour
     }
     private void AttachBindings(InputActionMap map)
     {
-        BindWithHold(map, "JoinBlue", "Blue");
-        BindWithHold(map, "JoinOrange", "Orange");
-        BindWithHold(map, "JoinGreen", "Green");
-        BindWithHold(map, "JoinYellow", "Yellow");
+        BindWithHold(map, "JoinBlue", "Azul");
+        BindWithHold(map, "JoinOrange", "Naranja");
+        BindWithHold(map, "JoinGreen", "Verde");
+        BindWithHold(map, "JoinYellow", "Amarillo");
         Continue(map, "Continue");
     }
 
@@ -317,10 +317,10 @@ public class LobbyInputManager : MonoBehaviour
     {
         switch (color.ToLowerInvariant())
         {
-            case "blue": if (blueReadyLight) blueReadyLight.SetActive(on); break;
-            case "orange": if (orangeReadyLight) orangeReadyLight.SetActive(on); break;
-            case "green": if (greenReadyLight) greenReadyLight.SetActive(on); break;
-            case "yellow": if (yellowReadyLight) yellowReadyLight.SetActive(on); break;
+            case "azul": if (blueReadyLight) blueReadyLight.SetActive(on); break;
+            case "naranja": if (orangeReadyLight) orangeReadyLight.SetActive(on); break;
+            case "verde": if (greenReadyLight) greenReadyLight.SetActive(on); break;
+            case "amarillo": if (yellowReadyLight) yellowReadyLight.SetActive(on); break;
         }
     }
 

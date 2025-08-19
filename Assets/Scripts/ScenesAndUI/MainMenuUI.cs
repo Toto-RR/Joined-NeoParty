@@ -1,4 +1,4 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -15,12 +15,6 @@ public class MainMenuUI : MonoBehaviour
     private CanvasGroup canvasPartida;
     private CanvasGroup canvasOpciones;
 
-    public GameObject defaultButtonInicio;
-    public GameObject defaultButtonPartida;
-    public GameObject defaultButtonOpciones;
-
-    public InputActionReference cancelAction;
-
     private void Awake()
     {
         canvasInicio = panelInicio.GetComponent<CanvasGroup>();
@@ -33,18 +27,6 @@ public class MainMenuUI : MonoBehaviour
         ShowPanelTitulo();
     }
 
-    private void OnEnable()
-    {
-        if (cancelAction != null)
-            cancelAction.action.performed += OnCancel;
-    }
-
-    private void OnDisable()
-    {
-        if (cancelAction != null)
-            cancelAction.action.performed -= OnCancel;
-    }
-
     public void ShowPanelTitulo()
     {
         canvasInicio.DOFade(0, fadeDuration).OnComplete(() =>
@@ -55,8 +37,7 @@ public class MainMenuUI : MonoBehaviour
 
             canvasPartida.alpha = 1;
             canvasInicio.DOFade(1, fadeDuration);
-
-            SelectDefaultButton(defaultButtonInicio);
+            MenuInputRouter.Instance?.SetProvider(panelInicio.GetComponent<CanvasActionsProvider>());
         });
     }
 
@@ -68,10 +49,8 @@ public class MainMenuUI : MonoBehaviour
             panelPartida.SetActive(true);
             panelOpciones.SetActive(false);
 
-            //canvasInicio.alpha = 1;
             canvasPartida.DOFade(1, fadeDuration);
-
-            SelectDefaultButton(defaultButtonPartida);
+            MenuInputRouter.Instance?.SetProvider(panelPartida.GetComponent<CanvasActionsProvider>());
         });
     }
 
@@ -85,49 +64,32 @@ public class MainMenuUI : MonoBehaviour
 
             canvasPartida.alpha = 0;
             canvasOpciones.DOFade(1, fadeDuration);
-
-            SelectDefaultButton(defaultButtonOpciones);
+            MenuInputRouter.Instance?.SetProvider(panelOpciones.GetComponent<CanvasActionsProvider>());
         });
-    }
-
-    private void SelectDefaultButton(GameObject button)
-    {
-        EventSystem.current.SetSelectedGameObject(null); 
-        EventSystem.current.SetSelectedGameObject(button);
-    }
-
-    private void OnCancel(InputAction.CallbackContext ctx)
-    {
-        // Si estás en el panel de opciones, vuelve al título
-        if (panelOpciones.activeSelf)
-        {
-            ShowPanelTitulo();
-        }
-        // Si estás en el panel de selección de partida, vuelve al título
-        else if (panelPartida.activeSelf)
-        {
-            ShowPanelTitulo();
-        }
     }
 
     public void StartPartidaCorta()
     {
         GameManager.Instance.StartGame(GameManager.GameLength.Short);
+        MenuInputRouter.Instance?.ClearProvider(panelPartida.GetComponent<CanvasActionsProvider>());
     }
 
     public void StartPartidaMedia()
     {
         GameManager.Instance.StartGame(GameManager.GameLength.Medium);
+        MenuInputRouter.Instance?.ClearProvider(panelPartida.GetComponent<CanvasActionsProvider>());
     }
 
     public void StartPartidaLarga()
     {
         GameManager.Instance.StartGame(GameManager.GameLength.Long);
+        MenuInputRouter.Instance?.ClearProvider(panelPartida.GetComponent<CanvasActionsProvider>());
     }
 
     public void StartPartidaMaraton()
     {
         GameManager.Instance.StartGame(GameManager.GameLength.Marathon);
+        MenuInputRouter.Instance?.ClearProvider(panelPartida.GetComponent<CanvasActionsProvider>());
     }
 
     public void QuitGame()

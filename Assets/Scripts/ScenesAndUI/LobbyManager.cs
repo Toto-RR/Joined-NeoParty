@@ -23,9 +23,9 @@ public class LobbyManager : MonoBehaviour
     private readonly Dictionary<string, GameObject> spawnedPlayers = new();
     private readonly Dictionary<string, int> currentModelIndex = new();
 
-    private void Awake()
+    private void Start()
     {
-        PlayerChoices.ResetPlayers();
+        PlayerChoices.Instance.ResetPlayers();
     }
 
     public void AddNewPlayer(string color, InputDevice device)
@@ -65,7 +65,7 @@ public class LobbyManager : MonoBehaviour
         var go = Instantiate(prefab, slot.spawnPoint.position, slot.spawnPoint.rotation);
         spawnedPlayers[color] = go;
 
-        Debug.Log($"Jugador {color} unido ({device.displayName})");
+        //Debug.Log($"Jugador {color} unido ({device.displayName})");
     }
 
     public void RemovePlayer(string color)
@@ -88,7 +88,7 @@ public class LobbyManager : MonoBehaviour
         if (PlayerChoices.GetNumberOfPlayers() < 2)
         {
             Debug.Log("Venga hombre, siempre es mejor jugar con alguien!");
-            
+            return;
         }
         SceneChanger.Instance.ApplyTransitionAsync(SceneNames.GameScene, Transitions.Doors);
     }
@@ -122,10 +122,9 @@ public class LobbyManager : MonoBehaviour
         prefab.GetComponentInChildren<SkinnedMeshRenderer>().SetSharedMaterials(new List<Material>() { ApplyMaterial(color) });
 
         var go = Instantiate(prefab, slot.spawnPoint.position, slot.spawnPoint.rotation);
-        Debug.Log("Rotation: " + slot.spawnPoint.rotation);
         spawnedPlayers[color] = go;
 
-        Debug.Log($"Modelo cambiado para {color} → {index}");
+        //Debug.Log($"Modelo cambiado para {color} → {index}");
     }
 
     // Helper para encontrar el slot por color
@@ -138,13 +137,13 @@ public class LobbyManager : MonoBehaviour
     {
         switch (color.ToLower())
         {
-            case "blue":
+            case "azul":
                 return PlayerChoices.Instance.colorMaterials[0];
-            case "orange":
+            case "naranja":
                 return PlayerChoices.Instance.colorMaterials[1];
-            case "green":
+            case "verde":
                 return PlayerChoices.Instance.colorMaterials[2];
-            case "yellow":
+            case "amarillo":
                 return PlayerChoices.Instance.colorMaterials[3];
             default:
                 Debug.LogError($"Color {color} no reconocido para aplicar material.");
