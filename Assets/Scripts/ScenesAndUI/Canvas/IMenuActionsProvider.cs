@@ -8,8 +8,6 @@ public interface IMenuActionsProvider
     Button OrangeButton { get; }
     Button GreenButton { get; }
     Button YellowButton { get; }
-
-    // Botón “Atrás” (Amarillo en modo lista)
     Button BackButton { get; }
 
     // Nuevo: modo lista

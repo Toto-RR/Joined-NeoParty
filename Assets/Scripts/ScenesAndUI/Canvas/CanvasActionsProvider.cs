@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class CanvasActionsProvider : MonoBehaviour, IMenuActionsProvider
 {
-    [Header("Buttons of THIS canvas (modo colores)")]
+    [Header("Botones del canvas (modo colores)")]
     [SerializeField] private Button blueButton;
     [SerializeField] private Button orangeButton;
     [SerializeField] private Button greenButton;
@@ -41,8 +41,12 @@ public class CanvasActionsProvider : MonoBehaviour, IMenuActionsProvider
 
     private void Start()
     {
-        //ColorButton();
+        ColorButton();
         ClearHighlight();
+
+        if(useListNavigation)
+            CleanButtons(); // limpia botones si se usa navegación por lista
+
         MenuInputRouter.Instance?.SetProvider(this);
     }
 
@@ -81,6 +85,17 @@ public class CanvasActionsProvider : MonoBehaviour, IMenuActionsProvider
         if(orangeButton != null) orangeButton.GetComponent<Image>().color = PlayerChoices.GetColorRGBA("naranja");
         if(greenButton != null) greenButton.GetComponent<Image>().color = PlayerChoices.GetColorRGBA("verde");
         if(yellowButton != null) yellowButton.GetComponent<Image>().color = PlayerChoices.GetColorRGBA("amarillo");
+    }
+
+    /// <summary>
+    /// Limpia los botones del modo colores para evitar referencias cruzadas.
+    /// </summary>
+    private void CleanButtons()
+    {
+        blueButton = null;
+        orangeButton = null;
+        greenButton = null;
+        yellowButton = null;
     }
 
     public void CustomDebug(string message)

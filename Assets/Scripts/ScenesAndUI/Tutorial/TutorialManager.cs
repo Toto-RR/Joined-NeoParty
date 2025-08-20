@@ -8,13 +8,14 @@ using UnityEngine.UI;
 public class TutorialManager : MonoBehaviour
 {
     [Header("Setup")]
-    public Transform playersPanel;              // Panel donde instanciar los PlayerRow
-    public GameObject playerRowPrefab;          // Prefab de la fila de jugador
-    public Minigame_1 minigameBase;           // Referencia al minijuego actual
+    public Transform playersPanel;
+    public GameObject playerRowPrefab;
+    public Minigame_1 minigameBase;
 
-    private int readyPlayers = 0;
     private int totalPlayers = 0;
-    private List<PlayerRow> playerRows = new();
+    private readonly List<PlayerRow> playerRows = new();
+    private readonly HashSet<PlayerRow> readySet = new();
+    private bool allReadyFired = false;
 
     [Header("Cinemachine Intro")]
     public SplineAnimate splineAnimate;
@@ -24,7 +25,7 @@ public class TutorialManager : MonoBehaviour
     private void Start()
     {
         totalPlayers = PlayerChoices.GetNumberOfPlayers();
-        SetupPlayerRows();
+        SetupPlayerRows(); // instancia PlayerRow y hace Setup
 
         splineAnimate.Completed += OnIntroAnimationFinished;
         videoTutorial.playOnAwake = false;
@@ -38,10 +39,7 @@ public class TutorialManager : MonoBehaviour
 
     protected virtual void StartIntroAnimation()
     {
-        if (splineAnimate != null)
-        {
-            splineAnimate.Play();
-        }
+        if (splineAnimate != null) splineAnimate.Play();
     }
 
     protected virtual void OnIntroAnimationFinished()
@@ -54,28 +52,34 @@ public class TutorialManager : MonoBehaviour
         foreach (var player in PlayerChoices.GetActivePlayers())
         {
             GameObject rowObj = Instantiate(playerRowPrefab, playersPanel);
-
             rowObj.GetComponent<Image>().color = PlayerChoices.GetColorRGBA(player.Color);
 
             PlayerRow row = rowObj.GetComponent<PlayerRow>();
-
-            row.Setup(player, this);
+            row.Setup(player, this); // PlayerRow enlaza su input y nos notificará cambios
             playerRows.Add(row);
         }
     }
 
-    public void PlayerReady(PlayerRow row)
+    // NUEVO: se llama tanto al marcar listo como al desmarcar
+    public void OnPlayerReadyChanged(PlayerRow row, bool isReady)
     {
-        if (row.isReady)
-        {
-            row.SetReady(true);
-            readyPlayers++;
+        if (isReady) readySet.Add(row);
+        else readySet.Remove(row);
 
-            if (readyPlayers >= totalPlayers)
-            {
-                Debug.Log("Todos los jugadores listos en el tutorial.");
-                minigameBase.OnAllPlayersReady(); // Avisa al minijuego
-            }
+        // dispara solo una vez cuando todos estén listos
+        if (!allReadyFired && readySet.Count >= totalPlayers && totalPlayers > 0)
+        {
+            allReadyFired = true;
+            Debug.Log("Todos los jugadores listos en el tutorial.");
+            minigameBase.OnAllPlayersReady();
         }
+    }
+
+    public void UnregisterRow(PlayerRow row)
+    {
+        readySet.Remove(row);
+        playerRows.Remove(row);
+        totalPlayers = Mathf.Max(0, totalPlayers - 1);
+        allReadyFired = false;
     }
 }

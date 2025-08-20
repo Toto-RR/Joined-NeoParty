@@ -96,12 +96,13 @@ public class Minigame_1 : MonoBehaviour
 
         if (jugadoresTerminados >= totalJugadores)
         {
-            OnGameFinished();
+            StartCoroutine(OnGameFinished());
         }
     }
 
-    public void OnGameFinished()
+    public IEnumerator OnGameFinished()
     {
+        Debug.Log("Minijuego terminado");
         var scores = GetScores();
 
         // Buscar al jugador con más puntos
@@ -118,6 +119,8 @@ public class Minigame_1 : MonoBehaviour
         }
 
         PlayerChoices.Instance.SetWinner(ganador);
+
+        yield return new WaitForSeconds(1f);
 
         SceneChanger.Instance.ApplyTransitionAsync(3, Transitions.FadeText);
     }

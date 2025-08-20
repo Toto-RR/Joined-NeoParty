@@ -19,6 +19,8 @@ public enum Transitions
     Doors,
     Fade,
     FadeText,
+    TV,
+    Curtain,
     None
 }
 

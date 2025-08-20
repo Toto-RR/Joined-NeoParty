@@ -55,7 +55,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b45c2b6b3617b2142ae2ea0b47e0ea3b, type: 2}
+  - {fileID: 2100000, guid: 13124ea3be50efa4889dc0d8298d86c4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -80,7 +80,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: -5869521457030379019, guid: b738efb542d89334799e5da15314ba0e, type: 3}
+  m_Mesh: {fileID: 5850536299135567421, guid: b738efb542d89334799e5da15314ba0e, type: 3}
   m_Bones:
   - {fileID: 892297285894185695}
   - {fileID: 941600164265702779}
@@ -339,7 +339,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -1239,7 +1239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 449946c93b7ba86469c8cbbf769ba9ea, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 0f53aec2fe3b4e74385658062c5f4226, type: 3}
   m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -2141,6 +2141,10 @@ PrefabInstance:
     - target: {fileID: 6095964940016052887, guid: 690a6f247a409324199d95b83bf9ded2, type: 3}
       propertyPath: m_Name
       value: HUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 6095964940016052887, guid: 690a6f247a409324199d95b83bf9ded2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

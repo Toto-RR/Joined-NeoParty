@@ -10,7 +10,7 @@ public class PlayerRow : MonoBehaviour
     public GameObject checkMark;
 
     [Header("Input")]
-    [SerializeField] private InputActionAsset actions;  // Asigna tu .inputactions
+    [SerializeField] private InputActionAsset actions;
 
     private TutorialManager tutorialManager;
     public bool isReady = false;
@@ -22,39 +22,35 @@ public class PlayerRow : MonoBehaviour
     public void Setup(PlayerChoices.PlayerData player, TutorialManager manager)
     {
         ConfigureColor(player.Color);
-        
+
         playerNameText.text = player.Color.ToString();
         tutorialManager = manager;
 
         assignedDevice = player.Device;
-        
+
         SetReady(false); // estado inicial
 
-        // Buscar el mapa/acción del asset
         map = actions.FindActionMap("Tutorial", throwIfNotFound: false);
         if (map == null)
         {
-            Debug.LogError($"[PlayerRow] No se encontró el ActionMap.");
+            Debug.LogError("[PlayerRow] No se encontró el ActionMap.");
             return;
         }
 
         readyAction = map.FindAction("Ready", throwIfNotFound: false);
         if (readyAction == null)
         {
-            Debug.LogError($"[PlayerRow] No se encontró la acción.");
+            Debug.LogError("[PlayerRow] No se encontró la acción.");
             return;
         }
 
-        // Suscribirse filtrando por el dispositivo del jugador
         readyAction.performed += OnReadyPerformed;
 
-        // Habilitar (si no lo está ya por otro componente)
         if (!map.enabled) map.Enable();
     }
 
     private void OnReadyPerformed(InputAction.CallbackContext ctx)
     {
-        // Solo responde si la entrada proviene del dispositivo asignado
         if (ctx.control != null && ctx.control.device == assignedDevice)
         {
             ToggleReady();
@@ -64,13 +60,7 @@ public class PlayerRow : MonoBehaviour
     private void ToggleReady()
     {
         SetReady(!isReady);
-
-        // Si tu TutorialManager ya tiene un método para “unready”, llámalo aquí.
-        // Con lo que tienes ahora, mantengo la llamada existente cuando pasa a Ready.
-        if (isReady)
-        {
-            tutorialManager.PlayerReady(this);
-        }
+        tutorialManager.OnPlayerReadyChanged(this, isReady);
     }
 
     public void SetReady(bool value)
@@ -87,11 +77,13 @@ public class PlayerRow : MonoBehaviour
     private void OnDisable()
     {
         if (readyAction != null) readyAction.performed -= OnReadyPerformed;
-        // No deshabilito el map global aquí porque puede estar compartido con otros.
+        // opcional: avisar al manager si esta fila se desactiva
+        if (tutorialManager != null) tutorialManager.OnPlayerReadyChanged(this, false);
     }
 
     private void OnDestroy()
     {
         if (readyAction != null) readyAction.performed -= OnReadyPerformed;
+        if (tutorialManager != null) tutorialManager.UnregisterRow(this);
     }
 }

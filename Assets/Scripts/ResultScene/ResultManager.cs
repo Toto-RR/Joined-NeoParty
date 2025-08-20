@@ -14,12 +14,17 @@ public class ResultManager : MonoBehaviour
     [Header("UI Elements")]
     public TextMeshPro winnerText;
 
-    private Camera mainCamera;
+    [Header("Continue Prompt")]
+    [Tooltip("GameObject (o Image) que muestra el aviso de 'pulsa botón para continuar'")]
+    public GameObject continuePrompt; // arrástralo desde la escena
+    [Tooltip("Evita que se dispare más de una vez")]
+    public bool showOnlyOnce = true;
+
     private Animator animator;
+    private bool promptShown = false;
 
     private void Awake()
     {
-        mainCamera = Camera.main;
         animator = basePlayer.GetComponent<Animator>();
         if (animator == null)
         {
@@ -30,9 +35,28 @@ public class ResultManager : MonoBehaviour
     private void Start()
     {
         UpdateWinner();
+        if (continuePrompt != null) continuePrompt.SetActive(false);
 
         // Inicia una animación de celebración aleatoria
         animator.SetInteger("Celebration", GetRandomNumber());
+    }
+
+    private void Update()
+    {
+        if (animator == null) return;
+
+        // Capa 0 por defecto
+        var state = animator.GetCurrentAnimatorStateInfo(0);
+
+        // Solo cuando NO está en transición y el estado actual está tagueado como "Idle"
+        if (!animator.IsInTransition(0) && state.tagHash == Animator.StringToHash("Idle"))
+        {
+            // Mostramos el prompt si no lo hemos mostrado o si se admite mostrar varias veces
+            if (!promptShown || !showOnlyOnce)
+            {
+                ShowContinuePrompt();
+            }
+        }
     }
 
     public void UpdateWinner()
@@ -40,7 +64,7 @@ public class ResultManager : MonoBehaviour
         var color = PlayerChoices.GetWinner();
 
         // Ajusta el texto del ganador
-        winnerText.text = $"¡{color}!";
+        winnerText.text = $"{color}";
         winnerText.color = PlayerChoices.GetColorRGBA(color);
 
         // Configura la skin del jugador ganador
@@ -52,6 +76,19 @@ public class ResultManager : MonoBehaviour
         foreach(Light light in lights)
         {
             light.color = PlayerChoices.GetColorRGBA(color);
+        }
+    }
+
+    private void ShowContinuePrompt()
+    {
+        if (continuePrompt != null)
+        {
+            continuePrompt.SetActive(true);
+            promptShown = true;
+        }
+        else
+        {
+            Debug.LogWarning("continuePrompt no asignado en el inspector.");
         }
     }
 
