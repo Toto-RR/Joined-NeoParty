@@ -263,31 +263,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 330592910863430254, guid: 993647c759b0cd1429b1a8aca7d5f3fd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23966.268
+      value: 26404.451
       objectReference: {fileID: 0}
     - target: {fileID: 330592910863430254, guid: 993647c759b0cd1429b1a8aca7d5f3fd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -506.02237
+      value: -4046.449
       objectReference: {fileID: 0}
     - target: {fileID: 330592910863430254, guid: 993647c759b0cd1429b1a8aca7d5f3fd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8710.3955
+      value: -68809.35
       objectReference: {fileID: 0}
     - target: {fileID: 330592910863430254, guid: 993647c759b0cd1429b1a8aca7d5f3fd, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.99976677
+      value: -0.9986154
       objectReference: {fileID: 0}
     - target: {fileID: 330592910863430254, guid: 993647c759b0cd1429b1a8aca7d5f3fd, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.021569904
+      value: 0.05026524
       objectReference: {fileID: 0}
     - target: {fileID: 330592910863430254, guid: 993647c759b0cd1429b1a8aca7d5f3fd, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0011066612
+      value: 0.0154978875
       objectReference: {fileID: 0}
     - target: {fileID: 330592910863430254, guid: 993647c759b0cd1429b1a8aca7d5f3fd, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000023876142
+      value: 0.0007800852
       objectReference: {fileID: 0}
     - target: {fileID: 408782082123313125, guid: 993647c759b0cd1429b1a8aca7d5f3fd, type: 3}
       propertyPath: m_Lightmapping
@@ -453,37 +453,41 @@ PrefabInstance:
       propertyPath: m_Lightmapping
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7728175919851110821, guid: 993647c759b0cd1429b1a8aca7d5f3fd, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7868389909092602798, guid: 993647c759b0cd1429b1a8aca7d5f3fd, type: 3}
       propertyPath: m_Lightmapping
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8572132102816754939, guid: 993647c759b0cd1429b1a8aca7d5f3fd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23966.268
+      value: 26404.451
       objectReference: {fileID: 0}
     - target: {fileID: 8572132102816754939, guid: 993647c759b0cd1429b1a8aca7d5f3fd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -506.02237
+      value: -4046.449
       objectReference: {fileID: 0}
     - target: {fileID: 8572132102816754939, guid: 993647c759b0cd1429b1a8aca7d5f3fd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8710.3955
+      value: -68809.35
       objectReference: {fileID: 0}
     - target: {fileID: 8572132102816754939, guid: 993647c759b0cd1429b1a8aca7d5f3fd, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.99976677
+      value: -0.9986154
       objectReference: {fileID: 0}
     - target: {fileID: 8572132102816754939, guid: 993647c759b0cd1429b1a8aca7d5f3fd, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.021569904
+      value: 0.05026524
       objectReference: {fileID: 0}
     - target: {fileID: 8572132102816754939, guid: 993647c759b0cd1429b1a8aca7d5f3fd, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0011066612
+      value: 0.0154978875
       objectReference: {fileID: 0}
     - target: {fileID: 8572132102816754939, guid: 993647c759b0cd1429b1a8aca7d5f3fd, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000023876142
+      value: 0.0007800852
       objectReference: {fileID: 0}
     - target: {fileID: 8887773265181965231, guid: 993647c759b0cd1429b1a8aca7d5f3fd, type: 3}
       propertyPath: m_Lightmapping
@@ -491,7 +495,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9213176426340065074, guid: 993647c759b0cd1429b1a8aca7d5f3fd, type: 3}
       propertyPath: m_SplineSettings.Position
-      value: 5
+      value: 4.22
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -78,16 +78,19 @@ public class Enviroment_Movement : MonoBehaviour
             ? Random.Range(groundDurationRange.x, groundDurationRange.y)
             : Random.Range(airDurationRange.x, airDurationRange.y);
 
+        // Instancia y configura
+        GameObject go = Instantiate(choice.car);
+        alive++;
+
         // Material aleatorio
         if (materials != null && materials.Count > 0)
         {
-            var m = materials[Random.Range(0, materials.Count)];
-                choice.car.GetComponentInChildren<Renderer>().material = m;
+            var rend = go.GetComponentInChildren<Renderer>();
+            if (rend != null)
+            {
+                rend.material = materials[Random.Range(0, materials.Count)];
+            }
         }
-
-        // Instancia y configura
-        GameObject go = Instantiate(choice.car, lane.spline.gameObject.transform.position, lane.spline.gameObject.transform.rotation);
-        alive++;
 
         // Asigna contenedor y lanza
         var anim = go.GetComponent<SplineAnimate>();

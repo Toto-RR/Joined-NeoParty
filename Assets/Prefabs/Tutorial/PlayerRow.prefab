@@ -303,5 +303,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNameText: {fileID: 4667860431754366865}
   checkMark: {fileID: 7143893501151348979}
-  actions: {fileID: -944628639613478452, guid: b1f328cb23611914eb11ae0ae52287e3, type: 3}
+  actions: {fileID: -944628639613478452, guid: 0f53aec2fe3b4e74385658062c5f4226, type: 3}
   isReady: 0

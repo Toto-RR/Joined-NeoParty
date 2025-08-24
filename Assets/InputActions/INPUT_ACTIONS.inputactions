@@ -2,6 +2,56 @@
     "name": "INPUT_ACTIONS",
     "maps": [
         {
+            "name": "Tutorial",
+            "id": "60d9a600-dd52-4db9-b706-fd6188b1367e",
+            "actions": [
+                {
+                    "name": "Ready",
+                    "type": "Button",
+                    "id": "49fd07f5-163d-4f15-9049-200541082e21",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "55482ca2-71f2-49a0-8769-746373f84dd7",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ready",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "60302d64-662d-4ec3-8edc-99052ee4d001",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ready",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a104360c-0d02-4feb-960a-17bdfd53d725",
+                    "path": "<HID::Arduino LLC Arduino Leonardo>/button8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ready",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
             "name": "PlayerRunner",
             "id": "e3645c2a-852d-4a40-bfbd-12789f48db0b",
             "actions": [
@@ -67,6 +117,17 @@
                 },
                 {
                     "name": "",
+                    "id": "8ba8acce-5b25-40f9-96d9-a6dc6b552a1f",
+                    "path": "<HID::Arduino LLC Arduino Leonardo>/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveToLane1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "4933ac43-2323-4e3a-a2da-724412bd4ada",
                     "path": "<Keyboard>/2",
                     "interactions": "",
@@ -83,6 +144,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
+                    "action": "MoveToLane2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d3cf01e3-4065-4b34-a3d4-6a533b23c888",
+                    "path": "<HID::Arduino LLC Arduino Leonardo>/button2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "MoveToLane2",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -111,6 +183,17 @@
                 },
                 {
                     "name": "",
+                    "id": "832f6c3a-622a-4ecd-aeaa-37198d1d8934",
+                    "path": "<HID::Arduino LLC Arduino Leonardo>/button3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveToLane3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "6d2fa1d9-8328-4d44-be22-9e3c13045e45",
                     "path": "<Keyboard>/4",
                     "interactions": "",
@@ -127,6 +210,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
+                    "action": "MoveToLane4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "de60dcbb-5655-4de4-8264-635cec448a0c",
+                    "path": "<HID::Arduino LLC Arduino Leonardo>/button4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "MoveToLane4",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -217,6 +311,17 @@
                 },
                 {
                     "name": "",
+                    "id": "c998bf69-d02f-4d7e-b2b9-b290ce457fce",
+                    "path": "<HID::Arduino LLC Arduino Leonardo>/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JoinBlue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "d1875c60-1f29-42b9-8648-521aa2d02adf",
                     "path": "<Keyboard>/2",
                     "interactions": "",
@@ -230,6 +335,17 @@
                     "name": "",
                     "id": "6863af63-78c7-4863-8af5-0ae6dff4f63d",
                     "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JoinOrange",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ef147ba2-a3f5-44c5-82bf-230e673fb9bc",
+                    "path": "<HID::Arduino LLC Arduino Leonardo>/button2",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -261,6 +377,17 @@
                 },
                 {
                     "name": "",
+                    "id": "a217e322-54ce-4c06-a4cb-801ce6c86cdb",
+                    "path": "<HID::Arduino LLC Arduino Leonardo>/button3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JoinGreen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "e12e6931-b605-44b8-adc0-64ba55cc1ab8",
                     "path": "<Keyboard>/4",
                     "interactions": "",
@@ -283,6 +410,17 @@
                 },
                 {
                     "name": "",
+                    "id": "abdabcc4-9c3c-4c5b-8d27-38b821ce1930",
+                    "path": "<HID::Arduino LLC Arduino Leonardo>/button4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JoinYellow",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "898dabb9-c4f9-4fb9-8b2d-bd67a65b647e",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
@@ -296,6 +434,17 @@
                     "name": "",
                     "id": "38cd5211-7e58-4731-ba7c-007818e6c423",
                     "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Continue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1c6da98f-8fa3-496a-9d3f-17490f4c3163",
+                    "path": "<HID::Arduino LLC Arduino Leonardo>/button8",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -391,6 +540,17 @@
                 },
                 {
                     "name": "",
+                    "id": "c445787f-525f-4804-aa1e-616b0c139509",
+                    "path": "<HID::Arduino LLC Arduino Leonardo>/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BotonAzul",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "fe151688-901f-41f3-8ae2-21806a0361a1",
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
@@ -404,6 +564,17 @@
                     "name": "",
                     "id": "8af31452-7b28-483d-ac11-8bcbfc697458",
                     "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BotonNaranja",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "789ad71c-3ea1-4ab4-a8ca-fcafbf04a3df",
+                    "path": "<HID::Arduino LLC Arduino Leonardo>/button2",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -435,6 +606,17 @@
                 },
                 {
                     "name": "",
+                    "id": "5effe685-3794-45a3-82e7-7075062dd261",
+                    "path": "<HID::Arduino LLC Arduino Leonardo>/button3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BotonVerde",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "e42c7a62-10cb-4609-9a68-ffc113607a2f",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
@@ -457,6 +639,17 @@
                 },
                 {
                     "name": "",
+                    "id": "d66f223b-44b3-4aeb-a27e-9c1110a13bc0",
+                    "path": "<HID::Arduino LLC Arduino Leonardo>/button4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BotonAmarillo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "21c03ee0-9252-4864-98f8-bfc65c75f3e4",
                     "path": "*/{Submit}",
                     "interactions": "",
@@ -470,6 +663,17 @@
                     "name": "",
                     "id": "0d32c3cd-7daa-43c2-bc65-036f50a575db",
                     "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Trigger",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3b1a62bd-f556-4505-abd8-0b415b3e1853",
+                    "path": "<HID::Arduino LLC Arduino Leonardo>/button8",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

@@ -134,10 +134,10 @@ public class SceneChanger : MonoBehaviour
         animator.ResetTrigger(resetTrigger);   // limpia estado anterior
         animator.SetTrigger(playTrigger);      // "Transition" -> anim de CERRAR
 
-        // Espera a que ACABE el cierre de verdad
+        // Espera a que acabe el cierre 
         yield return new WaitUntil(() => HasFinished(animator, 0));
 
-        // --- CARGA ASYNC (oculta tras cierre estático) ---
+        // --- CARGA ASYNC ---
         var op = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync((int)scene);
         op.allowSceneActivation = false;
 
@@ -155,13 +155,11 @@ public class SceneChanger : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnLoaded;
 
         // --- SETTLE FRAMES (evita tirón en la apertura) ---
-        // Espera un par de frames para que CPU/GPU/GC se estabilicen
-        yield return null;              // frame 1
-        yield return new WaitForEndOfFrame(); // frame 1 fin (garantiza dibujado)
-        yield return null;              // frame 2
+        yield return null;                       // frame 1
+        yield return new WaitForEndOfFrame();   // frame 1 fin (garantiza dibujado)
+        yield return null;                      // frame 2
 
         // --- ABRIR ---
-        // Si tu “Reset” abre, úsalo; si no, crea un trigger Open distinto.
         if (!string.IsNullOrEmpty(resetTrigger))
             animator.SetTrigger(resetTrigger); // "Reset" -> anim de ABRIR
 

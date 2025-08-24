@@ -208,9 +208,14 @@ public class PlayersSpawner : MonoBehaviour
 
     private GameObject ConfigurePlayer(GameObject basePlayer, PlayerChoices.PlayerColor color)
     {
+        // Obtiene la skin del personaje del jugador (según el color)
         GameObject newPlayer = CharacterCatalog.Instance.Get(PlayerChoices.GetPlayerSkin(color));
+
+        // Configura el mesh y material del jugador base
         basePlayer.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh = newPlayer.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh;
         basePlayer.GetComponentInChildren<SkinnedMeshRenderer>().SetSharedMaterials(new List<Material>() { PlayerChoices.GetMaterialByColor(color) });
+        
+        // Devuelve el jugador configurado
         return basePlayer;
     }
 }
