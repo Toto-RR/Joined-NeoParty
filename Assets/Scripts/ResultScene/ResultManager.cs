@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem; // <-- NUEVO
 using UnityEngine.Rendering;
 
 public class ResultManager : MonoBehaviour
@@ -10,18 +11,20 @@ public class ResultManager : MonoBehaviour
 
     [Header("Lights")]
     public List<Light> lights = new();
-    
+
     [Header("UI Elements")]
     public TextMeshPro winnerText;
 
     [Header("Continue Prompt")]
-    [Tooltip("GameObject (o Image) que muestra el aviso de 'pulsa botón para continuar'")]
-    public GameObject continuePrompt; // arrástralo desde la escena
-    [Tooltip("Evita que se dispare más de una vez")]
-    public bool showOnlyOnce = true;
+    public Canvas continuePrompt;
+
+    [Header("Input")]
+    [Tooltip("Arrastra aquí la acción 'Ready' del action map 'Tutorial' (Input System).")]
+    public InputActionReference readyAction; // <-- NUEVO
 
     private Animator animator;
     private bool promptShown = false;
+    private bool advanced = false; // para evitar dobles disparos
 
     private void Awake()
     {
@@ -32,12 +35,30 @@ public class ResultManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        if (readyAction != null && readyAction.action != null)
+        {
+            readyAction.action.performed += OnReady;
+            readyAction.action.Enable();
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (readyAction != null && readyAction.action != null)
+        {
+            readyAction.action.performed -= OnReady;
+            readyAction.action.Disable();
+        }
+    }
+
     private void Start()
     {
         UpdateWinner();
-        if (continuePrompt != null) continuePrompt.SetActive(false);
+        if (continuePrompt != null) continuePrompt.enabled = false;
 
-        // Inicia una animación de celebración aleatoria
+        // Animación de celebración aleatoria
         animator.SetInteger("Celebration", GetRandomNumber());
     }
 
@@ -45,35 +66,47 @@ public class ResultManager : MonoBehaviour
     {
         if (animator == null) return;
 
-        // Capa 0 por defecto
-        var state = animator.GetCurrentAnimatorStateInfo(0);
+        // Obtenemos el estado actual del Animator
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
-        // Solo cuando NO está en transición y el estado actual está tagueado como "Idle"
-        if (!animator.IsInTransition(0) && state.tagHash == Animator.StringToHash("Idle"))
+        // Comparamos con el nombre de la animación
+        if (stateInfo.IsName("HumanoidIdle"))
         {
-            // Mostramos el prompt si no lo hemos mostrado o si se admite mostrar varias veces
-            if (!promptShown || !showOnlyOnce)
+            if (!promptShown)
             {
                 ShowContinuePrompt();
+                promptShown = true; // marcar para que no se repita
             }
         }
+    }
+
+
+    private void OnReady(InputAction.CallbackContext ctx)
+    {
+        if (advanced) return;
+        advanced = true;
+
+        // Ocultar prompt (opcional)
+        if (continuePrompt != null) continuePrompt.enabled = false;
+
+        // Avanzar a siguiente mini
+        if (GameManager.Instance != null)
+            GameManager.Instance.LoadNextMiniGame();
+        else
+            Debug.LogWarning("MiniGameManager.Instance es null al intentar continuar desde post.");
     }
 
     public void UpdateWinner()
     {
         var color = PlayerChoices.GetWinner();
-
-        // Ajusta el texto del ganador
         winnerText.text = $"{color}";
         winnerText.color = PlayerChoices.GetColorRGBA(color);
 
-        // Configura la skin del jugador ganador
         GameObject newPlayer = CharacterCatalog.Instance.Get(PlayerChoices.GetPlayerSkin(color));
         basePlayer.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh = newPlayer.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh;
         basePlayer.GetComponentInChildren<SkinnedMeshRenderer>().SetSharedMaterials(new List<Material>() { PlayerChoices.GetMaterialByColor(color) });
 
-        // Cambia las luces al color del ganador
-        foreach(Light light in lights)
+        foreach (Light light in lights)
         {
             light.color = PlayerChoices.GetColorRGBA(color);
         }
@@ -83,8 +116,7 @@ public class ResultManager : MonoBehaviour
     {
         if (continuePrompt != null)
         {
-            continuePrompt.SetActive(true);
-            promptShown = true;
+            continuePrompt.enabled = true;
         }
         else
         {
@@ -98,5 +130,4 @@ public class ResultManager : MonoBehaviour
         Debug.Log($"Random number generated for celebration: {rNumber}");
         return rNumber;
     }
-
 }

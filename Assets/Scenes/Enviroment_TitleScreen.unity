@@ -7303,6 +7303,26 @@ PrefabInstance:
       propertyPath: m_Color.g
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5904761084126940145, guid: 508840bda4a703b4bbc359d56f3ecc6e, type: 3}
+      propertyPath: selectedMiniGames.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5904761084126940145, guid: 508840bda4a703b4bbc359d56f3ecc6e, type: 3}
+      propertyPath: 'selectedMiniGames.Array.data[0]'
+      value: GameScene_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5904761084126940145, guid: 508840bda4a703b4bbc359d56f3ecc6e, type: 3}
+      propertyPath: 'selectedMiniGames.Array.data[1]'
+      value: ArduinoTesterScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 5904761084126940145, guid: 508840bda4a703b4bbc359d56f3ecc6e, type: 3}
+      propertyPath: 'selectedMiniGames.Array.data[2]'
+      value: ShaderTest
+      objectReference: {fileID: 0}
+    - target: {fileID: 5904761084126940145, guid: 508840bda4a703b4bbc359d56f3ecc6e, type: 3}
+      propertyPath: 'selectedMiniGames.Array.data[3]'
+      value: GameScene
+      objectReference: {fileID: 0}
     - target: {fileID: 6144296439485375488, guid: 508840bda4a703b4bbc359d56f3ecc6e, type: 3}
       propertyPath: m_Name
       value: SceneManager

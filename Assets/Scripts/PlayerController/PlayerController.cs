@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour
             Minigame_1.Instance.PlayerFinished(playerColor, points);
         }
         animator.SetFloat("Speed", Mathf.Lerp(playerSpeed, 0, 2f));
-        //playerInput.actions.Disable();
+        playerInput.actions.Disable();
     }
 
     public int GetPoints() => points;

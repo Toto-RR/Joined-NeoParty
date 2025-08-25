@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,9 +8,9 @@ public enum SceneNames
 {
     MainMenu,
     Lobby,
-    GameScene,
-    PostMinigame,
-    PostGame,
+    GameScene_1,
+    MinigameResult,
+    EndGame,
     Settings,
     Credits
 }
@@ -93,118 +94,69 @@ public class SceneChanger : MonoBehaviour
     public void ChangeSceneByEnum(SceneNames sceneIndex) => SceneManager.LoadScene((int)sceneIndex);
 
     // --- Transiciones ---
-    public void ApplyTransition(int sceneIndex, Transitions transition, float transitionTime = 0.8f)
+    public void ApplyTransitionAsync(int scene, Transitions transition)
     {
-        if (transitionTime <= 0f) transitionTime = this.transitionTime;
-
-        if (System.Enum.IsDefined(typeof(SceneNames), sceneIndex))
-            StartCoroutine(TransitionAndLoad((SceneNames)sceneIndex, transition)); // <-- NO ASÍNCRONA
-        else
-            Debug.LogError($"Índice de escena inválido: {sceneIndex}");
+        StartCoroutine(TransitionAndLoadAsyncInternal(
+            () => UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(scene),
+            transition));
     }
 
-
-    public void ApplyTransitionAsync(int scene, Transitions transition, float minTransitionTime = 0.8f)
-    {
-        StartCoroutine(TransitionAndLoadAsync((SceneNames)scene, transition));
-    }
     public void ApplyTransitionAsync(SceneNames scene, Transitions transition)
     {
-        StartCoroutine(TransitionAndLoadAsync(scene, transition));
+        StartCoroutine(TransitionAndLoadAsyncInternal(
+            () => UnityEngine.SceneManagement.SceneManager.LoadSceneAsync((int)scene),
+            transition));
     }
 
-    private IEnumerator TransitionAndLoadAsync(SceneNames scene, Transitions transition)
+    public void ApplyTransitionAsync(string sceneName, Transitions transition)
     {
-        // --- CERRAR ---
+        StartCoroutine(TransitionAndLoadAsyncInternal(
+            () => UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName),
+            transition));
+    }
+
+    private IEnumerator TransitionAndLoadAsyncInternal(Func<AsyncOperation> loadOpFactory, Transitions transition)
+    {
         var controller = GetControllerByName(transition.ToString());
         if (transition == Transitions.None || animator == null || controller == null)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene((int)scene);
-            yield break;
-        }
-
-        // Asegúrate de que el overlay siempre anima aunque cambie de cámara/escena
-        animator.updateMode = AnimatorUpdateMode.UnscaledTime;
-        animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
-
-        animator.runtimeAnimatorController = controller;
-        animator.Rebind();
-        animator.Update(0f);
-
-        animator.ResetTrigger(resetTrigger);   // limpia estado anterior
-        animator.SetTrigger(playTrigger);      // "Transition" -> anim de CERRAR
-
-        // Espera a que acabe el cierre 
-        yield return new WaitUntil(() => HasFinished(animator, 0));
-
-        // --- CARGA ASYNC ---
-        var op = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync((int)scene);
-        op.allowSceneActivation = false;
-
-        yield return new WaitUntil(() => op.progress >= 0.9f);
-
-        // --- ACTIVAR ESCENA (pico de trabajo) ---
-        bool sceneLoaded = false;
-        void OnLoaded(UnityEngine.SceneManagement.Scene s, UnityEngine.SceneManagement.LoadSceneMode m) => sceneLoaded = true;
-        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnLoaded;
-
-        op.allowSceneActivation = true;
-
-        // Espera a que Unity confirme que la escena ya está “puesta”
-        yield return new WaitUntil(() => sceneLoaded);
-        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnLoaded;
-
-        // --- SETTLE FRAMES (evita tirón en la apertura) ---
-        yield return null;                       // frame 1
-        yield return new WaitForEndOfFrame();   // frame 1 fin (garantiza dibujado)
-        yield return null;                      // frame 2
-
-        // --- ABRIR ---
-        if (!string.IsNullOrEmpty(resetTrigger))
-            animator.SetTrigger(resetTrigger); // "Reset" -> anim de ABRIR
-
-        // (Opcional) si quieres desactivar el overlay tras abrir, espera a que termine
-        yield return new WaitUntil(() => HasFinished(animator, 0));
-    }
-
-    private IEnumerator TransitionAndLoad(SceneNames scene, Transitions transition)
-    {
-        // --- CERRAR ---
-        var controller = GetControllerByName(transition.ToString());
-        if (transition == Transitions.None || animator == null || controller == null)
-        {
-            SceneManager.LoadScene((int)scene); // carga síncrona directa
+            loadOpFactory(); // carga directa
             yield break;
         }
 
         animator.updateMode = AnimatorUpdateMode.UnscaledTime;
         animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
-
         animator.runtimeAnimatorController = controller;
         animator.Rebind();
         animator.Update(0f);
 
         animator.ResetTrigger(resetTrigger);
-        animator.SetTrigger(playTrigger);      // cerrar
+        animator.SetTrigger(playTrigger);
 
-        // Espera a que termine el cierre
         yield return new WaitUntil(() => HasFinished(animator, 0));
 
-        // --- CARGA SÍNCRONA ---
-        SceneManager.LoadScene((int)scene);    // bloqueo: carga inmediata
+        var op = loadOpFactory();
+        op.allowSceneActivation = false;
 
-        // --- SETTLE FRAMES ---
-        yield return null;                      // frame 1
-        yield return new WaitForEndOfFrame();   // final frame 1
-        yield return null;                      // frame 2
+        yield return new WaitUntil(() => op.progress >= 0.9f);
 
-        // --- ABRIR ---
+        bool sceneLoaded = false;
+        void OnLoaded(UnityEngine.SceneManagement.Scene s, UnityEngine.SceneManagement.LoadSceneMode m) => sceneLoaded = true;
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnLoaded;
+
+        op.allowSceneActivation = true;
+        yield return new WaitUntil(() => sceneLoaded);
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnLoaded;
+
+        yield return null;
+        yield return new WaitForEndOfFrame();
+        yield return null;
+
         if (!string.IsNullOrEmpty(resetTrigger))
-            animator.SetTrigger(resetTrigger);  // abrir
+            animator.SetTrigger(resetTrigger);
 
         yield return new WaitUntil(() => HasFinished(animator, 0));
     }
-
 
     private static bool HasFinished(Animator anim, int layer)
     {

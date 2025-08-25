@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.Linq;
+using System.Collections;
+using UnityEditor.SearchService;
+using UnityEditor.Build.Reporting;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,10 +19,16 @@ public class GameManager : MonoBehaviour
     }
     public GameLength currentGameLength;
 
+    [Tooltip("Nombres de las escenas de minijuegos (deben estar en Build Settings).")]
     public List<string> selectedMiniGames;
+    private List<string> poolMinigames;
+
     public int currentMiniGameIndex = 0;
 
-    public Dictionary<int, int> playerScores = new Dictionary<int, int>();
+    [Header("Flow Scenes")]
+    public string postMinigameScene = "MinigameResult";
+    public string endGameScene = "EndGame";
+
     private SceneChanger sceneChanger; 
 
     private void Awake()
@@ -52,46 +61,48 @@ public class GameManager : MonoBehaviour
     public void StartGame(GameLength gameLength)
     {
         currentGameLength = gameLength;
+        poolMinigames = GenerateGameSequence(gameLength);
         PlayerChoices.SetPartyLength(gameLength);
 
         // Guarda la elección del jugador y pasa a la escena del lobby
-        sceneChanger.ApplyTransition(1, Transitions.Fade, 0.2f);
+        sceneChanger.ApplyTransitionAsync(1, Transitions.Fade);
     }
 
     public void LoadNextMiniGame()
     {
-        if (currentMiniGameIndex < selectedMiniGames.Count)
+        if (currentMiniGameIndex < poolMinigames.Count)
         {
-            SceneManager.LoadScene(selectedMiniGames[currentMiniGameIndex]);
+            sceneChanger.ApplyTransitionAsync(poolMinigames[currentMiniGameIndex], Transitions.Fade);
         }
         else
         {
-            SceneManager.LoadScene("ResultsScene");
+            sceneChanger.ApplyTransitionAsync("EndGame", Transitions.Curtain);
         }
     }
 
-    public void MiniGameFinished(int winnerPlayerId)
+    public IEnumerator LoadPostMinigame()
     {
-        if (!playerScores.ContainsKey(winnerPlayerId))
-            playerScores[winnerPlayerId] = 0;
+        yield return new WaitForSeconds(1f);
+        sceneChanger.ApplyTransitionAsync("MinigameResult", Transitions.FadeText);
+    }
 
-        playerScores[winnerPlayerId]++;
+    public void MiniGameFinished()
+    {
         currentMiniGameIndex++;
-        LoadNextMiniGame();
+        StartCoroutine(LoadPostMinigame());
     }
 
     private List<string> GenerateGameSequence(GameLength length)
     {
-        List<string> allMiniGames = new List<string>() { "ShortParty", "MediumParty", "LongParty", "MarathonParty" };
         int count = length switch
         {
-            GameLength.Short => 3,
-            GameLength.Medium => 5,
-            GameLength.Long => 8,
-            GameLength.Marathon => 12,
-            _ => 3
+            GameLength.Short => 1,
+            GameLength.Medium => 2,
+            GameLength.Long => 3,
+            GameLength.Marathon => 3,
+            _ => 1
         };
 
-        return allMiniGames.OrderBy(x => Random.value).Take(count).ToList();
+        return selectedMiniGames.Take(count).ToList();
     }
 }

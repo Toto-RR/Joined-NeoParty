@@ -6,23 +6,26 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/TitleScene.unity
+    path: Assets/Scenes/TestScenes/TitleScene.unity
     guid: 1cba6cf8d48c7f64fa68a159c9bae8fa
   - enabled: 1
     path: Assets/Scenes/LobbyScene.unity
     guid: e70c9d90b4a38544fac678b496304eca
   - enabled: 1
-    path: Assets/Scenes/GameScene.unity
-    guid: 0b19886977bfef64b961cdec49564a41
+    path: Assets/Scenes/GameScene_1.unity
+    guid: dca48c75c20dabb4eb74ea493ee21766
   - enabled: 1
     path: Assets/Scenes/MinigameResult.unity
     guid: e26f071e97b611945a1edb6cf738f5f6
   - enabled: 1
-    path: Assets/Scenes/TransitionsTest/TransitionsTest.unity
+    path: Assets/Scenes/EndGame.unity
+    guid: 84529b44a663ed543b5e5445cfd175d3
+  - enabled: 1
+    path: Assets/Scenes/TestScenes/TransitionsTest/TransitionsTest.unity
     guid: 1270cfb6aabf877458836e3875e57c5e
   - enabled: 1
-    path: Assets/Scenes/TransitionsTest/TransitionsTest 1.unity
-    guid: d4f33f9dda84e034ebd823ba3322319a
+    path: Assets/Scenes/TestScenes/TransitionsTest/TransitionsTest 1.unity
+    guid: a0cb6205bc3be97488bf87e5bb68b987
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: b838d7c3aac49d74992ee9dde1053d57, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

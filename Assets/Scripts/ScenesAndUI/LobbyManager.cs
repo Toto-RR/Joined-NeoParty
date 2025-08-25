@@ -90,7 +90,9 @@ public class LobbyManager : MonoBehaviour
             Debug.Log("Venga hombre, siempre es mejor jugar con alguien!");
             return;
         }
-        SceneChanger.Instance.ApplyTransitionAsync(SceneNames.GameScene, Transitions.Curtain);
+        //MiniGameManager.Instance.LoadCurrentMinigame();
+        //SceneChanger.Instance.ApplyTransitionAsync(SceneNames.GameScene_1, Transitions.Curtain);
+        GameManager.Instance.LoadNextMiniGame();
     }
 
     public void CyclePlayerModel(string color)

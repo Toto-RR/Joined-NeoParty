@@ -11,17 +11,13 @@ public class Minigame_1 : MonoBehaviour
 
     // ESTO IRA EN EL SCRIPT BASE DEL QUE TODOS LOS MINIJUEGOS HEREDARÁN
     [Header("Canvases")]
-    public GameObject tutorialCanvas;
-    public GameObject gameplayCanvas;
-    public GameObject endCanvas;
+    public GameObject tutorial;
+    public GameObject gameplay;
 
     [Header("Gameplay Control")]
     public List<ObstacleSpawner> obstacleSpawners = new();
     public GameObject countdownCanvas;
     public TextMeshProUGUI countdownText;
-
-    [Header("Prefab Base")]
-    public GameObject playerPrefab; // Prefab base para los jugadores, se asignará en el inspector
 
     // --- Parameters ---
     public PlayersSpawner playersSpawner;
@@ -52,9 +48,8 @@ public class Minigame_1 : MonoBehaviour
 
     protected virtual void Start()
     {
-        tutorialCanvas.SetActive(true);
-        gameplayCanvas.SetActive(true);
-        endCanvas.SetActive(false);
+        tutorial.SetActive(true);
+        gameplay.SetActive(true);
     }
 
     protected virtual void Update()
@@ -64,7 +59,7 @@ public class Minigame_1 : MonoBehaviour
 
     public virtual void OnAllPlayersReady()
     {
-        tutorialCanvas.SetActive(false);
+        tutorial.SetActive(false);
 
         cameraTransitionManager.SwitchToGameplay(() =>
         {
@@ -96,11 +91,11 @@ public class Minigame_1 : MonoBehaviour
 
         if (jugadoresTerminados >= totalJugadores)
         {
-            StartCoroutine(OnGameFinished());
+            OnGameFinished();
         }
     }
 
-    public IEnumerator OnGameFinished()
+    public void OnGameFinished()
     {
         Debug.Log("Minijuego terminado");
         var scores = GetScores();
@@ -120,9 +115,8 @@ public class Minigame_1 : MonoBehaviour
 
         PlayerChoices.Instance.SetWinner(ganador);
 
-        yield return new WaitForSeconds(1f);
-
-        SceneChanger.Instance.ApplyTransitionAsync(3, Transitions.FadeText);
+        if (GameManager.Instance != null)
+            GameManager.Instance.MiniGameFinished();
     }
 
     public virtual void OnEndConfirmed()
