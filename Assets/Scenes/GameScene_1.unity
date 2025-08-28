@@ -295,6 +295,10 @@ PrefabInstance:
       value: -2.0004883
       objectReference: {fileID: 0}
     - target: {fileID: 8400868837391785230, guid: 993647c759b0cd1429b1a8aca7d5f3fd, type: 3}
+      propertyPath: debugMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8400868837391785230, guid: 993647c759b0cd1429b1a8aca7d5f3fd, type: 3}
       propertyPath: endCanvas
       value: 
       objectReference: {fileID: 0}
@@ -302,6 +306,14 @@ PrefabInstance:
       propertyPath: winnerText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8400868837391785230, guid: 993647c759b0cd1429b1a8aca7d5f3fd, type: 3}
+      propertyPath: coreMinigame
+      value: 
+      objectReference: {fileID: 2026544941}
+    - target: {fileID: 8400868837391785230, guid: 993647c759b0cd1429b1a8aca7d5f3fd, type: 3}
+      propertyPath: tutorialPanel
+      value: 
+      objectReference: {fileID: 2026544942}
     - target: {fileID: 8432372805439095389, guid: 993647c759b0cd1429b1a8aca7d5f3fd, type: 3}
       propertyPath: m_TargetTexture
       value: 
@@ -311,6 +323,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 993647c759b0cd1429b1a8aca7d5f3fd, type: 3}
+--- !u!1 &2026544941 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1371675834907133095, guid: 993647c759b0cd1429b1a8aca7d5f3fd, type: 3}
+  m_PrefabInstance: {fileID: 2026544940}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2026544942 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3502942405186887805, guid: 993647c759b0cd1429b1a8aca7d5f3fd, type: 3}
+  m_PrefabInstance: {fileID: 2026544940}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

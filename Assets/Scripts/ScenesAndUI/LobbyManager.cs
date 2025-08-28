@@ -23,6 +23,9 @@ public class LobbyManager : MonoBehaviour
     private readonly Dictionary<string, GameObject> spawnedPlayers = new();
     private readonly Dictionary<string, int> currentModelIndex = new();
 
+    public bool DebugMode = false;
+    public string Dbg_SceneToLoad = "GameScene_1";
+
     private void Start()
     {
         PlayerChoices.Instance.ResetPlayers();
@@ -82,7 +85,6 @@ public class LobbyManager : MonoBehaviour
         Debug.Log($"Jugador {color} eliminado del lobby.");
     }
 
-
     public void Continue()
     {
         if (PlayerChoices.GetNumberOfPlayers() < 2)
@@ -90,9 +92,9 @@ public class LobbyManager : MonoBehaviour
             Debug.Log("Venga hombre, siempre es mejor jugar con alguien!");
             return;
         }
-        //MiniGameManager.Instance.LoadCurrentMinigame();
-        //SceneChanger.Instance.ApplyTransitionAsync(SceneNames.GameScene_1, Transitions.Curtain);
-        GameManager.Instance.LoadNextMiniGame();
+        
+        if(!DebugMode) GameManager.Instance.LoadNextMiniGame();
+        else SceneChanger.Instance.ApplyTransitionAsync(Dbg_SceneToLoad, Transitions.Curtain);
     }
 
     public void CyclePlayerModel(string color)

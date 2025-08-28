@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.HID;
 
 [CreateAssetMenu(menuName = "PlayerChoices/Player Choices", fileName = "PlayerChoices")]
 public class PlayerChoices : ScriptableObject
@@ -77,8 +78,8 @@ public class PlayerChoices : ScriptableObject
         {
             Color = color;
             Device = device;
-            SkinIndex = skinIndex;
             Schema = schema;
+            SkinIndex = skinIndex;
             VehicleId = vehicleId;
             WeaponId = weaponId;
         }
@@ -101,14 +102,34 @@ public class PlayerChoices : ScriptableObject
             return false;
         }
 
-        if (Instance.jugadoresActivos.Exists(x => x.Device == device) || Instance.jugadoresActivos.Exists(x => x.Color == color))
+        // Si el device es teclado o ratón, bloquea si ya hay uno de los dos
+        if (IsKeyboardOrMouse(device))
         {
-            Debug.LogWarning("Este dispositivo o color ya está asignado a otro jugador.");
+            if (Instance.jugadoresActivos.Exists(x => IsKeyboardOrMouse(x.Device)))
+            {
+                Debug.LogWarning("TryToAddPlayer: Ya hay un jugador usando teclado+ratón.");
+                return false;
+            }
+        }
+        else
+        {
+            // Para el resto, evita duplicados de device exacto
+            if (Instance.jugadoresActivos.Exists(x => x.Device == device))
+            {
+                Debug.LogWarning("TryToAddPlayer: Este dispositivo ya está asignado a otro jugador.");
+                return false;
+            }
+        }
+
+        if (Instance.jugadoresActivos.Exists(x => x.Color == color))
+        {
+            Debug.LogWarning("TryToAddPlayer: Este color ya está asignado a otro jugador.");
             return false;
         }
 
-        Instance.jugadoresActivos.Add(new PlayerData(color, device, device.displayName, 0));
-        Debug.Log($"Dispositivo {device.displayName} asignado al color {color}.");
+        var schema = GetSchemaFromDevice(device);
+        Instance.jugadoresActivos.Add(new PlayerData(color, device, schema, 0));
+        Debug.Log($"Dispositivo {device.displayName} (Schema: {schema}) asignado al color {color}.");
         return true;
     }
 
@@ -120,7 +141,7 @@ public class PlayerChoices : ScriptableObject
             Debug.LogError("No se puede añadir este jugador.");
             return;
         }
-        Debug.Log($"Jugador registrado: {color} con {device?.displayName}");
+        Debug.Log($"Jugador registrado: {color} con {GetSchemaFromDevice(device)}");
     }
 
     public static void RemovePlayer(InputDevice device)
@@ -240,25 +261,26 @@ public class PlayerChoices : ScriptableObject
         return false;
     }
 
-    // --- Reset (instancia + wrapper estático) ---
-    public void ResetPlayers()
+    public static bool IsKeyboardOrMouse(InputDevice d)
     {
-        // instancia (por compatibilidad con tu código)
-        jugadoresActivos ??= new List<PlayerData>();
-        jugadoresActivos.Clear();
+        return d is Keyboard || d is Mouse;
     }
 
-    public static void ResetPlayersStatic()
+    /// Devuelve los dispositivos con los que hay que emparejar al PlayerInput
+    public static InputDevice[] GetPairDevices(InputDevice device)
     {
         InitIfNeeded();
-        Instance.ResetPlayers();
+        if (device is Keyboard || device is Mouse)
+            return new InputDevice[] { Keyboard.current, Mouse.current };
+        return new InputDevice[] { device };
     }
 
     public static string GetSchemaFromDevice(InputDevice device)
     {
         InitIfNeeded();
-        if (device is Keyboard) return "Keyboard";
+        if (device is Keyboard || device is Mouse) return "Keyboard&Mouse";
         if (device is Gamepad) return "Gamepad";
+        if (device is HID) return "HID";
         if (device is Joystick) return "Joystick";
         if (device is Mouse) return "Mouse";
 
@@ -327,6 +349,47 @@ public class PlayerChoices : ScriptableObject
             "amarillo" => new Color32(255, 252, 0, 255),
             _ => Color.white
         };
+    }
+
+    public static PlayerColor GetRandomActivePlayerColor()
+    {
+        var actives = PlayerChoices.GetActivePlayers();
+        if (actives != null && actives.Count > 0)
+            return actives[UnityEngine.Random.Range(0, actives.Count)].Color;
+
+        // Fallback si no hay activos
+        return GetRandomPlayerColor();
+    }
+
+    public static PlayerColor GetRandomPlayerColor()
+    {
+        var values = (PlayerColor[])System.Enum.GetValues(typeof(PlayerColor));
+        if (values == null || values.Length == 0) return default;
+
+        // Si tu enum tiene un "None"/"Unknown", lo saltamos:
+        for (int i = 0; i < 16; i++) // pequeños reintentos por seguridad
+        {
+            var pick = values[UnityEngine.Random.Range(0, values.Length)];
+            var name = pick.ToString();
+            if (!name.Equals("None", System.StringComparison.OrdinalIgnoreCase) &&
+                !name.Equals("Unknown", System.StringComparison.OrdinalIgnoreCase))
+                return pick;
+        }
+        return values[UnityEngine.Random.Range(0, values.Length)];
+    }
+
+    // --- Reset (instancia + wrapper estático) ---
+    public void ResetPlayers()
+    {
+        // instancia (por compatibilidad con tu código)
+        jugadoresActivos ??= new List<PlayerData>();
+        jugadoresActivos.Clear();
+    }
+
+    public static void ResetPlayersStatic()
+    {
+        InitIfNeeded();
+        Instance.ResetPlayers();
     }
 
     // --- SKIN ---

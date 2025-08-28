@@ -2,6 +2,100 @@
     "name": "INPUT_ACTIONS",
     "maps": [
         {
+            "name": "Drone",
+            "id": "90ded22b-eab1-4966-ad08-4f31296a29f8",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "a9afca5e-a5db-477a-baaf-3bdc081d43c6",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f75c0bef-91fe-481b-8889-c0085257f987",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "InvertVector2(invertX=false,invertY=false)",
+                    "groups": ";Gamepad",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "51c92d75-9724-4007-86ce-e0748ca15a0e",
+                    "path": "<Joystick>/stick",
+                    "interactions": "",
+                    "processors": "InvertVector2(invertX=false),StickDeadzone(max=0.48)",
+                    "groups": ";Joystick",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "KeyboardMovement",
+                    "id": "6c3b5968-68f4-4609-8273-2e3a8f04c6c2",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "InvertVector2(invertY=false)",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "e05cd408-9b96-4736-b8e6-f43410bd3ce4",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "b6206bce-4fa9-4a59-8938-835b59263e5f",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "df63837b-6a6a-4666-a993-18907265a0d4",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "5c603a51-ed97-4048-93b8-964688a4d362",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        },
+        {
             "name": "Tutorial",
             "id": "60d9a600-dd52-4db9-b706-fd6188b1367e",
             "actions": [
@@ -22,7 +116,7 @@
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Gamepad",
                     "action": "Ready",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -33,7 +127,7 @@
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "Ready",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -44,7 +138,7 @@
                     "path": "<HID::Arduino LLC Arduino Leonardo>/button8",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Joystick",
                     "action": "Ready",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -99,7 +193,7 @@
                     "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard",
+                    "groups": ";Keyboard;Keyboard&Mouse",
                     "action": "MoveToLane1",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -121,7 +215,7 @@
                     "path": "<HID::Arduino LLC Arduino Leonardo>/trigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Joystick",
                     "action": "MoveToLane1",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -132,7 +226,7 @@
                     "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard",
+                    "groups": ";Keyboard;Keyboard&Mouse",
                     "action": "MoveToLane2",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -154,7 +248,7 @@
                     "path": "<HID::Arduino LLC Arduino Leonardo>/button2",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Joystick",
                     "action": "MoveToLane2",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -165,7 +259,7 @@
                     "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard",
+                    "groups": ";Keyboard;Keyboard&Mouse",
                     "action": "MoveToLane3",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -187,7 +281,7 @@
                     "path": "<HID::Arduino LLC Arduino Leonardo>/button3",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Joystick",
                     "action": "MoveToLane3",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -198,7 +292,7 @@
                     "path": "<Keyboard>/4",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard",
+                    "groups": ";Keyboard;Keyboard&Mouse",
                     "action": "MoveToLane4",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -220,7 +314,7 @@
                     "path": "<HID::Arduino LLC Arduino Leonardo>/button4",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Joystick",
                     "action": "MoveToLane4",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -293,7 +387,7 @@
                     "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "JoinBlue",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -304,7 +398,7 @@
                     "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Gamepad",
                     "action": "JoinBlue",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -315,7 +409,7 @@
                     "path": "<HID::Arduino LLC Arduino Leonardo>/trigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Joystick",
                     "action": "JoinBlue",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -326,7 +420,7 @@
                     "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "JoinOrange",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -337,7 +431,7 @@
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Gamepad",
                     "action": "JoinOrange",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -348,7 +442,7 @@
                     "path": "<HID::Arduino LLC Arduino Leonardo>/button2",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Joystick",
                     "action": "JoinOrange",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -359,7 +453,7 @@
                     "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "JoinGreen",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -370,7 +464,7 @@
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Gamepad",
                     "action": "JoinGreen",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -381,7 +475,7 @@
                     "path": "<HID::Arduino LLC Arduino Leonardo>/button3",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Joystick",
                     "action": "JoinGreen",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -392,7 +486,7 @@
                     "path": "<Keyboard>/4",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "JoinYellow",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -403,7 +497,7 @@
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Gamepad",
                     "action": "JoinYellow",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -414,7 +508,7 @@
                     "path": "<HID::Arduino LLC Arduino Leonardo>/button4",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Joystick",
                     "action": "JoinYellow",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -425,7 +519,7 @@
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Gamepad",
                     "action": "Continue",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -436,7 +530,7 @@
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "Continue",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -447,7 +541,7 @@
                     "path": "<HID::Arduino LLC Arduino Leonardo>/button8",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Joystick",
                     "action": "Continue",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -522,7 +616,7 @@
                     "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Gamepad",
                     "action": "BotonAzul",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -533,7 +627,7 @@
                     "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "BotonAzul",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -544,7 +638,7 @@
                     "path": "<HID::Arduino LLC Arduino Leonardo>/trigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Joystick",
                     "action": "BotonAzul",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -555,7 +649,7 @@
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Gamepad",
                     "action": "BotonNaranja",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -566,7 +660,7 @@
                     "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "BotonNaranja",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -577,7 +671,7 @@
                     "path": "<HID::Arduino LLC Arduino Leonardo>/button2",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Joystick",
                     "action": "BotonNaranja",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -588,7 +682,7 @@
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Gamepad",
                     "action": "BotonVerde",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -599,7 +693,7 @@
                     "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "BotonVerde",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -610,7 +704,7 @@
                     "path": "<HID::Arduino LLC Arduino Leonardo>/button3",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Joystick",
                     "action": "BotonVerde",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -621,7 +715,7 @@
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Gamepad",
                     "action": "BotonAmarillo",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -632,7 +726,7 @@
                     "path": "<Keyboard>/4",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "BotonAmarillo",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -643,7 +737,7 @@
                     "path": "<HID::Arduino LLC Arduino Leonardo>/button4",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Joystick",
                     "action": "BotonAmarillo",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -651,10 +745,10 @@
                 {
                     "name": "",
                     "id": "21c03ee0-9252-4864-98f8-bfc65c75f3e4",
-                    "path": "*/{Submit}",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Gamepad",
                     "action": "Trigger",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -665,7 +759,7 @@
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "Trigger",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -676,13 +770,154 @@
                     "path": "<HID::Arduino LLC Arduino Leonardo>/button8",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Joystick",
                     "action": "Trigger",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Shooter",
+            "id": "e3b61b1a-79f2-4d08-bf15-154a96007f4a",
+            "actions": [
+                {
+                    "name": "Aim",
+                    "type": "Value",
+                    "id": "2d16aeeb-f833-4d16-a772-a496f86a19f8",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Shoot",
+                    "type": "Button",
+                    "id": "149d6933-e3d8-4e77-b876-648ec33dd2b3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2126ffb8-1049-49e2-ae4f-92fe3cbb2bdb",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "896a4f79-be3e-4e8a-bbbe-402e3c01f5c7",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d841aed1-294d-46c6-a0e3-036d014fc524",
+                    "path": "<HID::Arduino LLC Arduino Leonardo>/stick",
+                    "interactions": "",
+                    "processors": "StickDeadzone(min=0.01,max=0.2)",
+                    "groups": ";Joystick",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c02e894d-d3ac-483a-b608-4d48a7d85e1c",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fce515d9-0c65-4c02-83bf-10951dfe09cf",
+                    "path": "<HID::Arduino LLC Arduino Leonardo>/button8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "011bff38-377e-4f19-adef-f86f585f5893",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
             ]
         }
     ],
-    "controlSchemes": []
+    "controlSchemes": [
+        {
+            "name": "Keyboard&Mouse",
+            "bindingGroup": "Keyboard&Mouse",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Joystick",
+            "bindingGroup": "Joystick",
+            "devices": [
+                {
+                    "devicePath": "<HID>",
+                    "isOptional": true,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Joystick>",
+                    "isOptional": true,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<HID::Arduino LLC Arduino Leonardo>",
+                    "isOptional": true,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Gamepad",
+            "bindingGroup": "Gamepad",
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
 }

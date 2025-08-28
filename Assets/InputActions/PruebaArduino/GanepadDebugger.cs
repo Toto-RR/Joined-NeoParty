@@ -4,6 +4,12 @@ using UnityEngine.UI;
 
 public class GamepadDebugger : MonoBehaviour
 {
+    public enum Test
+    {
+        Gamepad,
+        Arduino
+    }
+
     public InputActionAsset inputActions;
     public RectTransform pointer;       // Se moverá con el stick derecho (giroscopio)
     public Image[] buttonIndicators;    // Indicadores visuales para botones
@@ -15,6 +21,8 @@ public class GamepadDebugger : MonoBehaviour
 
     public float pointerRange = 100f;
     public float triggerHeight = 150f;
+
+    public Test deviceTesting = Test.Gamepad;
 
     void Awake()
     {

@@ -601,8 +601,9 @@ MonoBehaviour:
   - {fileID: 1224760502}
   - {fileID: 725254843}
   triggerSlider: {fileID: 1438605078}
-  pointerRange: 300
+  pointerRange: 1000
   triggerHeight: 500
+  deviceTesting: 0
   smoothSpeed: 10
 --- !u!1 &725254842
 GameObject:

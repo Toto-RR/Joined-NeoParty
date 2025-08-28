@@ -8,6 +8,8 @@ TagManager:
   - Obstacle
   - PlayerInputTemp
   - Destroyer
+  - Enemy
+  - Gate
   layers:
   - Default
   - TransparentFX
@@ -18,13 +20,13 @@ TagManager:
   - Player
   - Obstacle
   - carLayer
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - EnemiesLayer
+  - Bounds
+  - Wall
+  - Mask
+  - SeeThrough
+  - SafeZone
+  - Finish
   - 
   - 
   - 

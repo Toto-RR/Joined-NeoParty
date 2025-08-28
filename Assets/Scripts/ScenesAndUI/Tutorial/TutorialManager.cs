@@ -10,7 +10,7 @@ public class TutorialManager : MonoBehaviour
     [Header("Setup")]
     public Transform playersPanel;
     public GameObject playerRowPrefab;
-    public Minigame_1 minigameBase;
+    public BaseMinigame minigameBase;
 
     private int totalPlayers = 0;
     private readonly List<PlayerRow> playerRows = new();

@@ -61,6 +61,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Anisotropy: -0.5
+    - _QueueControl: 1
     - _Specular_A: 0.5
     - _Specular_B: 0.5
     m_Colors:
