@@ -38,8 +38,8 @@ public class DroneController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.interpolation = RigidbodyInterpolation.Interpolate;
         rb.constraints =
-            RigidbodyConstraints.FreezePositionZ |      // solo nos movemos en X/Y
-            RigidbodyConstraints.FreezeRotation;        // rotacion la controla "visual"
+            RigidbodyConstraints.FreezePositionZ |      // movimiento solo en X/Y
+            RigidbodyConstraints.FreezeRotation;        // solo rotacion "visual"
         rb.linearDamping = linearDrag;
         rb.useGravity = false;
 

@@ -38,7 +38,7 @@ public class Minigame_2 : BaseMinigame
             PlayerChoices.AddPlayer(PlayerChoices.PlayerColor.Azul, Keyboard.current);
             PlayerChoices.AddPlayer(
                 PlayerChoices.PlayerColor.Naranja,
-                Gamepad.all.Count > 0 ? Gamepad.all[0] : Keyboard.current
+                Joystick.all.Count > 0 ? Joystick.all[0] : Keyboard.current
             );
         }
 
