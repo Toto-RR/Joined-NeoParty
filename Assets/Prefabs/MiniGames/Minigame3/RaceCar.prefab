@@ -1,0 +1,335 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3774319129191564880
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2952910835083472814}
+  - component: {fileID: 6794396558898403443}
+  - component: {fileID: 6954439929842322963}
+  - component: {fileID: 2912041345940401314}
+  m_Layer: 0
+  m_Name: RaceCar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2952910835083472814
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3774319129191564880}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.68544084, y: -0.17369778, z: -0.17369778, w: 0.68544084}
+  m_LocalPosition: {x: -15.116705, y: 0, z: -235.72699}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 497804666656331785}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: -28.44}
+--- !u!114 &6794396558898403443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3774319129191564880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a074d529cf945029ef7cf40540c9df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Target: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_LoopMode: 1
+  m_Method: 1
+  m_Duration: Infinity
+  m_MaxSpeed: 0
+  m_EasingMode: 0
+  m_AlignmentMode: 1
+  m_ObjectForwardAxis: 2
+  m_ObjectUpAxis: 1
+  m_StartOffset: 0
+--- !u!114 &6954439929842322963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3774319129191564880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d78aa59b8e01546458f1e2b9bea78560, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DebugMode: 0
+--- !u!114 &2912041345940401314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3774319129191564880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 0f53aec2fe3b4e74385658062c5f4226, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a9afca5e-a5db-477a-baaf-3bdc081d43c6
+    m_ActionName: 'Drone/Move[/DualSenseGamepadHID/leftStick,/Arduino LLC Arduino
+      Leonardo/stick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 49fd07f5-163d-4f15-9049-200541082e21
+    m_ActionName: 'Tutorial/Ready[/DualSenseGamepadHID/rightTrigger,/Keyboard/space,/Arduino
+      LLC Arduino Leonardo/button8]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bbf713fe-2491-43f7-ba0d-20c81b3d0c5b
+    m_ActionName: 'PlayerRunner/MoveToLane1[/Keyboard/1,/DualSenseGamepadHID/buttonNorth,/Arduino
+      LLC Arduino Leonardo/trigger]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8583d40e-c1fe-4ddd-8498-51441ff9426a
+    m_ActionName: 'PlayerRunner/MoveToLane2[/Keyboard/2,/DualSenseGamepadHID/buttonWest,/Arduino
+      LLC Arduino Leonardo/button2]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c1943222-2173-477d-a38d-7d88749b69ad
+    m_ActionName: 'PlayerRunner/MoveToLane3[/Keyboard/3,/DualSenseGamepadHID/buttonEast,/Arduino
+      LLC Arduino Leonardo/button3]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: faa4962f-90e6-4e99-ab4d-a886768b4c2d
+    m_ActionName: 'PlayerRunner/MoveToLane4[/Keyboard/4,/DualSenseGamepadHID/buttonSouth,/Arduino
+      LLC Arduino Leonardo/button4]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9dce5105-7b7d-4f71-8b72-e596813ed44b
+    m_ActionName: 'CharacterSelector/JoinBlue[/Keyboard/1,/DualSenseGamepadHID/buttonNorth,/Arduino
+      LLC Arduino Leonardo/trigger]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 72dbe193-1edb-4d1d-b169-3968f35380d1
+    m_ActionName: 'CharacterSelector/JoinOrange[/Keyboard/2,/DualSenseGamepadHID/buttonWest,/Arduino
+      LLC Arduino Leonardo/button2]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fb3de220-1a48-4678-b305-7903ac89aeac
+    m_ActionName: 'CharacterSelector/JoinGreen[/Keyboard/3,/DualSenseGamepadHID/buttonEast,/Arduino
+      LLC Arduino Leonardo/button3]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a1b80212-be49-4305-99c6-4d6c9cfdade6
+    m_ActionName: 'CharacterSelector/JoinYellow[/Keyboard/4,/DualSenseGamepadHID/buttonSouth,/Arduino
+      LLC Arduino Leonardo/button4]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 991b6e83-0dc0-458d-a2ea-1e55cdfd481a
+    m_ActionName: 'CharacterSelector/Continue[/DualSenseGamepadHID/rightTrigger,/Keyboard/space,/Arduino
+      LLC Arduino Leonardo/button8]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: dd364413-7eeb-401b-a604-2d091f4ae575
+    m_ActionName: CharacterSelector/Return
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 64270b2e-569c-4f90-b303-ab672b79b9db
+    m_ActionName: 'MainMenu/BotonAzul[/DualSenseGamepadHID/buttonNorth,/Keyboard/1,/Arduino
+      LLC Arduino Leonardo/trigger]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6c3d442a-eb06-42da-a862-bedc0bdfd5c3
+    m_ActionName: 'MainMenu/BotonNaranja[/DualSenseGamepadHID/buttonWest,/Keyboard/2,/Arduino
+      LLC Arduino Leonardo/button2]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5e71559b-72f7-494d-ac44-3bf428b92fa0
+    m_ActionName: 'MainMenu/BotonVerde[/DualSenseGamepadHID/buttonEast,/Keyboard/3,/Arduino
+      LLC Arduino Leonardo/button3]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a950b881-e7ee-4bb7-a85f-40a0c973c27f
+    m_ActionName: 'MainMenu/BotonAmarillo[/DualSenseGamepadHID/buttonSouth,/Keyboard/4,/Arduino
+      LLC Arduino Leonardo/button4]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 21724edf-f9a7-4ff0-a8bb-79f23c066f73
+    m_ActionName: 'MainMenu/Trigger[/DualSenseGamepadHID/rightTrigger,/Keyboard/space,/Arduino
+      LLC Arduino Leonardo/button8]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2d16aeeb-f833-4d16-a772-a496f86a19f8
+    m_ActionName: 'Shooter/Aim[/DualSenseGamepadHID/rightStick,/Mouse/delta,/Arduino
+      LLC Arduino Leonardo/stick]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 149d6933-e3d8-4e77-b876-648ec33dd2b3
+    m_ActionName: 'Shooter/Shoot[/DualSenseGamepadHID/rightTrigger,/Arduino LLC Arduino
+      Leonardo/button8,/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c20d9978-c2bc-4140-b942-c39d7dac13a5
+    m_ActionName: 'Race/Move[/Mouse/scroll/y,/Arduino LLC Arduino Leonardo/rx,/DualSenseGamepadHID/rightTrigger]'
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Race
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!1001 &497630022144936675
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2952910835083472814}
+    m_Modifications:
+    - target: {fileID: -2581050158909476293, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+      propertyPath: m_Method
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2581050158909476293, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+      propertyPath: m_Duration
+      value: 3.52033
+      objectReference: {fileID: 0}
+    - target: {fileID: -2581050158909476293, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+      propertyPath: m_MaxSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: -2581050158909476293, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+      propertyPath: m_StartOffset
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: -2581050158909476293, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+      propertyPath: m_ObjectUpAxis
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2581050158909476293, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+      propertyPath: m_AlignmentMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1169192800073340, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+      propertyPath: m_Name
+      value: SM_Veh_Future_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329235364827882, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329235364827882, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0000047385693
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329235364827882, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.34352422
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329235364827882, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329235364827882, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329235364827882, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329235364827882, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329235364827882, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329235364827882, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329235364827882, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 23468492897425760, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a67454f21e0b6294091206cd4ed35e3c, type: 2}
+    - target: {fileID: 33820832716550838, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -5476416401897218732, guid: 3d09176b026daa24a939c4abcf02963f, type: 3}
+    - target: {fileID: 64371053742774208, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: 71435b3bf93f45e4eb1b3424e13316c4, type: 3}
+    - target: {fileID: 64371053742774208, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: -2581050158909476293, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+    - {fileID: 2655416284098689869, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+    - {fileID: 64371053742774208, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1169192800073340, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4139803013178810641}
+  m_SourcePrefab: {fileID: 100100000, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+--- !u!1 &496460843303664799 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1169192800073340, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+  m_PrefabInstance: {fileID: 497630022144936675}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &4139803013178810641
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 496460843303664799}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.7363486, y: 1.5938015, z: 5.2358575}
+  m_Center: {x: -0.000000041662656, y: 0.7744827, z: -0.07926628}
+--- !u!4 &497804666656331785 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4329235364827882, guid: 3453465b381fd294e8e0b2c3a9cb1950, type: 3}
+  m_PrefabInstance: {fileID: 497630022144936675}
+  m_PrefabAsset: {fileID: 0}

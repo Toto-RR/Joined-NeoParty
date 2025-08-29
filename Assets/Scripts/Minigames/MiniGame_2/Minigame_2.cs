@@ -25,19 +25,11 @@ public class Minigame_2 : BaseMinigame
     public bool DebugMode = false;
     private void Awake()
     {
-        // Inicializa scores a 0 por cada jugador definido
-        foreach (var p in PlayerChoices.GetActivePlayers())
-        {
-            if (!playerScores.ContainsKey(p.Color))
-                playerScores[p.Color] = 0;
-        }
-
         if (DebugMode)
         {
             PlayerChoices.Instance.ResetPlayers();
             PlayerChoices.AddPlayer(PlayerChoices.PlayerColor.Azul, Keyboard.current);
-            PlayerChoices.AddPlayer(
-                PlayerChoices.PlayerColor.Naranja,
+            PlayerChoices.AddPlayer(PlayerChoices.PlayerColor.Naranja,
                 Joystick.all.Count > 0 ? Joystick.all[0] : Keyboard.current
             );
         }

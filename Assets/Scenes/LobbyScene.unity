@@ -2111,7 +2111,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3546644065791099136, guid: 9a0724f2fdcb4054da9578fc51b5a242, type: 3}
       propertyPath: Dbg_SceneToLoad
-      value: GameScene_2
+      value: GameScene_1
       objectReference: {fileID: 0}
     - target: {fileID: 3546644065791099136, guid: 9a0724f2fdcb4054da9578fc51b5a242, type: 3}
       propertyPath: characterPrefabs.Array.size
