@@ -14,6 +14,15 @@ public class LobbyInputManager : MonoBehaviour
     private readonly HashSet<string> holdFired = new();
     private readonly Dictionary<string, Coroutine> holdRoutines = new();
 
+    [SerializeField] private float triggerHoldToExit = 0.8f; // segundos
+    private InputAction triggerAction;
+    private System.Action<InputAction.CallbackContext> triggerStartedHandler;
+    private System.Action<InputAction.CallbackContext> triggerCanceledHandler;
+
+    private double triggerPressStart;
+    private Coroutine triggerHoldRoutine;
+    private bool triggerHoldFired;
+
     // --- READY por color ---
     private readonly Dictionary<string, bool> readyByColor = new();
     private static readonly string[] COLORS = new[] { "Azul", "Naranja", "Verde", "Amarillo" };
@@ -40,6 +49,9 @@ public class LobbyInputManager : MonoBehaviour
     private readonly Dictionary<InputAction, System.Action<InputAction.CallbackContext>> canceledHandlers = new();
     private System.Action<InputAction.CallbackContext> continuePerformedHandler;
 
+    [SerializeField] private string triggerActionName = "Return";
+    [SerializeField, Range(0f, 1f)] private float triggerPressPoint = 0.2f; 
+    private float triggerHeldSeconds;
 
     private void OnEnable()
     {
@@ -76,16 +88,48 @@ public class LobbyInputManager : MonoBehaviour
         holdFired.Clear();
     }
 
+    private void Update()
+    {
+        if (triggerAction == null) return;
+
+        // Lee el valor continuo del gatillo: 0..1 en gamepad; 0/1 en teclas.
+        float v = triggerAction.ReadValue<float>();
+
+        if (v >= triggerPressPoint)
+        {
+            triggerHeldSeconds += Time.unscaledDeltaTime;
+
+            if (!triggerHoldFired && triggerHeldSeconds >= triggerHoldToExit)
+            {
+                triggerHoldFired = true;
+
+                // Solo permite salir si no hay nadie unido al lobby
+                if (PlayerChoices.GetNumberOfPlayers() == 0)
+                {
+                    lobbyManager.GoBackToPreviousScene();
+                }
+            }
+        }
+        else
+        {
+            // Se soltó: resetea acumulador y permiso de disparo
+            triggerHeldSeconds = 0f;
+            triggerHoldFired = false;
+        }
+    }
+
     private void OnDestroy()
     {
         OnDisable(); // por si acaso
     }
+
     private void AttachBindings(InputActionMap map)
     {
         BindWithHold(map, "JoinBlue", "Azul");
         BindWithHold(map, "JoinOrange", "Naranja");
         BindWithHold(map, "JoinGreen", "Verde");
         BindWithHold(map, "JoinYellow", "Amarillo");
+        AttachTriggerHold(map);
         Continue(map, "Continue");
     }
 
@@ -107,6 +151,18 @@ public class LobbyInputManager : MonoBehaviour
                 cont.performed -= continuePerformedHandler;
         }
         continuePerformedHandler = null;
+
+        if (triggerAction != null)
+        {
+            if (triggerStartedHandler != null) triggerAction.started -= triggerStartedHandler;
+            if (triggerCanceledHandler != null) triggerAction.canceled -= triggerCanceledHandler;
+        }
+        triggerAction = null;
+        triggerStartedHandler = null;
+        triggerCanceledHandler = null;
+
+        if (triggerHoldRoutine != null) StopCoroutine(triggerHoldRoutine);
+        triggerHoldRoutine = null;
     }
 
     private void BindWithHold(InputActionMap map, string actionName, string color)
@@ -234,6 +290,9 @@ public class LobbyInputManager : MonoBehaviour
             {
                 bool current = readyByColor.TryGetValue(color, out var v) && v;
                 SetReadyInternal(color, !current);
+                
+                if(!current) SoundManager.PlayFX(7); // Lobby_Ready
+                else SoundManager.PlayFX(6); // Lobby_NotReady
 
                 if (AreAllActivePlayersReady())
                     OnAllPlayersReady();
@@ -272,6 +331,7 @@ public class LobbyInputManager : MonoBehaviour
         {
             lobbyManager.CyclePlayerModel(targetColor);
             SetReadyInternal(targetColor, false);
+            SoundManager.PlayFX(3); // sonido de unión (AddPlayer_Lobby)
             return;
         }
 
@@ -290,6 +350,7 @@ public class LobbyInputManager : MonoBehaviour
             deviceToColor.Remove(device.deviceId);
             PlayerChoices.RemovePlayer(device);
             lobbyManager.RemovePlayer(cur);
+            SoundManager.PlayFX(3); // sonido de unión (AddPlayer_Lobby)
         }
 
         // Si el color destino está libre, me uno
@@ -298,6 +359,7 @@ public class LobbyInputManager : MonoBehaviour
             lobbyManager.AddNewPlayer(targetColor, device);
             deviceToColor[device.deviceId] = targetColor;
             SetReadyInternal(targetColor, false);
+            SoundManager.PlayFX(3); // sonido de unión (AddPlayer_Lobby)
         }
         else
         {
@@ -346,13 +408,64 @@ public class LobbyInputManager : MonoBehaviour
             && v;
     }
 
-
-    // Hook vacío para tu lógica cuando TODOS estén listos
     private void OnAllPlayersReady()
     {
-        // TODO: Aquí lo que debe pasar cuando todos estén listos.
-        // p.ej.: lobbyManager.Continue(); o cargar escena, etc.
         lobbyManager.Continue();
-        //Debug.Log("Todos los jugadores están listos. Continuando...");
     }
+
+    private void AttachTriggerHold(InputActionMap map)
+    {
+        triggerAction = map.FindAction(triggerActionName, throwIfNotFound: false);
+        if (triggerAction == null)
+        {
+            Debug.LogWarning($"No se encontró la acción '{triggerActionName}' en CharacterSelector (gatillo para volver).");
+            return;
+        }
+
+        // Si tu acción ES de tipo Button, estos eventos ayudan; si es Value, el Update (abajo) hará el trabajo.
+        if (triggerAction.type == InputActionType.Button)
+        {
+            triggerStartedHandler = ctx =>
+            {
+                triggerPressStart = Time.realtimeSinceStartupAsDouble;
+                triggerHoldFired = false;
+                if (triggerHoldRoutine != null) StopCoroutine(triggerHoldRoutine);
+                triggerHoldRoutine = StartCoroutine(Co_TriggerHoldWatcher());
+            };
+
+            triggerCanceledHandler = ctx =>
+            {
+                if (triggerHoldRoutine != null) StopCoroutine(triggerHoldRoutine);
+                triggerHoldRoutine = null;
+                triggerPressStart = 0;
+                triggerHoldFired = false;
+            };
+
+            triggerAction.started += triggerStartedHandler;
+            triggerAction.canceled += triggerCanceledHandler;
+        }
+    }
+
+    private IEnumerator Co_TriggerHoldWatcher()
+    {
+        while (triggerAction != null && triggerAction.IsPressed())
+        {
+            var elapsed = Time.realtimeSinceStartupAsDouble - triggerPressStart;
+            if (!triggerHoldFired && elapsed >= triggerHoldToExit)
+            {
+                triggerHoldFired = true;
+
+                // condición: nadie unido
+                if (PlayerChoices.GetNumberOfPlayers() == 0)
+                {
+                    // salir al menú/anterior
+                    lobbyManager.GoBackToPreviousScene();
+                }
+                break;
+            }
+            yield return null;
+        }
+        triggerHoldRoutine = null;
+    }
+
 }

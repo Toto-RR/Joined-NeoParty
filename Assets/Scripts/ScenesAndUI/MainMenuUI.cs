@@ -24,6 +24,11 @@ public class MainMenuUI : MonoBehaviour
 
     private void Start()
     {
+        if (SoundManager.Instance.backgroundMusicSource.clip == null)
+            SoundManager.PlayMusic(0);
+
+        SoundManager.FadeInMusic(1f);
+
         ShowPanelTitulo();
     }
 

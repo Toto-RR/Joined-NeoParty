@@ -373,7 +373,7 @@
                 {
                     "name": "Return",
                     "type": "Button",
-                    "id": "dd364413-7eeb-401b-a604-2d091f4ae575",
+                    "id": "22287849-10bc-41b2-9330-d49fbd81a0e9",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -548,11 +548,33 @@
                 },
                 {
                     "name": "",
-                    "id": "5a4644e0-f435-4c86-a3e8-24ca280ce253",
-                    "path": "",
+                    "id": "81353606-2b94-4138-a0f0-7616b0d3a8d6",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Gamepad",
+                    "action": "Return",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "249bee65-8abc-422e-b5c8-9162db1f0644",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Return",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f1ccfd6b-005d-483c-b006-5ed6b32d3859",
+                    "path": "<HID::Arduino LLC Arduino Leonardo>/button8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
                     "action": "Return",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -886,17 +908,6 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "38108210-05d0-4e46-961a-41f466b040c0",
-                    "path": "<Mouse>/scroll/y",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "03eb3f83-af4f-4a78-86b0-e71c732b7d16",
                     "path": "<HID::Arduino LLC Arduino Leonardo>/rx",
                     "interactions": "",
@@ -916,6 +927,39 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "bc432a8d-4728-4a49-9e34-ff9098a28334",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "467edc5c-5a2d-4c79-ad70-9e62ebab4c85",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "67a4a758-143e-40b2-93b6-9ecda6456155",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

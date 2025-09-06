@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
         PlayerChoices.SetPartyLength(gameLength);
 
         // Guarda la elección del jugador y pasa a la escena del lobby
-        sceneChanger.ApplyTransitionAsync(1, Transitions.Fade);
+        sceneChanger.ApplyTransitionAsync(SceneNames.Lobby, Transitions.Fade);
     }
 
     public void LoadNextMiniGame()
@@ -76,14 +76,14 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            sceneChanger.ApplyTransitionAsync("EndGame", Transitions.Curtain);
+            sceneChanger.ApplyTransitionAsync(SceneNames.EndGame, Transitions.Curtain);
         }
     }
 
     public IEnumerator LoadPostMinigame()
     {
         yield return new WaitForSeconds(1f);
-        sceneChanger.ApplyTransitionAsync("MinigameResult", Transitions.FadeText);
+        sceneChanger.ApplyTransitionAsync(SceneNames.MinigameResult, Transitions.FadeText);
     }
 
     public void MiniGameFinished()

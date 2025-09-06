@@ -28,10 +28,10 @@ public class Minigame_2 : BaseMinigame
         if (DebugMode)
         {
             PlayerChoices.Instance.ResetPlayers();
-            PlayerChoices.AddPlayer(PlayerChoices.PlayerColor.Azul, Keyboard.current);
-            PlayerChoices.AddPlayer(PlayerChoices.PlayerColor.Naranja,
-                Joystick.all.Count > 0 ? Joystick.all[0] : Keyboard.current
-            );
+            PlayerChoices.AddPlayer(PlayerChoices.PlayerColor.Azul, Joystick.all.Count > 0 ? Joystick.all[0] : Keyboard.current);
+            //PlayerChoices.AddPlayer(PlayerChoices.PlayerColor.Naranja,
+            //    Joystick.all.Count > 0 ? Joystick.all[0] : Keyboard.current
+            //);
         }
 
         wallSpawner.Setup(matrixSystem, laserPointer);
@@ -61,6 +61,8 @@ public class Minigame_2 : BaseMinigame
 
     private IEnumerator StartCountdownThenBegin()
     {
+        SoundManager.FadeOutMusic(1f);
+
         if (countdownCanvas != null)
             countdownCanvas.SetActive(true);
 
@@ -75,15 +77,19 @@ public class Minigame_2 : BaseMinigame
         while (countdown > 0)
         {
             countdownText.text = Mathf.Ceil(countdown).ToString();
+            SoundManager.PlayFX(12);
             yield return new WaitForSeconds(1f);
             countdown -= 1f;
         }
 
         countdownText.text = "¡YA!";
+        SoundManager.PlayFX(13);
         yield return new WaitForSeconds(1f);
 
         if (countdownCanvas != null)
             countdownCanvas.SetActive(false);
+
+        SoundManager.PlayMusicWithFade(2);
 
         // Arranca el bucle de juego (oleadas/patrones/dificultad)
         if (wallSpawner.startLoopAutomaticallyAfterCountdown)

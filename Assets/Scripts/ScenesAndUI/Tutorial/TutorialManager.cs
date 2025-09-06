@@ -25,10 +25,18 @@ public class TutorialManager : MonoBehaviour
     private void Start()
     {
         totalPlayers = PlayerChoices.GetNumberOfPlayers();
-        SetupPlayerRows(); // instancia PlayerRow y hace Setup
+        SetupPlayerRows();
 
         splineAnimate.Completed += OnIntroAnimationFinished;
         videoTutorial.playOnAwake = false;
+        if (videoTutorial.isPlaying) videoTutorial.Stop();
+
+        if (splineAnimate != null)
+            StartIntroAnimation();
+        else
+            OnIntroAnimationFinished();
+
+        SoundManager.PlayMusic(5);
     }
 
     private void OnDestroy()
@@ -40,11 +48,15 @@ public class TutorialManager : MonoBehaviour
     protected virtual void StartIntroAnimation()
     {
         if (splineAnimate != null) splineAnimate.Play();
+        TogglePlayerRows(false);
     }
 
     protected virtual void OnIntroAnimationFinished()
     {
-        videoTutorial.Play();
+        if(videoTutorial.isActiveAndEnabled) 
+            videoTutorial.Play();
+
+        TogglePlayerRows(true);
     }
 
     private void SetupPlayerRows()
@@ -57,6 +69,14 @@ public class TutorialManager : MonoBehaviour
             PlayerRow row = rowObj.GetComponent<PlayerRow>();
             row.Setup(player, this); // PlayerRow enlaza su input y nos notificará cambios
             playerRows.Add(row);
+        }
+    }
+
+    private void TogglePlayerRows(bool enable)
+    {
+        foreach (PlayerRow row in playerRows)
+        {
+            row.ToggleMap(enable);
         }
     }
 

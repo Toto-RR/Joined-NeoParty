@@ -79,6 +79,7 @@ public class PlayerController : MonoBehaviour
 
     public void MoverACarril(int index)
     {
+        SoundManager.PlayFX(10); // Sonido de cambio de carril (Dodge)
         animator.SetFloat("Speed", 1f);
         if (index >= 0 && index < carriles.Length && index != currentCarrilIndex && !isChangingLane)
         {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class LobbySlot
@@ -29,6 +30,9 @@ public class LobbyManager : MonoBehaviour
     private void Start()
     {
         PlayerChoices.Instance.ResetPlayers();
+
+        SoundManager.PlayMusic(4);
+        SoundManager.FadeInMusic(1f);
     }
 
     public void AddNewPlayer(string color, InputDevice device)
@@ -78,6 +82,8 @@ public class LobbyManager : MonoBehaviour
         {
             Destroy(spawnedPlayers[color]);
             spawnedPlayers.Remove(color);
+
+            SoundManager.PlayFX(5); // sonido de baja (Hit_or_NotReady)
         }
 
         currentModelIndex.Remove(color);
@@ -92,8 +98,8 @@ public class LobbyManager : MonoBehaviour
             Debug.Log("Venga hombre, siempre es mejor jugar con alguien!");
             return;
         }
-        
-        if(!DebugMode) GameManager.Instance.LoadNextMiniGame();
+
+        if (!DebugMode) GameManager.Instance.LoadNextMiniGame();
         else SceneChanger.Instance.ApplyTransitionAsync(Dbg_SceneToLoad, Transitions.Curtain);
     }
 
@@ -128,6 +134,8 @@ public class LobbyManager : MonoBehaviour
         var go = Instantiate(prefab, slot.spawnPoint.position, slot.spawnPoint.rotation);
         spawnedPlayers[color] = go;
 
+        SoundManager.PlayFX(3); // sonido de unión (AddPlayer_Lobby)
+
         //Debug.Log($"Modelo cambiado para {color} → {index}");
     }
 
@@ -154,4 +162,16 @@ public class LobbyManager : MonoBehaviour
                 return null;
         }
     }
+
+    public void GoBackToPreviousScene()
+    {
+        if (SceneChanger.Instance != null)
+        {
+            SoundManager.FadeOutMusic(1f);
+            SoundManager.ResetMusic();
+            SceneChanger.Instance.ApplyTransitionAsync(SceneNames.MainMenu, Transitions.Fade);
+            return;
+        }
+    }
+
 }

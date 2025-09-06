@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 1523642150299981712}
   - component: {fileID: 8377933095169555960}
   - component: {fileID: 1793859653433771253}
+  - component: {fileID: 5118379312143611231}
   m_Layer: 5
   m_Name: Jugar
   m_TagString: Untagged
@@ -269,3 +270,27 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5118379312143611231}
+        m_TargetAssemblyTypeName: PlayFX, Assembly-CSharp
+        m_MethodName: PlayFx
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5118379312143611231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7937192142412041528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27bcfc1147bc72f42842a43f51105625, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

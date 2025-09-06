@@ -46,7 +46,7 @@ public class PlayerRow : MonoBehaviour
 
         readyAction.performed += OnReadyPerformed;
 
-        if (!map.enabled) map.Enable();
+        //if (!map.enabled) map.Enable();
     }
 
     private void OnReadyPerformed(InputAction.CallbackContext ctx)
@@ -85,5 +85,11 @@ public class PlayerRow : MonoBehaviour
     {
         if (readyAction != null) readyAction.performed -= OnReadyPerformed;
         if (tutorialManager != null) tutorialManager.UnregisterRow(this);
+    }
+
+    public void ToggleMap(bool enable)
+    {
+        if (enable) map.Enable();
+        else map.Disable();
     }
 }

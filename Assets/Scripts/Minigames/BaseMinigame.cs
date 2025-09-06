@@ -18,14 +18,11 @@ public class BaseMinigame : MonoBehaviour
     public GameObject countdownCanvas;
     public TextMeshProUGUI countdownText;
 
-    // Player scores
     public Dictionary<PlayerChoices.PlayerColor, int> playerScores = new();
 
     public int totalJugadores;
     private int jugadoresTerminados = 0;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public virtual void Start()
     {
         tutorialPanel.SetActive(true);
@@ -54,6 +51,9 @@ public class BaseMinigame : MonoBehaviour
     public virtual void EndMinigame() 
     {
         Debug.Log("Minigame ended");
+
+        SoundManager.PlayFX(11);
+
         var scores = GetScores();
 
         PlayerChoices.PlayerColor ganador = PlayerChoices.PlayerColor.Azul;

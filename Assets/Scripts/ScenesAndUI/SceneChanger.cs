@@ -6,12 +6,14 @@ using UnityEngine.SceneManagement;
 
 public enum SceneNames
 {
+    PreTitle,
     MainMenu,
     Lobby,
     GameScene_1,
+    GameScene_2,
+    GameScene_3,
     MinigameResult,
     EndGame,
-    Settings,
     Credits
 }
 
@@ -117,6 +119,8 @@ public class SceneChanger : MonoBehaviour
 
     private IEnumerator TransitionAndLoadAsyncInternal(Func<AsyncOperation> loadOpFactory, Transitions transition)
     {
+        SoundManager.FadeOutMusic(1f, stopAfter: false);
+
         var controller = GetControllerByName(transition.ToString());
         if (transition == Transitions.None || animator == null || controller == null)
         {

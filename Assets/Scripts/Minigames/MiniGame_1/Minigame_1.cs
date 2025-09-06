@@ -25,7 +25,7 @@ public class Minigame_1 : BaseMinigame
         {
             PlayerChoices.Instance.ResetPlayers();
             PlayerChoices.AddPlayer(PlayerChoices.PlayerColor.Azul, Keyboard.current);
-            PlayerChoices.AddPlayer(PlayerChoices.PlayerColor.Naranja, Joystick.all.Count > 0 ? Joystick.all[0] : Keyboard.current);
+            PlayerChoices.AddPlayer(PlayerChoices.PlayerColor.Naranja, Gamepad.all.Count > 0 ? Gamepad.all[0] : Keyboard.current);
         }
         Instance = this;
     }
@@ -72,6 +72,8 @@ public class Minigame_1 : BaseMinigame
 
     private IEnumerator StartCountdownThenBegin()
     {
+        SoundManager.FadeOutMusic(1f);
+
         if (countdownCanvas != null)
             countdownCanvas.SetActive(true);
 
@@ -79,11 +81,13 @@ public class Minigame_1 : BaseMinigame
         while (countdown > 0)
         {
             countdownText.text = Mathf.Ceil(countdown).ToString();
+            SoundManager.PlayFX(12);
             yield return new WaitForSeconds(1f);
             countdown -= 1f;
         }
 
         countdownText.text = "¡YA!";
+        SoundManager.PlayFX(13);
         yield return new WaitForSeconds(1f);
 
         if (countdownCanvas != null)
@@ -95,6 +99,8 @@ public class Minigame_1 : BaseMinigame
             if (spawner != null)
                 spawner.enabled = true;
         }
+
+        SoundManager.PlayMusicWithFade(1);
 
         foreach (var player in playersSpawner.GetPlayers())
         {
