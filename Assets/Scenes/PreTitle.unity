@@ -421,14 +421,14 @@ MonoBehaviour:
   m_text: CYBERGAMES
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 10b858791e46bed4886e2e959abd9969, type: 2}
-  m_sharedMaterial: {fileID: -4905037181412035478, guid: 10b858791e46bed4886e2e959abd9969, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 29effda78b8739341bd0492d77268e81, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4294966193
+  m_fontColor: {r: 0.6933962, g: 0.9854459, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1411,10 +1411,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Joined!
+  m_text: '<color=#000000>Joined</color><color=#FF0000>!</color>
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 10b858791e46bed4886e2e959abd9969, type: 2}
-  m_sharedMaterial: {fileID: -4905037181412035478, guid: 10b858791e46bed4886e2e959abd9969, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 9d20acb30e15f3f4dba888958fa935d8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1670,6 +1672,7 @@ GameObject:
   - component: {fileID: 2046284890}
   - component: {fileID: 2046284892}
   - component: {fileID: 2046284891}
+  - component: {fileID: 2046284893}
   m_Layer: 5
   m_Name: Text (TMP) (2)
   m_TagString: Untagged
@@ -1693,8 +1696,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -312}
-  m_SizeDelta: {x: 0, y: -1319.1078}
+  m_AnchoredPosition: {x: 0, y: -241}
+  m_SizeDelta: {x: 0, y: -862.2062}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2046284891
 MonoBehaviour:
@@ -1716,7 +1719,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Pulsa cualquier bot\xF3n"
+  m_text: Pulsa el gatillo
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 10b858791e46bed4886e2e959abd9969, type: 2}
   m_sharedMaterial: {fileID: -4905037181412035478, guid: 10b858791e46bed4886e2e959abd9969, type: 2}
@@ -1743,8 +1746,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56.5
-  m_fontSizeBase: 56.5
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1795,6 +1798,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2046284889}
   m_CullTransparentMesh: 1
+--- !u!95 &2046284893
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046284889}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 748d969f8be7a5a4bb051edcf38705ed, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &2147084607
 PrefabInstance:
   m_ObjectHideFlags: 0

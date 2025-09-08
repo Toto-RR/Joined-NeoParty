@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680397b0a81703b40ad39fa9e0caf4bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 50
   despawnZ: 80
   colorsMode: 0
   gateColor: 0

@@ -8,13 +8,23 @@ public class PreTitle : MonoBehaviour
     [SerializeField] private InputActionAsset inputActions;
     private InputActionMap action;
 
+    public bool credits = false;
+
     private void Start()
     {
-        SoundManager.SetMusicVolume(0.5f); // Asegura que el volumen es el correcto
-        SoundManager.SetFxVolume(0.5f); // Asegura que el volumen es el correcto
-        SoundManager.PlayMusic(0);
+        if (!credits)
+        {
+            SoundManager.SetMusicVolume(0.5f); // Asegura que el volumen es el correcto
+            SoundManager.SetFxVolume(0.5f); // Asegura que el volumen es el correcto
+            SoundManager.PlayMusic(0);
+        }
+        else
+        {
+            SoundManager.PlayMusic(11);
+            SoundManager.FadeInMusic(1f);
+        }
 
-        action = inputActions.FindActionMap("Tutorial", throwIfNotFound: true);
+            action = inputActions.FindActionMap("Tutorial", throwIfNotFound: true);
         action.Enable();
 
         action.FindAction("Ready", throwIfNotFound: true).performed += OnReadyPerformed;

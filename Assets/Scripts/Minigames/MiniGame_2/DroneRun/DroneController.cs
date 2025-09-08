@@ -5,8 +5,8 @@ using UnityEngine.InputSystem;
 public class DroneController : MonoBehaviour
 {
     [Header("Movimiento (plano XY)")]
-    public float maxSpeed = 12f;         // u/s
-    public float acceleration = 40f;     // u/s^2
+    public float maxSpeed = 12f;         
+    public float acceleration = 40f;     
     public float linearDrag = 10f;       // freno pasivo
 
     [Header("Límites rectangulares (mundo)")]
@@ -17,7 +17,7 @@ public class DroneController : MonoBehaviour
 
     [Header("Rotacion visual (tilt)")]
     public Transform visual;             // hijo grafico opcional
-    public float maxTiltDeg = 15f;       // inclinaci�n visual
+    public float maxTiltDeg = 15f;       // inclinacion visual
     public float tiltSmooth = 10f;
 
     private int score = 100;
@@ -29,6 +29,7 @@ public class DroneController : MonoBehaviour
     private string schema;
     private PlayerChoices.PlayerColor playerColor;
 
+    private AudioSource audioSource;
     private Rigidbody rb;
 
     public PlayerChoices.PlayerColor pColor => playerColor;
@@ -59,8 +60,8 @@ public class DroneController : MonoBehaviour
         boundsCenter = centerPos;
         useWorldBounds = true;
 
-        Debug.Log("CENTER POS:" + boundsCenter + " EXTENTS: " + boundsHalfExtents);
-        Debug.Log("POSITION: " + transform.position);
+        audioSource = GetComponentInChildren<AudioSource>();
+        //audioSource.Play();
     }
 
     public void SetBounds(Vector2 centerPos, Vector2 halfextents)
@@ -174,6 +175,7 @@ public class DroneController : MonoBehaviour
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Finish"))
         {
+            audioSource.Stop();
             Minigame_2.Instance.PlayerFinished(pColor, score);
         }
     }
@@ -186,6 +188,7 @@ public class DroneController : MonoBehaviour
     void Penalize(string reason)
     {
         Debug.Log("Penalty: " + reason);
+        SoundManager.PlayFX(4); // Hit_3
         droneRenderer.material.color = Color.red;
         Invoke(nameof(ResetColor), 0.5f);
         score--;

@@ -17,7 +17,7 @@ public class Curve : MonoBehaviour
 
     [Header("Penalización")]
     [Tooltip("Cuánto baja por segundo el SpeedMultiplier del CarController")]
-    public float decelMultiplierPerSec = 150f;
+    public float decelMultiplierPerSec = 250f;
     [Tooltip("Velocidad de giro MÁX del modelo durante penalización (grados/seg)")]
     public float spinSpeed = 360f;
     [Tooltip("Umbral de velocidad para considerar que MaxSpeed ya es 0")]
@@ -77,6 +77,11 @@ public class Curve : MonoBehaviour
             inPenalty = false,
             spinVel = 0f // NUEVO
         };
+
+        if (cars.TryGetValue(carRoot, out var d) && d.controller)
+        {
+            d.controller.SetDrifting(true);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -93,6 +98,10 @@ public class Curve : MonoBehaviour
             d.model.localRotation = d.baseLocalRot;
             d.inPenalty = false;
             d.spinVel = 0f; // NUEVO
+
+            if (d.controller)
+                d.controller.SetDrifting(false);
+
             cars.Remove(carRoot);
         }
     }
@@ -125,11 +134,9 @@ public class Curve : MonoBehaviour
                     d.model.localRotation = Quaternion.Euler(0f, targetYaw, 0f);
                 }
 
-                // Entrar en penalización si excede el límite
                 if (currentSpeed > speedLimit)
                 {
                     d.inPenalty = true;
-                    // Inicializa spin a tope (opcional)
                     d.spinVel = spinSpeed;
                 }
             }
@@ -140,9 +147,16 @@ public class Curve : MonoBehaviour
                 float ratio = (d.baseMultiplier > 0f) ? Mathf.Clamp01(d.controller.SpeedMultiplier / d.baseMultiplier) : 0f;
                 d.spinVel = spinSpeed * ratio;
 
-                // Aplicar rotación acumulada este frame
+                // Dentro del bloque de penalización (else { ... }) en Update()
+                float dirSign = (direction == CurveDirection.Left) ? -1f : 1f;
+
+                // El giro escala con el ratio y respeta la dirección de la curva
+                d.spinVel = spinSpeed * ratio;
+
+                // Aplicar rotación acumulada este frame usando el signo de la curva
                 if (d.spinVel > 0f)
-                    d.model.Rotate(0f, d.spinVel * Time.deltaTime, 0f, Space.Self);
+                    d.model.Rotate(0f, dirSign * d.spinVel * Time.deltaTime, 0f, Space.Self);
+
 
                 // Alinear suavemente hacia la rotación base cuando el spin ya es muy bajo
                 if (d.spinVel <= spinStopEpsilon)

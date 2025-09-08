@@ -66,7 +66,7 @@ public class LaserWall : MonoBehaviour, ILaserWall
 
         // El center/size que quieres en MUNDO, pásalo a espacio LOCAL del hijo dividiendo por la escala acumulada del padre
         bc.center = Vector3.Scale(new Vector3(center.x, center.y, 0f), inv);
-        bc.size = Vector3.Scale(new Vector3(size.x, size.y, 1f), inv);
+        bc.size = Vector3.Scale(new Vector3(size.x, size.y, 7f), inv);
     }
 
     void Update()

@@ -4,8 +4,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using static PlayerChoices;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class CrosshairSpawner : MonoBehaviour
 {

@@ -162,7 +162,7 @@ public class MatrixHoleSystem : MonoBehaviour
 
                         // Ajusta la safe zone a TODO el tamaño del hueco
                         bc.center = Vector3.zero;
-                        bc.size = new(1, 1, 1);
+                        bc.size = new(1, 1, 5);
                     }
                 }
 

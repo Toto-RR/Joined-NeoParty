@@ -26,18 +26,12 @@ public class VolumeBar : MonoBehaviour, IMenuActionsProvider
     [Range(0f, 1f)][SerializeField] private float filledAlpha = 1f;
     [Range(0f, 1f)][SerializeField] private float emptyAlpha = 0.15f;
 
-    [Header("Valor inicial (0..1)")]
-    [Range(0f, 1f)][SerializeField] private float startValue01 = 0.5f;
-
     [Header("Paso por pulsación (0..1)")]
     [Range(0.01f, 1f)][SerializeField] private float step = 0.1f; // 10%
 
     public enum VolumeChannel { Music, SFX }
     [Header("Canal que controla")]
     [SerializeField] private VolumeChannel channel = VolumeChannel.Music;
-
-    [Tooltip("Rango de dB mapeado desde 0..1 (silencio..máximo). Normal: -80 a 0 dB.")]
-    [SerializeField] private Vector2 dBRange = new Vector2(-80f, 0f);
 
     [Header("Interacción (modo volumen)")]
     [Tooltip("Botón (puede ser invisible) que activa el modo volumen para esta barra.")]
@@ -105,9 +99,6 @@ public class VolumeBar : MonoBehaviour, IMenuActionsProvider
     {
         // Guardar escala base del label
         if (label != null) labelBaseScale = label.rectTransform.localScale;
-
-        // Valor inicial (solo UI; si luego leemos del Mixer, lo sobrescribe)
-        Value01 = startValue01;
 
         if (enterButton != null)
         {

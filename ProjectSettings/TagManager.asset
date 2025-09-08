@@ -10,6 +10,8 @@ TagManager:
   - Destroyer
   - Enemy
   - Gate
+  - Spawn
+  - PodiumLight
   layers:
   - Default
   - TransparentFX
@@ -27,10 +29,10 @@ TagManager:
   - SeeThrough
   - SafeZone
   - Finish
-  - 
-  - 
-  - 
-  - 
+  - Player1
+  - Player2
+  - Player3
+  - Player4
   - 
   - 
   - 

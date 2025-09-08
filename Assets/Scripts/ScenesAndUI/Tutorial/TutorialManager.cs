@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Splines;
 using UnityEngine.Video;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour

@@ -20,6 +20,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4c074f382950cb740b6ff6edd31e84f8, type: 3}
   - {fileID: 8300000, guid: 7343be28f1ee29b4481623cf96f79c86, type: 3}
   - {fileID: 8300000, guid: 47953bfc176a1064cb0d265ce2c1b5d1, type: 3}
+  - {fileID: 8300000, guid: 69559fde98df17446a9a1e1028b76e1f, type: 3}
+  - {fileID: 8300000, guid: 7696fe83b9bc9694b8eb54ba5664839f, type: 3}
+  - {fileID: 8300000, guid: 05e6f73a7366c1c449524c92fb5f591e, type: 3}
+  - {fileID: 8300000, guid: 206f47e7ae9d4cb4da26344891a3b3e3, type: 3}
+  - {fileID: 8300000, guid: eaa347b5d14c0b54a8e531d7e3757f56, type: 3}
   fxSounds:
   - {fileID: 8300000, guid: f13a0c7e5d8622d468feb51b2a343b86, type: 3}
   - {fileID: 8300000, guid: 175e359d79448fa4e83e2f81533f4d73, type: 3}

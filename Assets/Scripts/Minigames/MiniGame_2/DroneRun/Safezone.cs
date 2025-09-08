@@ -56,7 +56,8 @@ public class SafeZone : MonoBehaviour
         if (!LayerMatches(other.gameObject)) return;
         if (obstacleColliders == null || obstacleColliders.Length == 0) return;
 
-        var actorColliders = other.GetComponentsInParent<Collider>(true);
+        var root = other.attachedRigidbody ? other.attachedRigidbody.gameObject : other.transform.root.gameObject;
+        var actorColliders = root.GetComponentsInChildren<Collider>(true);
         foreach (var ac in actorColliders)
         {
             if (!ac || ac.isTrigger) continue;

@@ -57,24 +57,25 @@ public class PlayersSpawner : MonoBehaviour
                     controller.playerColor = activePlayers[i].Color;
                     controller.AsignarCarriles(carrilesAsignados, LaneByColor(activePlayers[i].Color));
 
+                    int idx = i; // 0..N-1
+                    string myPlayerLayer = PlayerLayerName(idx);
+
+                    // 1) pinta TODO el jugador en su capa
+                    SetLayerRecursively(playerInput.gameObject, L(myPlayerLayer));
+
+                    // 2) configura su cámara para ver SOLO entorno + su capa de jugador
                     Camera playerCam = playerInput.GetComponentInChildren<Camera>();
                     if (playerCam != null)
                     {
-                        playerCam.enabled = false; // NO activarla todavía
+                        // incluye tus capas de entorno (ej.: "Default", "Environment", "Obstacles")
+                        playerCam.cullingMask = M("Default", "Environment", "Obstacles", myPlayerLayer);
+
+                        // lo que ya hacías:
+                        playerCam.enabled = false;
                         float width = 1f / playerCount;
                         playerCam.rect = new Rect(i * width, 0f, width, 1f);
                     }
                     else Debug.LogWarning("No se encontró la cámara en el prefab del jugador.");
-
-                    var hud = playerInput.GetComponentInChildren<PlayerScreenHUD>();
-                    if (hud != null)
-                    {
-                        hud.SetPlayer(controller);
-
-                        var canvas = hud.GetComponent<Canvas>();
-                        if (canvas != null)
-                            canvas.worldCamera = playerCam;
-                    }
 
                     playerCameras.Add(playerCam);
                     players.Add(controller);
@@ -218,4 +219,20 @@ public class PlayersSpawner : MonoBehaviour
         // Devuelve el jugador configurado
         return basePlayer;
     }
+
+    static int L(string name) => LayerMask.NameToLayer(name);
+    static int M(params string[] layers) => LayerMask.GetMask(layers);
+
+    static void SetLayerRecursively(GameObject go, int layer)
+    {
+        var t = go.transform;
+        void SetRec(Transform tr)
+        {
+            tr.gameObject.layer = layer;
+            for (int i = 0; i < tr.childCount; i++) SetRec(tr.GetChild(i));
+        }
+        SetRec(t);
+    }
+
+    static string PlayerLayerName(int idx) => $"Player{idx + 1}"; // 0->Player1, etc.
 }

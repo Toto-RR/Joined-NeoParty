@@ -20,7 +20,7 @@ public class Minigame_3 : BaseMinigame
         {
             PlayerChoices.Instance.ResetPlayers();
             PlayerChoices.AddPlayer(PlayerChoices.PlayerColor.Azul, Gamepad.all.Count > 0 ? Gamepad.all[0] : Keyboard.current);
-            //PlayerChoices.AddPlayer(PlayerChoices.PlayerColor.Verde, Keyboard.current);
+            PlayerChoices.AddPlayer(PlayerChoices.PlayerColor.Verde, Keyboard.current);
             //PlayerChoices.AddPlayer(PlayerChoices.PlayerColor.Amarillo, Gamepad.all.Count > 0 ? Gamepad.all[1] : Keyboard.current);
             //PlayerChoices.AddPlayer(
             //    PlayerChoices.PlayerColor.Naranja,

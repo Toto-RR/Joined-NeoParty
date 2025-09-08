@@ -123,6 +123,7 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Obstacle"))
         {
             Debug.Log("¡Colisión detectada con obstáculo!");
+            SoundManager.PlayFX(4); // Hit_3
             playerRenderer.material.color = hitColor;
             Invoke(nameof(ResetColor), 0.5f);
             points--;

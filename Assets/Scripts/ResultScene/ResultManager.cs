@@ -115,18 +115,26 @@ public class ResultManager : MonoBehaviour
     private void ShowContinuePrompt()
     {
         if (continuePrompt != null)
-        {
             continuePrompt.enabled = true;
-        }
-        else
-        {
+        else 
             Debug.LogWarning("continuePrompt no asignado en el inspector.");
-        }
+
+        SoundManager.FadeOutMusic(2f);
     }
 
     public int GetRandomNumber()
     {
         int rNumber = Random.Range(1, 5);
+
+        switch (rNumber)
+        {
+            case 1: SoundManager.PlayMusic(9); break;  // Macarena
+            case 2: SoundManager.PlayMusic(8); break;  // Gangnam Style
+            case 3: SoundManager.PlayMusic(10); break; // Pajaritos
+            case 4: SoundManager.PlayMusic(7); break;  // fallback
+        }
+
+        SoundManager.FadeInMusic(1f);
         Debug.Log($"Random number generated for celebration: {rNumber}");
         return rNumber;
     }

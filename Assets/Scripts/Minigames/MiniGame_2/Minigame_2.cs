@@ -28,7 +28,7 @@ public class Minigame_2 : BaseMinigame
         if (DebugMode)
         {
             PlayerChoices.Instance.ResetPlayers();
-            PlayerChoices.AddPlayer(PlayerChoices.PlayerColor.Azul, Joystick.all.Count > 0 ? Joystick.all[0] : Keyboard.current);
+            PlayerChoices.AddPlayer(PlayerChoices.PlayerColor.Azul, Gamepad.all.Count > 0 ? Gamepad.all[0] : Keyboard.current);
             //PlayerChoices.AddPlayer(PlayerChoices.PlayerColor.Naranja,
             //    Joystick.all.Count > 0 ? Joystick.all[0] : Keyboard.current
             //);

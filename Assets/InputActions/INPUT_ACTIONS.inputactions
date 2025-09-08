@@ -10,7 +10,7 @@
                     "type": "Value",
                     "id": "a9afca5e-a5db-477a-baaf-3bdc081d43c6",
                     "expectedControlType": "Vector2",
-                    "processors": "",
+                    "processors": "DeltaTimeScale",
                     "interactions": "",
                     "initialStateCheck": true
                 }
@@ -930,8 +930,8 @@
                 },
                 {
                     "name": "1D Axis",
-                    "id": "bc432a8d-4728-4a49-9e34-ff9098a28334",
-                    "path": "1DAxis",
+                    "id": "95b7209e-2ec9-462b-8765-f91f7d726333",
+                    "path": "1DAxis(whichSideWins=2)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -941,7 +941,7 @@
                 },
                 {
                     "name": "negative",
-                    "id": "467edc5c-5a2d-4c79-ad70-9e62ebab4c85",
+                    "id": "1df426bf-8608-4d2f-93a0-e9061705257d",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
@@ -952,7 +952,7 @@
                 },
                 {
                     "name": "positive",
-                    "id": "67a4a758-143e-40b2-93b6-9ecda6456155",
+                    "id": "d7db1ee2-3557-4ac0-b73e-9e2b3033db9e",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
@@ -960,6 +960,17 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "840f591d-08f0-40af-b593-7ffe04b46453",
+                    "path": "<Keyboard>/space",
+                    "interactions": "Press(pressPoint=2,behavior=2)",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

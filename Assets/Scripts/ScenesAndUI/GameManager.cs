@@ -3,9 +3,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.Linq;
 using System.Collections;
-using UnityEditor.SearchService;
-using UnityEditor.Build.Reporting;
-
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -72,7 +69,7 @@ public class GameManager : MonoBehaviour
     {
         if (currentMiniGameIndex < poolMinigames.Count)
         {
-            sceneChanger.ApplyTransitionAsync(poolMinigames[currentMiniGameIndex], Transitions.Fade);
+            sceneChanger.ApplyTransitionAsync(poolMinigames[currentMiniGameIndex], Transitions.Curtain);
         }
         else
         {

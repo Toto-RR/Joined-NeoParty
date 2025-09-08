@@ -2872,7 +2872,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &311000091
 Transform:
   m_ObjectHideFlags: 0
@@ -11232,7 +11232,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1392223772
 Transform:
   m_ObjectHideFlags: 0
@@ -15050,7 +15050,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1956856680
 Transform:
   m_ObjectHideFlags: 0
@@ -16042,7 +16042,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2075631731
 Transform:
   m_ObjectHideFlags: 0
@@ -18894,16 +18894,16 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7392442104116203943}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: dc1fe765c7dfb6644aa42071235ea450, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: c3b5f730a7c1ee946b70c9f3f34968b7, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 8400000, guid: 73c5de19795ddb44083a3eb993dbcb0d, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: e6cd436ef40a56640a8530147b3fd5fd, type: 2}
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 2
-  m_AspectRatio: 3
+  m_AspectRatio: 4
   m_DataSource: 0
   m_TimeUpdateMode: 1
   m_PlaybackSpeed: 1
@@ -19475,8 +19475,28 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8976808204512426394, guid: 5b0d768515f7e5646b5077d57ad0c13b, type: 3}
+      propertyPath: useChess
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8976808204512426394, guid: 5b0d768515f7e5646b5077d57ad0c13b, type: 3}
+      propertyPath: useCross
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8976808204512426394, guid: 5b0d768515f7e5646b5077d57ad0c13b, type: 3}
       propertyPath: gameDuration
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8976808204512426394, guid: 5b0d768515f7e5646b5077d57ad0c13b, type: 3}
+      propertyPath: useSweepCols
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8976808204512426394, guid: 5b0d768515f7e5646b5077d57ad0c13b, type: 3}
+      propertyPath: useSweepRows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8976808204512426394, guid: 5b0d768515f7e5646b5077d57ad0c13b, type: 3}
+      propertyPath: useFixedSequence
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -27701,7 +27721,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 8400000, guid: 73c5de19795ddb44083a3eb993dbcb0d, type: 2}
+  m_Texture: {fileID: 8400000, guid: e6cd436ef40a56640a8530147b3fd5fd, type: 2}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -35403,8 +35423,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -436.41913, y: -1036.5}
-  m_SizeDelta: {x: -1396.93, y: 183.61}
+  m_AnchoredPosition: {x: -439.23993, y: -1036.5}
+  m_SizeDelta: {x: -1434.2, y: 183.61}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!64 &5607222857335293619
 MeshCollider:
@@ -35650,8 +35670,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.063, y: -0.030548}
-  m_SizeDelta: {x: 708.237, y: 622.3}
+  m_AnchoredPosition: {x: -0.063, y: -0.85698}
+  m_SizeDelta: {x: 708.237, y: 515.71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!64 &5687444954864367489
 MeshCollider:
@@ -36914,7 +36934,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Apunta con el mando y dispara con el gatillo
+  m_text: mueve el mando para evitar las paredes de otros colores
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e0db8bf42b58354c9726ec9939191c3, type: 2}
   m_sharedMaterial: {fileID: 8762702295802365582, guid: 2e0db8bf42b58354c9726ec9939191c3, type: 2}
@@ -36941,12 +36961,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 39.1
+  m_fontSize: 47
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 39.1
+  m_fontSizeMax: 47
   m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512

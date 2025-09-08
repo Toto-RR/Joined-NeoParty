@@ -24,6 +24,7 @@ public enum Transitions
     FadeText,
     TV,
     Curtain,
+    FadeToCredits,
     None
 }
 
@@ -41,8 +42,10 @@ public class SceneChanger : MonoBehaviour
     public string playTrigger = "Transition";
     public string resetTrigger = "Reset";
 
-    [Header("Tiempo de transición (en segundos)")]
-    public float transitionTime = 1f;
+    [Header("Hold entre close y open")]
+    [Tooltip("Tiempo (en segundos, tiempo real) que se mantiene la transición cerrada antes de abrir.")]
+    public float holdClosedSeconds = 0f;
+
 
     // cache para búsquedas rápidas
     private Dictionary<string, RuntimeAnimatorController> nameToController;
@@ -96,28 +99,40 @@ public class SceneChanger : MonoBehaviour
     public void ChangeSceneByEnum(SceneNames sceneIndex) => SceneManager.LoadScene((int)sceneIndex);
 
     // --- Transiciones ---
-    public void ApplyTransitionAsync(int scene, Transitions transition)
+    public void ApplyTransitionAsync(int scene)
     {
         StartCoroutine(TransitionAndLoadAsyncInternal(
             () => UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(scene),
-            transition));
+            Transitions.Fade,
+            null));
     }
 
-    public void ApplyTransitionAsync(SceneNames scene, Transitions transition)
+    public void ApplyTransitionAsync(int scene, Transitions transition, float? holdSeconds = null)
+    {
+        StartCoroutine(TransitionAndLoadAsyncInternal(
+            () => UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(scene),
+            transition,
+            holdSeconds));
+    }
+
+    public void ApplyTransitionAsync(SceneNames scene, Transitions transition, float? holdSeconds = null)
     {
         StartCoroutine(TransitionAndLoadAsyncInternal(
             () => UnityEngine.SceneManagement.SceneManager.LoadSceneAsync((int)scene),
-            transition));
+            transition,
+            holdSeconds));
     }
 
-    public void ApplyTransitionAsync(string sceneName, Transitions transition)
+    public void ApplyTransitionAsync(string sceneName, Transitions transition, float? holdSeconds = null)
     {
         StartCoroutine(TransitionAndLoadAsyncInternal(
             () => UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName),
-            transition));
+            transition,
+            holdSeconds));
     }
 
-    private IEnumerator TransitionAndLoadAsyncInternal(Func<AsyncOperation> loadOpFactory, Transitions transition)
+
+    private IEnumerator TransitionAndLoadAsyncInternal(Func<AsyncOperation> loadOpFactory, Transitions transition, float? holdSecondsOpt = null)
     {
         SoundManager.FadeOutMusic(1f, stopAfter: false);
 
@@ -135,15 +150,23 @@ public class SceneChanger : MonoBehaviour
         animator.Update(0f);
 
         animator.ResetTrigger(resetTrigger);
-        animator.SetTrigger(playTrigger);
+        animator.SetTrigger(playTrigger); // CLOSE
 
+        // Esperar a que termine la animación de CLOSE
         yield return new WaitUntil(() => HasFinished(animator, 0));
 
+        // Empezamos a cargar la escena en segundo plano con la pantalla ya cerrada
         var op = loadOpFactory();
         op.allowSceneActivation = false;
 
+        // Esperar a que la carga llegue al 90% (listo para activar)
         yield return new WaitUntil(() => op.progress >= 0.9f);
 
+        // Mantener cerrado el tiempo deseado (tiempo real)
+        float hold = holdSecondsOpt ?? holdClosedSeconds;
+        if (hold > 0f) yield return new WaitForSecondsRealtime(hold);
+
+        // Activar la escena (ya con todo listo detrás del “telón”)
         bool sceneLoaded = false;
         void OnLoaded(UnityEngine.SceneManagement.Scene s, UnityEngine.SceneManagement.LoadSceneMode m) => sceneLoaded = true;
         UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnLoaded;
@@ -152,13 +175,16 @@ public class SceneChanger : MonoBehaviour
         yield return new WaitUntil(() => sceneLoaded);
         UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnLoaded;
 
+        // Dar un par de frames para que la escena inicialice bien
         yield return null;
         yield return new WaitForEndOfFrame();
         yield return null;
 
+        // Trigger de OPEN
         if (!string.IsNullOrEmpty(resetTrigger))
             animator.SetTrigger(resetTrigger);
 
+        // Esperar a que termine la animación de OPEN
         yield return new WaitUntil(() => HasFinished(animator, 0));
     }
 
