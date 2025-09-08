@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 125544cbb97615848a5d285350b798fd
+timeCreated: 1521081596
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 115950
+  packageName: POLYGON Sci-Fi City - Low Poly 3D Art by Synty
+  packageVersion: 1.2.4
+  assetPath: Assets/PolygonSciFiCity/Materials/Misc/FX_Lighting.mat
+  uploadId: 756032

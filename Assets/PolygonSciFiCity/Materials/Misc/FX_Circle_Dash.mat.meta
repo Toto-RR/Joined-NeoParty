@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: a5750075394180d41a3764bb7769474d
+timeCreated: 1521081596
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 115950
+  packageName: POLYGON Sci-Fi City - Low Poly 3D Art by Synty
+  packageVersion: 1.2.4
+  assetPath: Assets/PolygonSciFiCity/Materials/Misc/FX_Circle_Dash.mat
+  uploadId: 756032

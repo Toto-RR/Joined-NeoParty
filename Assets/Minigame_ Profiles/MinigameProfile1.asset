@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44e0a61dba8de514f8a7e227cbc1c57e, type: 3}
+  m_Name: MinigameProfile1
+  m_EditorClassIdentifier: 
+  minigameId: Edgerunners
+  minigameRootPrefab: {fileID: 0}
+  inputActions: {fileID: -944628639613478452, guid: 449946c93b7ba86469c8cbbf769ba9ea, type: 3}
+  defaultActionMap: PlayerRunner
+  defaultPlayerPrefabOverride: {fileID: 0}
+  playerAddonPrefab: {fileID: 222226333087735212, guid: e928438cf9c2d5c4fbbf77a72c7601ef, type: 3}
+  skinOverrides: []

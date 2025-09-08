@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Curtain
+  m_Controller: {fileID: 9100000, guid: 185a1be424ef3274c91d4c027839aafd, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 0bff5ae7025188743b4283fe0153bf96, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c0c0b7989faa6fa4cabb3de84f1dc46b, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 7a4f90ee4665b22458d0184dcc0ca979, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e5a8a6e2028a6c7448581e48ae886e88, type: 2}

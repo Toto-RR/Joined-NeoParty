@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: d167ef288d96bb84ca9743bf908f53cf
+timeCreated: 1517344945
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 115950
+  packageName: POLYGON Sci-Fi City - Low Poly 3D Art by Synty
+  packageVersion: 1.2.4
+  assetPath: Assets/PolygonSciFiCity/Materials/Misc/FX_Blank.mat
+  uploadId: 756032

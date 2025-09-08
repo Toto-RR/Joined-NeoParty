@@ -2,29 +2,37 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
-  tags: []
+  serializedVersion: 3
+  tags:
+  - Ground
+  - Obstacle
+  - PlayerInputTemp
+  - Destroyer
+  - Enemy
+  - Gate
+  - Spawn
+  - PodiumLight
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - IgnorePlayerCollision
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Obstacle
+  - carLayer
+  - EnemiesLayer
+  - Bounds
+  - Wall
+  - Mask
+  - SeeThrough
+  - SafeZone
+  - Finish
+  - Player1
+  - Player2
+  - Player3
+  - Player4
   - 
   - 
   - 
@@ -50,27 +58,3 @@ TagManager:
   - Light Layer 5
   - Light Layer 6
   - Light Layer 7
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: b7c0ed658dd810b449b09808a6339f3c
+timeCreated: 1522727742
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 115950
+  packageName: POLYGON Sci-Fi City - Low Poly 3D Art by Synty
+  packageVersion: 1.2.4
+  assetPath: Assets/PolygonSciFiCity/Materials/PolygonSciFi_Billboards.mat
+  uploadId: 756032

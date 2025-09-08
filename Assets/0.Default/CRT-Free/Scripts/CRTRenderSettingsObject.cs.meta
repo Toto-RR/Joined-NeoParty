@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: e978e7f1e72848778c9d3ac8aa665195
+timeCreated: 1677515114
+AssetOrigin:
+  serializedVersion: 1
+  productId: 248066
+  packageName: CRT-Free
+  packageVersion: 1.1
+  assetPath: Assets/CRT-Free/Scripts/CRTRenderSettingsObject.cs
+  uploadId: 581284

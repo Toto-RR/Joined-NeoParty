@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 30f312d9f3f24cdb944c1453a1accefb
+timeCreated: 1677451403
+AssetOrigin:
+  serializedVersion: 1
+  productId: 248066
+  packageName: CRT-Free
+  packageVersion: 1.1
+  assetPath: Assets/CRT-Free/Scripts/CRTDataObject.cs
+  uploadId: 581284
