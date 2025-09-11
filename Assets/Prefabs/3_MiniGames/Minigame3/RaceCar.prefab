@@ -319,6 +319,7 @@ MonoBehaviour:
   light: {fileID: 7155962795862001564}
   particleSystem: {fileID: 6453618828660790792}
   DebugMode: 0
+  vueltasTotales: 5
   engineSource: {fileID: 3691754564413911014}
   engineLoop: {fileID: 8300000, guid: 75982354043382f43940d1dc72e47c78, type: 3}
   engineMinPitch: 0.8

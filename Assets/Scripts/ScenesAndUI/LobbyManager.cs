@@ -20,6 +20,9 @@ public class LobbyManager : MonoBehaviour
     // Punto de spawn de cada color
     [SerializeField] private List<LobbySlot> slots = new();
 
+    // Referencia interna al manager de UI
+    private LobbyUIManager uiManager;
+
     // Instancias actuales
     private readonly Dictionary<string, GameObject> spawnedPlayers = new();
     private readonly Dictionary<string, int> currentModelIndex = new();
@@ -27,11 +30,17 @@ public class LobbyManager : MonoBehaviour
     public bool DebugMode = false;
     public string Dbg_SceneToLoad = "GameScene_1";
 
+    private void Awake()
+    {
+        uiManager = GetComponent<LobbyUIManager>();
+    }
+
     private void Start()
     {
         PlayerChoices.Instance.ResetPlayers();
-
-        SoundManager.PlayMusic(4);
+        PlayerChoices.Instance.ResetGame();
+        
+        SoundManager.PlayMusic(10); // Lobby_Theme
         SoundManager.FadeInMusic(1f);
     }
 
@@ -43,14 +52,13 @@ public class LobbyManager : MonoBehaviour
             return;
         }
 
-        // Registrar en PlayerChoices
+        bool wasEmpty = spawnedPlayers.Count == 0;
+
         PlayerChoices.AddPlayer(pc, device);
 
-        // Evitar duplicados visuales
         if (spawnedPlayers.ContainsKey(color))
             Destroy(spawnedPlayers[color]);
 
-        // Crear jugador visual
         var slot = GetSlot(color);
         if (slot == null)
         {
@@ -61,34 +69,56 @@ public class LobbyManager : MonoBehaviour
         int modelIndex = 0;
         currentModelIndex[color] = modelIndex;
 
-        // Registrar skin en PlayerChoices
         PlayerChoices.SetPlayerSkin(pc, modelIndex);
 
-        // Aplica material
         var prefab = CharacterCatalog.Instance.Get(modelIndex);
-        prefab.GetComponentInChildren<SkinnedMeshRenderer>().SetSharedMaterials(new List<Material>() { ApplyMaterial(color) });
+        prefab.GetComponentInChildren<SkinnedMeshRenderer>()
+              .SetSharedMaterials(new List<Material>() { ApplyMaterial(color) });
 
-        // Instancia y añade a la lista
         var go = Instantiate(prefab, slot.spawnPoint.position, slot.spawnPoint.rotation);
         spawnedPlayers[color] = go;
 
-        //Debug.Log($"Jugador {color} unido ({device.displayName})");
+        // --- UI: general y layout del color ---
+        if (uiManager != null)
+        {
+            if (wasEmpty)
+            {
+                uiManager.SetGeneralStep(2);   // el general pasa a step 2
+                uiManager.SetLayoutStep(color, 2); // el jugador que se une también pasa a step 2
+            }
+            else
+            {
+                uiManager.SetLayoutStep(color, 2); // los demás solo actualizan su layout
+            }
+        }
     }
 
     public void RemovePlayer(string color)
     {
-        // Quitar visual
+        // UI: primero retrocede el layout del color
+        if (uiManager != null)
+            uiManager.SetLayoutStep(color, 1);
+
         if (spawnedPlayers.ContainsKey(color))
         {
             Destroy(spawnedPlayers[color]);
             spawnedPlayers.Remove(color);
-
-            SoundManager.PlayFX(5); // sonido de baja (Hit_or_NotReady)
+            SoundManager.PlayFX(5);
         }
 
         currentModelIndex.Remove(color);
-
         Debug.Log($"Jugador {color} eliminado del lobby.");
+
+        // UI: si ya no queda nadie, retrocede el general
+        if (uiManager != null && spawnedPlayers.Count == 0)
+            uiManager.SetGeneralStep(1);
+    }
+
+    public void OnPlayerReadyChanged(string color, bool isReady)
+    {
+        if (uiManager == null) return;
+        if (isReady) uiManager.SetLayoutStep(color, 3);
+        else uiManager.SetLayoutStep(color, 2); ;
     }
 
     public void Continue()

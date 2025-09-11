@@ -128,10 +128,10 @@ public class ResultManager : MonoBehaviour
 
         switch (rNumber)
         {
-            case 1: SoundManager.PlayMusic(9); break;  // Macarena
-            case 2: SoundManager.PlayMusic(8); break;  // Gangnam Style
-            case 3: SoundManager.PlayMusic(10); break; // Pajaritos
-            case 4: SoundManager.PlayMusic(7); break;  // fallback
+            case 1: SoundManager.PlayMusic(2); break;  // Macarena
+            case 2: SoundManager.PlayMusic(1); break;  // Gangnam Style
+            case 3: SoundManager.PlayMusic(3); break; // Pajaritos
+            case 4: SoundManager.PlayMusic(0); break;  // fallback
         }
 
         SoundManager.FadeInMusic(1f);

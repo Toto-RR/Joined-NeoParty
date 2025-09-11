@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,12 +20,17 @@ public class DroneController : MonoBehaviour
     public Transform visual;             // hijo grafico opcional
     public float maxTiltDeg = 15f;       // inclinacion visual
     public float tiltSmooth = 10f;
+    public float maxTiltSpeedDegPerSec = 180f; // límite de velocidad angular
 
     private int score = 100;
     private PlayerInput playerInput;
     private InputAction moveAction;
+    private InputAction readyAction;
     private Renderer droneRenderer;
     private Color originalColor;
+    public bool CalibrationReady { get; private set; } = false;
+    public event Action<DroneController, bool> OnCalibrationToggled;
+    private bool readyArmed = false;
 
     private string schema;
     private PlayerChoices.PlayerColor playerColor;
@@ -71,43 +77,73 @@ public class DroneController : MonoBehaviour
         useWorldBounds = true;
     }
 
-    void OnEnable() 
-    { 
-        moveAction = playerInput.actions["Move"];
-        moveAction?.Enable();
+    public void BeginCalibrationInputGate()
+    {
+        // Llamado al entrar en calibración
+        readyArmed = false;        // exige una suelta antes del primer toggle
+                                   // Opcional: limpiar estado para evitar “fantasmas”
+        readyAction?.Disable();
+        readyAction?.Enable();
     }
 
-    void OnDisable() 
+    void OnEnable()
     {
-        moveAction?.Disable();    
+        moveAction = playerInput.actions["Move"];
+        moveAction?.Enable();
+
+        readyAction = playerInput.actions.FindAction("Ready", throwIfNotFound: false);
+        if (readyAction != null)
+        {
+            readyAction.Enable();
+            // Se arma cuando el jugador SUELTA el gatillo/botón por primera vez
+            readyAction.canceled += OnReadyCanceled;
+            // Solo permite toggle si está armado
+            readyAction.performed += OnReadyPerformed;
+        }
+    }
+    void OnDisable()
+    {
+        moveAction?.Disable();
+        if (readyAction != null)
+        {
+            readyAction.canceled -= OnReadyCanceled;
+            readyAction.performed -= OnReadyPerformed;
+            readyAction.Disable();
+        }
     }
 
     void FixedUpdate()
     {
         Vector2 input = moveAction.ReadValue<Vector2>();
-        // Opcional: deadzone extra
         if (input.sqrMagnitude < 0.0025f) input = Vector2.zero;
 
-        // Deseamos velocidad objetivo en el plano
+        // Física de movimiento (igual que ya tienes)...
         Vector3 targetVel = new Vector3(input.x, input.y, 0f) * maxSpeed;
         Vector3 vel = rb.linearVelocity;
+        rb.linearVelocity = Vector3.MoveTowards(vel, targetVel, acceleration * Time.fixedDeltaTime);
 
-        // Aceleraci�n hacia la velocidad objetivo (cr�tico para chocar bien con paredes)
-        Vector3 velDelta = targetVel - vel;
-        Vector3 accel = Vector3.ClampMagnitude(velDelta / Time.fixedDeltaTime, acceleration);
-        rb.AddForce(accel, ForceMode.Acceleration);
-
-        // Tilt visual (roll por X, pitch por Y) � solo el hijo gr�fico
+        // ----- TILT SUAVE BASADO EN VELOCIDAD -----
         if (visual)
         {
-            float roll = -input.x * maxTiltDeg; // inclina sobre Z para banca lateral
-            float pitch = -input.y * maxTiltDeg; // inclina sobre X para subir/bajar
-            Quaternion targetRot = Quaternion.Euler(pitch, 0, roll);
-            visual.localRotation = Quaternion.Slerp(visual.localRotation, targetRot, 1f - Mathf.Exp(-tiltSmooth * Time.fixedDeltaTime));
+            Vector3 v = rb.linearVelocity;
+            float speed01 = Mathf.Clamp01(v.magnitude / Mathf.Max(0.0001f, maxSpeed));
+            Vector2 dir = new Vector2(v.x, v.y).normalized;
+
+            // roll por X, pitch por Y (ligado a la dirección real de desplazamiento)
+            float roll = -dir.x * maxTiltDeg * speed01;
+            float pitch = -dir.y * maxTiltDeg * speed01;
+
+            Quaternion current = visual.localRotation;
+            Quaternion target = Quaternion.Euler(pitch, 0f, roll);
+            visual.localRotation = Quaternion.RotateTowards(
+                current, target,
+                maxTiltSpeedDegPerSec * Time.fixedDeltaTime
+            );
         }
 
         ClampToWorldRect();
     }
+
 
     void ClampToWorldRect()
     {
@@ -194,4 +230,21 @@ public class DroneController : MonoBehaviour
         score--;
     }
 
+    private void OnReadyCanceled(InputAction.CallbackContext _)
+    {
+        readyArmed = true;
+    }
+
+    private void OnReadyPerformed(InputAction.CallbackContext _)
+    {
+        if (!readyArmed) return; 
+        ToggleCalibrationReady();
+    }
+
+    public void ToggleCalibrationReady()
+    {
+        CalibrationReady = !CalibrationReady;
+        SoundManager.PlayFX(CalibrationReady ? 7 : 6);
+        OnCalibrationToggled?.Invoke(this, CalibrationReady);
+    }
 }

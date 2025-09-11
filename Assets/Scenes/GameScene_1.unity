@@ -656,6 +656,10 @@ PrefabInstance:
       propertyPath: m_MaxSpeed
       value: 28.351776
       objectReference: {fileID: 0}
+    - target: {fileID: 5325635898377474751, guid: 993647c759b0cd1429b1a8aca7d5f3fd, type: 3}
+      propertyPath: obstaclesToSpawnForGoal
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5637019420383936856, guid: 993647c759b0cd1429b1a8aca7d5f3fd, type: 3}
       propertyPath: m_SizeDelta.y
       value: 515.71

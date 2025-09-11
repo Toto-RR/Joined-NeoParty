@@ -82,7 +82,7 @@ public class EndGame : MonoBehaviour
 
         camTransition.brain = mainCamera.GetComponent<CinemachineBrain>();
 
-        SoundManager.PlayMusic(11);
+        SoundManager.PlayMusic(7); // Endgame3
         SoundManager.FadeInMusic(1f);
 
         // Primera transición: espera a que acabe el recorrido inicial

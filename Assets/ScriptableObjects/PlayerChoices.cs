@@ -392,6 +392,14 @@ public class PlayerChoices : ScriptableObject
         Instance.ResetPlayers();
     }
 
+    public void ResetGame()
+    {
+        InitIfNeeded();
+        Instance.ResetPlayers();
+        Instance.winner = default;
+        gameLength = default;
+    }
+
     // --- SKIN ---
     public static void SetPlayerSkin(PlayerColor color, int skinIndex)
     {

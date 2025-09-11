@@ -100,7 +100,7 @@ public class Minigame_1 : BaseMinigame
                 spawner.enabled = true;
         }
 
-        SoundManager.PlayMusicWithFade(1);
+        SoundManager.PlayMusicWithFade(5);
 
         foreach (var player in playersSpawner.GetPlayers())
         {
