@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame(GameLength gameLength)
     {
+        currentMiniGameIndex = 0;
         currentGameLength = gameLength;
         poolMinigames = GenerateGameSequence(gameLength);
         PlayerChoices.SetPartyLength(gameLength);
@@ -101,5 +102,10 @@ public class GameManager : MonoBehaviour
         };
 
         return selectedMiniGames.Take(count).ToList();
+    }
+
+    public void ResetGame()
+    {
+        PlayerChoices.Instance.ResetGame();
     }
 }

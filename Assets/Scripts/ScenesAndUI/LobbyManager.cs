@@ -38,8 +38,7 @@ public class LobbyManager : MonoBehaviour
     private void Start()
     {
         PlayerChoices.Instance.ResetPlayers();
-        PlayerChoices.Instance.ResetGame();
-        
+
         SoundManager.PlayMusic(10); // Lobby_Theme
         SoundManager.FadeInMusic(1f);
     }
