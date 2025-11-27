@@ -129,7 +129,7 @@ public class PlayerChoices : ScriptableObject
 
         var schema = GetSchemaFromDevice(device);
         Instance.jugadoresActivos.Add(new PlayerData(color, device, schema, 0));
-        Debug.Log($"Dispositivo {device.displayName} (Schema: {schema}) asignado al color {color}.");
+        Debug.Log($"Dispositivo {device.displayName} con ID ({device.deviceId}) (Schema: {schema}) asignado al color {color}.");
         return true;
     }
 
@@ -277,16 +277,20 @@ public class PlayerChoices : ScriptableObject
 
     public static string GetSchemaFromDevice(InputDevice device)
     {
-        InitIfNeeded();
-        if (device is Keyboard || device is Mouse) return "Keyboard&Mouse";
-        if (device is Gamepad) return "Gamepad";
-        if (device is HID) return "HID";
-        if (device is Joystick) return "Joystick";
-        if (device is Mouse) return "Mouse";
+        if (device is Keyboard)
+            return "Keyboard&Mouse";
 
-        Debug.LogWarning("Dispositivo no reconocido: " + device?.displayName);
-        return "Unknown";
+        if (device is Gamepad)
+            return "Gamepad";
+
+        // Tus Arduinos aparecen como HID (y podrían aparecer como Joystick en algún caso).
+        // Para tu asset, TODOS ellos deben usar el scheme "Joystick".
+        if (device is HID || device is Joystick)
+            return "Joystick";
+
+        return null;
     }
+
 
     public static string GetColorFromDevice(InputDevice device)
     {
