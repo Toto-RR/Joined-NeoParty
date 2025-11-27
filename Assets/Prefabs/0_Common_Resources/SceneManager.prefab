@@ -632,7 +632,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1281,6 +1281,7 @@ MonoBehaviour:
   - {fileID: 22100000, guid: 2ce51a58bf50f9a44adeba2c744f9307, type: 2}
   - {fileID: 22100000, guid: 5ebf3633aa2ffb446a0628255d885f4f, type: 2}
   - {fileID: 22100000, guid: 525521cf84b23a1438e54b84bd2af4ba, type: 2}
+  - {fileID: 22100000, guid: 32396acaf2ac6724797660afec30c6fd, type: 2}
   playTrigger: Transition
   resetTrigger: Reset
   holdClosedSeconds: 0
@@ -1299,7 +1300,7 @@ MonoBehaviour:
   library: {fileID: 11400000, guid: 69c83579c4ca5dd45b3bf1a8322699c9, type: 2}
   backgroundMusicSource: {fileID: 2797052458490958344}
   fxSource: {fileID: 1653566825739172582}
-  mixer: {fileID: 0}
+  mixer: {fileID: 24100000, guid: 1ecb2a4705cdc1d4e8ec3badb4d59efa, type: 2}
   musicParam: MusicVolume
   sfxParam: SFXVolume
   mixerDbRange: {x: -80, y: 0}

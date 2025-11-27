@@ -16,11 +16,11 @@ public class PreTitle : MonoBehaviour
         {
             SoundManager.SetMusicVolume(0.5f); // Asegura que el volumen es el correcto
             SoundManager.SetFxVolume(0.5f); // Asegura que el volumen es el correcto
-            SoundManager.PlayMusic(0);
+            SoundManager.PlayMusic(11); // MainTheme
         }
         else
         {
-            SoundManager.PlayMusic(11);
+            SoundManager.PlayMusic(8); // EndGame_2
             SoundManager.FadeInMusic(1f);
         }
 
@@ -34,6 +34,8 @@ public class PreTitle : MonoBehaviour
     {
         action.FindAction("Ready", throwIfNotFound: true).performed -= OnReadyPerformed;
         action.Disable();
+
+        SoundManager.FadeOutMusic(1f, stopAfter: true);
         SceneChanger.Instance.ApplyTransitionAsync(SceneNames.MainMenu, Transitions.Fade);
     }
 }

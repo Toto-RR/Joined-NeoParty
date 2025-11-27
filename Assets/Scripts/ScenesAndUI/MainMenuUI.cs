@@ -24,9 +24,7 @@ public class MainMenuUI : MonoBehaviour
 
     private void Start()
     {
-        if (SoundManager.Instance.backgroundMusicSource.clip == null)
-            SoundManager.PlayMusic(0);
-
+        SoundManager.PlayMusic(11); //MainTheme
         SoundManager.FadeInMusic(1f);
 
         ShowPanelTitulo();
@@ -91,10 +89,10 @@ public class MainMenuUI : MonoBehaviour
         MenuInputRouter.Instance?.ClearProvider(panelPartida.GetComponent<CanvasActionsProvider>());
     }
 
-    public void StartPartidaMaraton()
+    public void GoCredits()
     {
-        GameManager.Instance.StartGame(GameManager.GameLength.Marathon);
-        MenuInputRouter.Instance?.ClearProvider(panelPartida.GetComponent<CanvasActionsProvider>());
+        if(SceneChanger.Instance != null)
+            SceneChanger.Instance.ApplyTransitionAsync(8);
     }
 
     public void QuitGame()

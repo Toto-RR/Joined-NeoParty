@@ -35,6 +35,13 @@ public class PlayersSpawner : MonoBehaviour
             }
 
             var player = activePlayers[i];
+
+            Debug.Log($"[PlayerSpawner] Slot {i} Color={player.Color} " +
+                      $"Device={player.Device} " +
+                      $"DeviceId={player.Device?.deviceId} " +
+                      $"Desc={player.Device?.description}");
+
+
             GameObject prefabToSpawn = GetPrefabForColor(activePlayers[i].Color);
             if (prefabToSpawn != null)
             {
@@ -42,11 +49,24 @@ public class PlayersSpawner : MonoBehaviour
                 Transform laneTransform = carrilesAsignados[LaneByColor(player.Color)];
 
                 string controlScheme = PlayerChoices.GetSchemaFromDevice(player.Device);
+
+                // Emparejar con el mando correcto
+                InputDevice[] devices = PlayerChoices.GetPairDevices(player.Device);
+
                 PlayerInput playerInput = PlayerInput.Instantiate(
                     prefabToSpawn,
                     controlScheme: controlScheme,
                     pairWithDevice: player.Device
                 );
+
+                // Refuerza el esquema + dispositivos explícitamente
+                playerInput.SwitchCurrentControlScheme(controlScheme, devices);
+
+                // Debug útil
+                var devList = string.Join(", ",
+                    System.Linq.Enumerable.Select(playerInput.devices, d => $"{d.displayName}(id={d.deviceId})"));
+                Debug.Log($"[SpawnPlayers] {player.Color} scheme={playerInput.currentControlScheme} devices={devList}");
+
 
                 Vector3 spawnPos = laneTransform.position + new Vector3(-0.5f, 0.5f, -20);
                 playerInput.transform.SetPositionAndRotation(spawnPos, laneTransform.rotation);

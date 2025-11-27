@@ -35,7 +35,7 @@ public class TutorialManager : MonoBehaviour
         else
             OnIntroAnimationFinished();
 
-        SoundManager.PlayMusic(5);
+        SoundManager.PlayMusic(13); // Tutorial
     }
 
     private void OnDestroy()

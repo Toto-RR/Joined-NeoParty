@@ -19,6 +19,8 @@ public class CarController : MonoBehaviour
     private int roadCount = 0; // numero de vueltas completas
     public bool DebugMode = false;
 
+    public int vueltasTotales = 5;
+
     // ---------------- AUDIO: Engine ----------------
     [Header("Audio - Motor")]
     public AudioSource engineSource;
@@ -45,6 +47,12 @@ public class CarController : MonoBehaviour
 
     // Cache del último input normalizado (0..1)
     private float lastNormalizedInput = 0f;
+    // CarController.cs
+    public PlayerChoices.PlayerColor PlayerColor => playerColor;
+    public int Laps => roadCount; // ya lo incrementas al pasar por "Finish"
+    public float Progress01 => GetComponent<UnityEngine.Splines.SplineAnimate>()?.NormalizedTime ?? 0f;
+    public float TotalProgress => Laps + Mathf.Clamp01(Progress01); // clave para ordenar
+
 
     private void Awake()
     {
@@ -213,7 +221,7 @@ public class CarController : MonoBehaviour
         if (other.CompareTag("Finish"))
         {
             roadCount++;
-            if (roadCount >= 3)
+            if (roadCount >= vueltasTotales)
             {
                 Debug.Log("Color " + playerColor + " ha terminado!");
                 moveAction.Disable();

@@ -48,11 +48,15 @@ public class DroneSpawner : MonoBehaviour
                     configuredDrone.transform.SetPositionAndRotation(spawnPoint.position, spawnPoint.rotation);
 
                 string controlScheme = PlayerChoices.GetSchemaFromDevice(player.Device);
+                InputDevice[] devices = PlayerChoices.GetPairDevices(player.Device);
+
                 PlayerInput playerInput = PlayerInput.Instantiate(
                     configuredDrone,
                     controlScheme: controlScheme,
                     pairWithDevice: player.Device
                 );
+
+                playerInput.SwitchCurrentControlScheme(controlScheme, devices);
 
                 if (playerInput.TryGetComponent<DroneController>(out var controller))
                 {

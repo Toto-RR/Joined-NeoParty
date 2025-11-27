@@ -20,8 +20,8 @@ public class FullscreenOptionAction : MonoBehaviour
 
     [Header("Texto (opcional)")]
     [SerializeField] private TextMeshProUGUI debugLabel;
-    [SerializeField] private string onText = "Fullscreen: ON";
-    [SerializeField] private string offText = "Fullscreen: OFF";
+    [SerializeField] private string onText = "Pantalla completa: SI";
+    [SerializeField] private string offText = "Pantalla completa: NO";
 
     bool _suppress;
     int _lastHandledFrame = -1; // debounce por frame

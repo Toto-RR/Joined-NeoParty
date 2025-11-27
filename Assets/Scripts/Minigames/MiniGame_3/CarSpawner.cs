@@ -30,11 +30,16 @@ public class CarSpawner : MonoBehaviour
             if (configuredCar != null)
             {
                 string controlScheme = PlayerChoices.GetSchemaFromDevice(player.Device);
+                InputDevice[] devices = PlayerChoices.GetPairDevices(player.Device);
+
                 PlayerInput playerInput = PlayerInput.Instantiate(
                     configuredCar,
                     controlScheme: controlScheme,
                     pairWithDevice: player.Device
                 );
+
+                playerInput.SwitchCurrentControlScheme(controlScheme, devices);
+
 
                 if (playerInput.TryGetComponent<CarController>(out var controller))
                 {

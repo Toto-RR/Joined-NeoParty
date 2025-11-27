@@ -10,6 +10,9 @@ public class Minigame_3 : BaseMinigame
     [Header("Car Spawner")]
     public CarSpawner carSpawner;
 
+    [Header("HUD")]
+    public Canvas hudCanvas;
+
     public bool debugMode = false;
     
     private readonly List<PlayerChoices.PlayerColor> finishOrder = new();
@@ -36,6 +39,7 @@ public class Minigame_3 : BaseMinigame
         base.OnAllPlayersReady();
 
         carSpawner.SpawnCars();
+        hudCanvas.GetComponent<RaceLeaderboardUI>().SpawnRowsHUD();
 
         cameraTransitionManager.SwitchToGameplay(() =>
         {
@@ -47,6 +51,8 @@ public class Minigame_3 : BaseMinigame
     public IEnumerator HandlePostTransition()
     {
         yield return new WaitForSeconds(0.5f);
+
+        hudCanvas.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(0, 1, 1);
 
         yield return StartCoroutine(StartCountdownThenBegin());
     }
@@ -74,7 +80,7 @@ public class Minigame_3 : BaseMinigame
         if (countdownCanvas != null)
             countdownCanvas.SetActive(false);
 
-        SoundManager.PlayMusicWithFade(3);
+        SoundManager.PlayMusicWithFade(12); // SpeedRacers_Theme
 
         // Desbloquea control de los jugadores
         foreach (var player in carSpawner.GetPlayers())

@@ -338,8 +338,6 @@ public class LobbyInputManager : MonoBehaviour
         if (!string.IsNullOrEmpty(cur) && !ColorEquals(cur, targetColor) && IsReady(cur))
         {
             Debug.Log($"Cambio de color bloqueado: jugador en '{cur}' está LISTO. Desmarca 'Listo' para moverte.");
-            // Aquí puedes disparar un sonido/flash de UI si quieres
-            // onReadyChanged?.Invoke(cur, true); // (ejemplo: reutilizar evento)
             return;
         }
 
@@ -356,9 +354,12 @@ public class LobbyInputManager : MonoBehaviour
         // Si el color destino está libre, me uno
         if (!PlayerChoices.IsPlayerActive(targetColor))
         {
+            bool wasZero = PlayerChoices.GetNumberOfPlayers() == 0;
+
             lobbyManager.AddNewPlayer(targetColor, device);
             deviceToColor[device.deviceId] = targetColor;
             SetReadyInternal(targetColor, false);
+
             SoundManager.PlayFX(3); // sonido de unión (AddPlayer_Lobby)
         }
         else
@@ -367,12 +368,24 @@ public class LobbyInputManager : MonoBehaviour
         }
     }
 
-
     private void SetReadyInternal(string color, bool isReady)
     {
+        bool prevReady = readyByColor.TryGetValue(color, out var prev) && prev;
+
+        // Si no hay cambio, no toques la UI
+        if (prevReady == isReady)
+        {
+            readyByColor[color] = isReady;            // mantiene el diccionario coherente
+            SetReadyIndicator(color, isReady);        // opcional: mantener luces sincronizadas
+            onReadyChanged?.Invoke(color, isReady);   // si quieres seguir notificando sin UI
+            return;
+        }
+
+        // Hay cambio real de estado
         readyByColor[color] = isReady;
         SetReadyIndicator(color, isReady);
         onReadyChanged?.Invoke(color, isReady);
+        lobbyManager.OnPlayerReadyChanged(color, isReady);
     }
 
     private void SetReadyIndicator(string color, bool on)

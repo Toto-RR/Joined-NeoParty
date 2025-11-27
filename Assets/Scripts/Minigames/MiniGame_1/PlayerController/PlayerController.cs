@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
     {
         foreach (var p in PlayerChoices.GetActivePlayers())
         {
-            Debug.Log($"{p.Color} tiene asignado el dispositivo: {p.Device.displayName}");
+            Debug.Log($"{p.Color} tiene asignado el dispositivo: {p.Device.displayName} con ID {p.Device.deviceId}");
         }
 
         rb = GetComponent<Rigidbody>();
@@ -79,6 +79,7 @@ public class PlayerController : MonoBehaviour
 
     public void MoverACarril(int index)
     {
+        Debug.Log($"Device: {playerInput.currentControlScheme} con devices {playerInput} dijo al jugador {playerColor} moverse hacia otro carril");
         SoundManager.PlayFX(10); // Sonido de cambio de carril (Dodge)
         animator.SetFloat("Speed", 1f);
         if (index >= 0 && index < carriles.Length && index != currentCarrilIndex && !isChangingLane)
