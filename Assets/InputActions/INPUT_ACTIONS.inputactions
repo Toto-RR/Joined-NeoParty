@@ -41,7 +41,7 @@
                     "id": "51c92d75-9724-4007-86ce-e0748ca15a0e",
                     "path": "<Joystick>/stick",
                     "interactions": "",
-                    "processors": "InvertVector2,StickDeadzone(max=0.48)",
+                    "processors": "InvertVector2(invertX=false,invertY=false),StickDeadzone(max=0.48)",
                     "groups": ";Joystick",
                     "action": "Move",
                     "isComposite": false,

@@ -5492,7 +5492,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4041993193376166386, guid: fae69a0098f3b0041978f3cff7728bd6, type: 3}
       propertyPath: Priority.m_Value
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7456341019578185478, guid: fae69a0098f3b0041978f3cff7728bd6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9631,7 +9631,7 @@ PrefabInstance:
       objectReference: {fileID: 1630976988}
     - target: {fileID: 2179733342186077502, guid: 287ba12429f7e9c4286e577bee74bcdb, type: 3}
       propertyPath: m_MaxSpeed
-      value: 35.6527
+      value: 57.04432
       objectReference: {fileID: 0}
     - target: {fileID: 2395432626176218585, guid: 287ba12429f7e9c4286e577bee74bcdb, type: 3}
       propertyPath: Lens.FieldOfView
